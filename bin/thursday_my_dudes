@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+# YOU"RE OUT OF TOUHVC
+
+if [[ "$(date +%a)" == "Thu" ]] ; then
+    # oops.
+    ~/bin/allume set 20
+    # YOUR:ER OUT OF TIME
+    i3-msg workspace number "69:IT'S OUT OF TOUCH THURSDAY"
+    # UBT iM OUT OF MY HEAD WHEN UR NOT AROUnD
+    cvlc misc/thursday.mp4 --no-loop --no-repeat --no-video-title-show --mouse-hide-timeout 1
+    #oooo
+    i3-msg workspace number "69:IT'S OUT OF TOUCH THURSDAY"
+    # OOoOOOoO OOOO
+fi

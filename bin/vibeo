@@ -1,0 +1,12 @@
+#!/bin/bash
+set -eou pipefail
+
+time=$(date +%Y-%m-%d_%H-%M-%S)
+filename="${time::-1}*.mkv"
+obs --startrecording
+# mmm race condition
+sleep 0.2
+echo 'y' | ffmpeg -i /mnt/storage/recordings/"${filename}" /mnt/storage/tmp.mp4
+rm /mnt/storage/recordings/"${filename}" &
+echo '/mnt/storage/tmp.mp4' | xsel -ib
+tg

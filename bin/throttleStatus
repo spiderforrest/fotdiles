@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+while true; do
+    echo "$(tail -n 1 /var/log/temp_throttle | head -c 3)/35"
+    sleep 8
+done

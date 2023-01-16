@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+# why
+
+# old
+#/home/emily/Applications/tablet/Pentablet_Driver
+
+# new!
+/usr/lib/pentablet/pentablet.sh

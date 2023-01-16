@@ -1,0 +1,32 @@
+#!/bin/bash
+
+Mode=$1
+Modifier=$2
+
+case $Mode in
+    set)
+        pactl list sinks | grep "Sink #" | cut -c 7- | xargs -I '{}' pactl set-sink-volume '{}' "$Modifier"
+    ;;
+    mute)
+        pactl list sinks | grep "Sink #" | cut -c 7- | xargs -I '{}' pactl set-sink-mute '{}' toggle
+    ;;
+    hardMute)
+        pactl list sinks | grep "Sink #" | cut -c 7- | xargs -I '{}' pactl set-sink-volume '{}' 0
+        pactl list sinks | grep "Sink #" | cut -c 7- | xargs -I '{}' pactl set-sink-mute '{}' 1
+        pactl list sources | grep 'Source #' | cut -c 9- | xargs -I '{}' pactl set-source-mute '{}' 1
+    ;;
+    micMute)
+        pactl list sources | grep 'Source #' | cut -c 9- | xargs -I '{}' pactl set-source-mute '{}' toggle
+    ;;
+    get)
+        pactl get-sink-volume @DEFAULT_SINK@ | grep -E -o '[0-9]+%' | tail -n 1
+    ;;
+    micGet)
+        pactl get-source-volume @DEFAULT_SOURCE@ | grep -E -o '[0-9]+%' | tail -n 1
+    ;;
+    *)
+    echo "incorrect usage"
+    ;;
+esac
+
+killall -s USR1 py3status

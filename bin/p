@@ -1,0 +1,178 @@
+#!/bin/bash
+#set -eou pipefail
+#IFS=$'\n\t'
+
+
+#while [ ! $# -eq 0 ]; do
+#    case "$1" in
+#        -o | --option)
+#            if [ "$2" ]; then
+#                OPTION='--option $2'
+#                shift
+#            else
+#                echo '--option requires a value'
+#                exit 1
+#            fi
+#            ;;
+#        -f | --force)
+#            FORCE='--force'
+#            ;;
+#        -h | --help)
+#            usage
+#            exit
+#            ;;
+#        *)
+#            usage
+#            exit
+#            ;;
+#    esac
+#    shift
+#done
+
+# detect system, configure for bedrock
+distro="${1:-..uh, not sure. sorry.}"
+if [[ -d /bedrock ]] ; then
+    distro="bedrock"
+fi
+case "$distro" in
+    bedrock)
+        pmInstall="sudo pmm-install"
+        pmRemove="sudo pmm-remove -R"
+        pmLocate="pmm-query -Ro"
+        pmUpdate() {
+            echo "// updating all //"
+            sudo pmm-install -Su
+            echo "// refreshing xlocates //"
+            pmm-xlocate -S
+        }
+        pmSearch() {
+            if [[ -n "$(pmm-query -l | grep "$1")" ]] ; then
+                pmm-query -R "$1"
+            else
+                echo "// not found local, trying remote //"
+                # no idea how pmm works but it gets garbage in my outputs so sanitize by putting it in a vat
+                # var before grepping
+                remoteResults="$(pmm-query -R "$1")"
+                if [[ -n "$remoteResults" ]] ; then
+                    echo "$remoteResults"
+                else
+                    echo "// not found explicitly, searching... //"
+                    echo "$(pmm-query -Rs "$1" | tac)"
+                fi
+            fi
+        }
+        pmClean() {
+            echo "// updating all //"
+            sudo pmm-install -Suy
+            echo "// refreshing xlocates //"
+            pmm-xlocate -S
+            echo "// clearing cache and brutally murdering parentless orhapns //"
+            sudo pmm-remove -Oo
+            pmm --check-pmm-configuration
+            echo "// current packages outside of world: //"
+            pmm --diff-world
+            echo "// attempting to neofetch all stratums: //"
+            brl list | grep -v bedrock | xargs -I{} strat -r {} neofetch
+            neofetch
+        }
+        ;;
+esac
+
+# if no arg, assume update
+argA="${1:-"update"}"
+
+case "$argA" in
+
+    h | help)
+        echo -e "Hi! it's a spiderscript! i'm just shortcuts bc spider is too lazy to remember syntax for literally anything, so it does system management via scripts like me that respond consistently. I am theoretically distro aware, i think you're running $distro! \n\ni will:\n\ni,install (package) [assumed if no matching argument]\nu,update\nr,remove (package)\nclean [clears orphans, caches, updates, etc]\nq,query (package)\ns,search (keywords)\nl,lookup (binary file) [xlookup for binaries to find a command's package]\nneo,info [dump info and spam neofetches for all stratums]\nw,world [submenu for managing the global world file]\nh,help"
+        ;;
+
+    # Install a package
+    i | install)
+    echo "// installing $2 //"
+    $pmInstall "$2"
+    ;;
+
+    # Update the system
+    u | update)
+    echo "// updating packages & refreshing xlocates //"
+    pmUpdate
+    neofetch
+    ;;
+
+    # Remove a package
+    r | remove)
+    echo "// removing $2 //"
+    $pmRemove "$2"
+    ;;
+    # Clean the system, busywork
+    clean)
+    pmClean
+    ;;
+
+    # Query/search for a package
+    q | s | query | search)
+    pmSearch "$2"
+    ;;
+
+    # Lookup a binary
+    l | lookup)
+    $pmLocate
+    ;;
+
+    # neofetch bc you should be ashamed
+    info)
+    echo "// all installed packages, seperated by if in global world: //"
+    pmm --diff-world
+    tail -n +25 < /bedrock/etc/world
+    echo "// attempting to neofetch all stratums //"
+    brl list | grep -v bedrock | xargs -I{} strat -r {} neofetch
+    neofetch
+    ;;
+
+    # world submenu
+    w | world)
+    echo "// current world: //"
+    tail -n +26 < /bedrock/etc/world
+    echo "// world diffs: //"
+    pmm --diff-world
+    echo -en "// would you like to: //\n(these affect your system)\n   [1]: install all packages in world but not installed\n   [2]: revert system to match world\n(these affect your worldfile)\n   [3]: sync world to installed packages\n   [4]: remove all packages from world not installed\n   [5]: export world to a handy file\n   [6]: import file and overwrite global world\n(1-6): "
+
+    read -r worldRun
+    case $worldRun in
+        1)
+            sudo pmm --apply-world-installed
+            ;;
+
+        2)
+            sudo pmm --apply-world
+            ;;
+
+        3)
+            sudo pmm --update-world
+            ;;
+
+        4)
+            sudo pmm --update-world-removed
+            ;;
+
+        5)
+            echo "whatcha wanna call the file? "
+            read -r worldFileName
+            cp /bedrock/etc/world "$worldFileName"
+            ;;
+
+        6)
+            echo "you sure? this will overwrite yours, you should probably export it first. I'm too lazy to code a check if you did, so enter the file address or just kill me:"
+            read -r worldFileAddress
+            sudo cp "$worldFileAddress" /bedrock/etc/world
+            ;;
+    esac
+    ;;
+    # fallback to attempting to install if no arg given
+    *)
+    sudo pmm-install "$1"
+    ;;
+esac
+echo "// done. run $0 help if needed. //"
+

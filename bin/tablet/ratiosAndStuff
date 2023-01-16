@@ -1,0 +1,22 @@
+https://gist.github.com/rowantran/329000023ee4a64f908fb71fc044585f
+
+star G430s
+4x3 in
+
+width is 1 inch, so 4/1
+
+hight is that by 16/9 aspect, which is 1.7777... and that's 0.5625 inches, give or take an infinite number of zeros before a 1
+
+so 3/0.5625 is 5.3333...
+
+no offset is fine
+
+
+so
+
+xinput set-prop "XP-PEN G430S Pen" "Coordinate Transformation Matrix" 4 0 0 0 5.333 0 0 0 1
+
+
+well that didn't work
+
+xinput-gui, should i be ashamed

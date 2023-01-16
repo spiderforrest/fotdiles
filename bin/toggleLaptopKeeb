@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# scrip to toggle my laptop keyboard off so i can put my real keeb on it lol
+
+# laptop keeb id
+keebId=10
+
+# get current state
+if [[ $(xinput list-props "$keebId" | grep "Device Enabled" | tail -c 2 | head -c 1) -eq 0 ]]; then
+	echo "turning on"
+	xinput enable "$keebId"
+else 
+	echo "turning off"
+	xinput disable "$keebId"
+fi

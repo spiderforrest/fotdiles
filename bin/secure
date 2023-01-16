@@ -1,0 +1,14 @@
+#!/bin/bash
+## for managing shit that i don't want running on starbucks wifi
+#
+
+if [ "$1" == "open" ] ; then
+	printf "launching sketchy shit\n"
+	sudo sv up sshd
+	sudo sv up syncthing
+	
+else
+	printf "closing sketchy shit\n"
+	sudo sv down sshd
+	sudo sv down syncthing
+fi

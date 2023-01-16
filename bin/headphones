@@ -1,0 +1,7 @@
+#!/bin/bash
+## do all the things to pair me head pahonies
+#
+
+sudo bluetooth on
+sudo bluetoothctl connect 34:DF:2A:64:FF:04
+sudo bluetoothctl pair 34:DF:2A:64:FF:04

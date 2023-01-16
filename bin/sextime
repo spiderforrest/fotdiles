@@ -1,0 +1,99 @@
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# get time in a custom seximal format
+
+# TODO(spider): support one sexant decimal
+
+# default defines
+interval='2777.777e-3'
+loop=''
+seperator1='.'
+seperator2=':'
+seperator3='&'
+prepend="$(date +"%a, %m/%d, ")"
+append=''
+
+# set flags if given
+while getopts 'li:p:x:y:z:a:h' flag; do
+    case ${flag} in
+        i) interval="$OPTARG" loop='1' ;;
+        l) loop="1" ;;
+        p) prepend="$OPTARG" ;;
+        x) seperator1="$OPTARG" ;;
+        y) seperator2="$OPTARG" ;;
+        z) seperator3="$OPTARG" ;;
+        a) append="$OPTARG" ;;
+        h | *)
+            printf "\nusage: sextime [OPTION]... [TIME]...\n TIME must be in a format date -d accepts.\n   I mandate you check with man date ;)\n\n  -l, loop\n  -i, (interval) specify interval to update. 1 sexent by default\n  -p,x,y,z,a (seperators, plus prepend and append) specify seperators, default \"\$(date +\"%%a, %%m/%%d, \")'.' ':' '&' ''\n    example: <sextime -p \"\$(date +%%m/%%d) \" -x '.' -y ' ' -z '' -a \" o'clock\">  would give the format 1/2 3.4 5012 o'clock\n\n"
+            exit
+            ;;
+    esac
+done
+
+# check if converting or looping
+if [[ $loop == 1 ]] ; then
+    # full clock loop
+    while true ; do
+        # time alignment
+        # tell stderr you're syncing
+        >&2 echo "syncing..."
+        # wait until time is NOT divisible by six
+        while [[ $(($(date +%s) % 6)) -eq 0 ]] ; do
+            echo '' > /dev/null
+        done
+
+        # wait until time IS divisible by six
+        while [[ $(($(date +%s) % 6)) -ne 0 ]] ; do
+            echo '' > /dev/null
+        done
+        >&2 echo "launched at $(date +%T) standard time..."
+        # main loop, dropped out of every hour to resync
+        while true; do
+            sleep "$interval" &
+            normHour="$(date +%H)"
+
+            # printf pads zeros to 4 digits and writes to the sexent variable
+            # echoing command into bc, telling it input is base 10 and output is base 6
+            # asking date unix time @ last midnight ^^^
+            # subracting current unix time from that to get seconds from midnight ^^^
+            # trim hours out bc they're base 12 and handled different
+            # add zeros and divide by 2.7.. and convert into base 6 via bc for sexents since midnight
+            printf -v sexent "%04g" "$(echo "obase=6;ibase=10;$(($(($(date +%s) - $(date -d "$(date +%D)" +%s))) % 3600 * 1000 / 2777))" | bc)"
+            # convert hours
+            # bugfix: at 8am it breaks bc bash reads "08" as an octal prefix. but not at 4pm(16)? sure.
+            hour="$((10#$normHour % 6))"
+            cycle="$((10#$normHour / 6))"
+            # make time: cycle:hour:sextants since hour change, split for readability (if the seprators do that ofc)
+            sextime=$prepend$cycle$seperator1$hour$seperator2${sexent:(-4):2}$seperator3${sexent:(-2):2}$append
+            echo "$sextime"
+
+            # hourly resync
+            if [[ $sexent -eq 5555 ]]; then
+                break
+            fi
+
+            # halt til sleep subtask drops
+            wait
+        done
+    done
+
+# conversion code,  only difference is date taking input, not a function for the highly technical
+# reason of i'm sorry i'm too lazy to refactor
+else
+    # check if arg passed
+    if [[ -z $1 ]] ; then
+        printf "Missing argument. -h for usage.\n"
+        exit
+    fi
+    # only diff from loop code is date being passed a time
+    normHour="$(date -d "$1" +%H)"
+    printf -v sexent "%04g" "$(echo "obase=6;ibase=10;$(($(($(date -d "$1" +%s) - $(date -d "$(date -d "$1" +%D)" +%s))) % 3600 * 1000 / 2777))" | bc)"
+    hour="$((10#$normHour % 6))"
+    cycle="$((10#$normHour / 6))"
+    sextime=$prepend$cycle$seperator1$hour$seperator2${sexent:(-4):2}$seperator3${sexent:(-2):2}$append
+    echo "$sextime"
+
+
+fi
