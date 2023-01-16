@@ -1,0 +1,131 @@
+# py3status configuration file
+
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+# :e! ++enc=utf8
+# docs are good:
+# https://py3status.readthedocs.io/en/latest/intro.html
+
+general {
+        colors = true
+        interval = 5
+	output_format = "i3bar"
+	color_good =     '#96BF33'  
+	color_degraded = '#F0FF47'  
+	color_bad =      '#E89393'
+}
+
+py3status {
+# listen i dunno shit about fonts ok i think i'm just using the font from i3config
+#	nagbar_font = 'pango:DejaVu Sans Mono 10'
+}
+
+order += "spotify"
+#order += "arch_updates"
+order += "nvidia_smi"
+#order += "ipv6"
+order += "ethernet _first_"
+order += "volume_status mic"
+order += "volume_status master"
+order += "disk /"
+order += "load"
+order += "memory"
+#order += "tztime local"
+#order += "async_script"
+order += "group clock"
+
+
+wireless _first_ {
+        format_up = "W: (%quality at %essid) %ip"
+        format_down = "W: down"
+}
+
+ethernet _first_ {
+        format_up = "local: %ip"
+        format_down = "before you bork networkmanager just reboot pls"
+}
+
+disk "/" {
+        format = "%avail"
+}
+
+load {
+        format = "load: %1min"
+
+}
+
+memory {
+        format = "%used of %available"
+        threshold_degraded = "1G"
+        format_degraded = "MEMORY < %available"
+}
+
+volume_status mic { 
+  format = "live" 
+  format_muted = "shh" 
+  channel = "Capture"
+  is_input = true
+  button_down = None
+  button_up = None
+  thresholds = [(0, 'bad'), (100, 'degraded')]
+}   
+
+volume_status master {
+  format = "{percentage}"
+  format_muted = "/"
+  channel = "Master"
+# Set thresholds to rainbow colors
+  thresholds = [
+        (0, "#FF0000"),
+        (10, "#E2571E"),
+        (20, "#FF7F00"),
+        (30, "#FFFF00"),
+        (40, "#00FF00"),
+        (50, "#96BF33"),
+        (60, "#8670FF"),
+        (80, "#D770FF"),
+        (70, "#8B00FF"),
+        (90, "#FFFFFF")
+  ]
+}
+
+# display nvidia properties
+nvidia_smi {
+	on_error = "hide"
+    format_gpu = '[\?color=temperature.gpu {temperature.gpu}°C,] '
+    format_gpu += '[\?color=memory.used_percent {memory.used} {memory.used_unit}'
+    format_gpu += '[\?color=darkgray&show  \@ ]{memory.used_percent:.1f}%]'
+}
+
+
+# shows AUR and pac's updates
+arch_updates {
+	cache_timeout = 1000
+	hide_if_zero = true
+	format = "Syu:{aur}/{pacman}"
+}
+
+spotify {
+	button_next = 3
+	button_play_pause = 1
+	button_previous = 8
+	format_down = ""
+	color_paused = '#E89383'
+	format = "{title}"
+	format_down = "/"
+	format_stopped = "/"
+}
+
+async_script {
+	script_path = "/home/emily/bin/sextime -l -x '.' -z '&'"
+}
+
+group clock {
+	async_script {
+		script_path = "/home/emily/bin/sextime -l -x '.' -z '&'"
+	}
+
+	tztime local {
+			format = "%Y-%m-%d, %H:%M:%S"
+	}
+}

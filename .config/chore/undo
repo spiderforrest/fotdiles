@@ -1,0 +1,487 @@
+---
+ADD 
+---
+DEL 
+---
+ADD @people write allie brain
+---
+ADD @cheeb map layout
+---
+ADD @cheeb test on lily
+---
+DEL @cheeb map layout
+ADD map layout +cheeb
+DEL @cheeb test on lily
+ADD test on lily +cheeb
+---
+ADD @people wallpaper
+---
+ADD @people @printer allie keeb
+---
+ADD @printer cheeb
+---
+ADD @people @printer horns
+---
+DEL @printer cheeb
+ADD @printer cheeb +cheeb
+---
+DEL @printer cheeb +cheeb
+ADD print cheeb
+---
+DEL map layout +cheeb
+ADD printer
+---
+DEL print cheeb
+ADD print cheeb +cheeb @printer
+---
+ADD keeb changes, add ascii, move pipe/plus etc
+---
+ADD @life orchi
+---
+ADD @life laser again
+---
+ADD taxes
+---
+ADD @code time applet
+---
+DEL test on lily +cheeb
+ADD test on lily +cheeb @code
+---
+ADD @code rofi gui todo
+---
+ADD austen
+---
+DEL austen
+ADD x austen
+---
+DEL x austen
+ADD austen
+---
+---
+DEL austen
+---
+DEL @people write allie brain
+ADD x @people write allie brain
+---
+ADD @people austen foodlist
+---
+ADD @code write script to refactor this file
+---
+DEL @code rofi gui todo
+ADD @code rofi gui todo @ui
+DEL @code time applet
+ADD @code time applet @ui
+DEL @code write script to refactor this file
+ADD @code write script to refactor this file @ui
+DEL test on lily +cheeb @code
+ADD test on lily +cheeb @code @ui
+---
+ADD @ui lily screens
+---
+DEL @people @printer allie keeb
+ADD @people allie keeb +printer
+DEL @people @printer horns
+ADD @people horns +printer
+DEL print cheeb +cheeb @printer
+ADD print cheeb +cheeb +printer
+---
+---
+ADD @code netmount serv
+---
+ADD sound telegram-cli
+---
+DEL sound telegram-cli
+---
+ADD @code @ui add sound telegram
+---
+ADD @code @ui urgent window scrip
+---
+ADD merge bashrc with case @code @ui
+---
+ADD @code @ui tmux sever btop
+---
+ADD @ui bedrock the last holdout
+---
+ADD @shop rope
+---
+ADD @shop torch
+---
+ADD @shop rj45 crimper
+---
+ADD @shop nylon thread/needle
+---
+---
+DEL @people wallpaper
+ADD x @people wallpaper
+---
+DEL @shop rj45 crimper
+ADD x @shop rj45 crimper
+DEL @shop rope
+ADD x @shop rope
+DEL @shop torch
+ADD x @shop torch
+---
+ADD @shop dashcam
+---
+DEL @shop dashcam
+ADD x @shop dashcam
+---
+DEL printer
+ADD x printer
+---
+DEL @code time applet @ui
+ADD x @code time applet @ui
+---
+ADD firm travel pillow @people
+---
+ADD @life clean knife
+---
+ADD organize tools @life
+---
+ADD @ui audio default switching
+---
+DEL merge bashrc with case @code @ui
+ADD x merge bashrc with case @code @ui
+---
+ADD @code @ui centralize .configs, make install scrip
+---
+ADD @people gloves
+---
+ADD @life @code code class
+---
+ADD @ui toggle clock, switch to string parsing
+---
+ADD @code @ui telegram reminder todo bot
+---
+ADD @ui rm safety
+---
+ADD @ui laptop mouse drivers
+---
+ADD @code firewall
+---
+ADD plasma oid
+---
+ADD @people food sens
+---
+ADD @people heated blanket
+---
+ADD @ui merge passwds
+---
+ADD @ui 8pen layout
+---
+ADD @ui make uh smart
+---
+ADD @life clean trunk
+---
+DEL @code netmount serv
+ADD x @code netmount serv
+---
+DEL @life clean knife
+ADD x @life clean knife
+---
+DEL firm travel pillow @people
+ADD firm travel pillow @people +@shop
+---
+ADD @ui i3 keeb modes
+---
+ADD @people water hpt plate/pot/kettlw
+---
+ADD @life clean compute
+---
+DEL organize tools @life
+ADD x organize tools @life
+---
+DEL @people gloves
+---
+ADD @code @life website, odd job form
+---
+ADD @code awk
+---
+ADD @code awk
+---
+DEL @code awk
+---
+DEL @ui make uh smart
+ADD x @ui make uh smart
+---
+DEL @life clean compute
+ADD x @life clean compute
+---
+DEL @ui rm safety
+ADD x @ui rm safety
+---
+ADD @$ technical author
+---
+DEL @code @life website, odd job form
+ADD @code @life website, odd job form @$
+---
+ADD @ui organize hyperbeam links
+---
+ADD @life i do what i want
+---
+ADD @people squirtlev .bashrc!
+---
+ADD @ui pmmm world tagging
+---
+DEL @code @ui add sound telegram
+---
+DEL @shop nylon thread/needle
+ADD x @shop nylon thread/needle
+---
+DEL @ui pmmm world tagging
+ADD x @ui pmmm world tagging
+---
+DEL keeb changes, add ascii, move pipe/plus etc
+ADD x keeb changes, add ascii, move pipe/plus etc
+---
+ADD @code @ui rewrite clock in rust
+---
+DEL @ui laptop mouse drivers
+ADD x @ui laptop mouse drivers
+---
+ADD @life food shopping
+---
+DEL @life food shopping
+ADD x @life food shopping
+---
+DEL @ui organize hyperbeam links
+ADD x @ui organize hyperbeam links
+---
+DEL @people heated blanket
+ADD @people heated blanket @shop
+---
+DEL @ui toggle clock, switch to string parsing
+---
+DEL @ui lily screens
+ADD x @ui lily screens
+---
+DEL @ui merge passwds
+ADD x @ui merge passwds
+---
+DEL print cheeb +cheeb +printer
+---
+ADD x @life @code c class one
+---
+ADD x @life @code c class two
+---
+ADD @life @code rustlings
+---
+ADD @$ intern for john?
+---
+DEL taxes
+ADD taxes @life
+---
+ADD @ui lily dansen
+---
+ADD x @ui @code refactor lily
+---
+ADD @ui change defaults only on util
+---
+DEL @ui lily dansen
+ADD x @ui lily dansen
+---
+ADD @life clean car
+---
+DEL @life @code code class
+ADD x @life @code code class
+---
+---
+DEL taxes @life
+ADD x taxes @life
+---
+DEL x taxes @life
+---
+ADD (E) @life taxes
+---
+ADD (A) @life write plan
+---
+ADD (D) @life austen money
+---
+ADD (F) @life get shitty job
+---
+ADD (B) @life find aptmnt
+---
+ADD (D) @life find my fucking glasses
+---
+ADD (G) @life plan education path
+---
+ADD @$ make a form for keeb quizzing
+---
+ADD @code openwrt router
+---
+DEL (G) @life plan education path
+ADD (G) plan education, figure out classes community/western
+---
+---
+ADD (H) @life lights
+---
+ADD (E) @life pay evergreen bill
+---
+DEL (E) @life pay evergreen bill
+ADD x (E) @life pay evergreen bill
+---
+DEL (A) @life write plan
+ADD x (A) @life write plan
+---
+DEL (B) @life find aptmnt
+ADD x (B) @life find aptmnt
+---
+ADD (A) @life get hrt doc
+---
+DEL (B) @life taxes
+ADD x (B) @life taxes
+---
+ADD research ring stone!
+---
+ADD @bucketlist visit DUGA
+---
+DEL (D) @life austen money
+ADD x (D) @life austen money
+---
+DEL (D) @life find my fucking glasses
+---
+DEL @life clean car
+ADD x @life clean car
+DEL @life clean trunk
+ADD x @life clean trunk
+---
+ADD (A) @life call alrtmt ppl
+---
+DEL (A) @life call alrtmt ppl
+ADD x (A) @life call alrtmt ppl
+---
+DEL (A) @life get hrt doc
+ADD x (A) @life get hrt doc
+---
+ADD (A) @life update old hrt
+---
+ADD @ui remote X11
+---
+ADD (B) find sites to write for
+---
+ADD (C) resume
+---
+DEL (A) update old hrt
+ADD x (A) update old hrt
+---
+ADD @ui sync browser history devices/browsers
+---
+DEL @code @ui telegram reminder todo bot
+---
+ADD @site godo nginx
+---
+ADD @site plan stack
+---
+ADD ir hat
+---
+ADD (A) ur coat babe
+---
+DEL (A) ur coat babe
+ADD x (A) ur coat babe
+---
+DEL (B) find sites to write for
+ADD x (B) find sites to write for
+---
+ADD hledger
+---
+ADD (A) bad vibes
+---
+ADD bills
+---
+ADD writing
+---
+ADD car
+---
+ADD furnature
+---
+ADD power/internet
+---
+ADD snek email
+---
+ADD western classes
+---
+ADD sky
+---
+DEL bills
+ADD x bills
+---
+ADD oil
+---
+ADD clean room
+---
+DEL clean room
+ADD x clean room
+---
+ADD vacuum
+---
+DEL writing
+ADD x writing
+---
+DEL car
+ADD x car
+---
+DEL oil
+ADD x oil
+---
+DEL sky
+ADD x sky
+---
+DEL western classes
+ADD x western classes
+---
+DEL vacuum
+ADD x vacuum
+---
+DEL snek email
+ADD x snek email
+---
+DEL furnature
+ADD x furnature
+---
+ADD talk to parents abt move
+---
+ADD pack
+---
+ADD talk to code place
+---
+ADD work
+---
+ADD chell compute
+---
+ADD austen parent keys
+---
+ADD bills
+---
+DEL chell compute
+ADD x chell compute
+---
+DEL work
+ADD x work
+---
+DEL austen parent keys
+ADD x austen parent keys
+---
+DEL talk to parents abt move
+ADD x talk to parents abt move
+---
+ADD shelve male
+---
+DEL power/internet
+ADD x power/internet
+---
+DEL bills
+ADD x bills
+---
+ADD meds
+---
+DEL pack
+ADD x pack
+---
+DEL shelve male
+ADD x shelve male
+---
+DEL meds
+ADD x meds
+---
+DEL talk to code place
+ADD x talk to code place

@@ -3,15 +3,15 @@
 config.load_autoconfig()
 
 # dracula theme
-#import dracula.draw
-#dracula.draw.style(c, {
-#    'spacing': {
-#        'vertical': 6,
-#        'horizontal': 8
-#    }
-#})
+import dracula.draw
+dracula.draw.style(c, {
+    'spacing': {
+        'vertical': 6,
+        'horizontal': 8
+    }
+})
 
 # base16 theme
-import base16.draw
-base16.draw.style(c, {})
+# import base16.draw
+# base16.draw.style(c, {})
 

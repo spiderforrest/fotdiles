@@ -11,11 +11,13 @@ Hi there! Here are my dotfiles, not much to say here. Software:
     - [Ubuntu](https://ubuntu.com)
 - [Neovim](https://neovim.io)-hey emacs users can we call the war off and go beat up vscode please
 - [AwesomeWM](https://awesomewm.org)-Awesome is a framework, not a setup application, and my configs are expansive
-- [Alacritty](https://alacritty.org)
-- [Qutebrowser](https://qutebrowser.org)
-- [Ly](https://github.com/fairyglade/ly)
-- [Flameshot](https://flameshot.org)
-- [Picom](https://github.com/yshui/picom)
-- [Thunar](https://docs.xfce.org/xfce/thunar/start)
+- [Alacritty](https://alacritty.org)-term
+- [Qutebrowser](https://qutebrowser.org)-modal browser
+- [Chore](https://github.com/paradigm/chore)-cli todo list by the guy who did bedrock. Good shit.
+- [Redshift](https://github.com/jonls/redshift)-my eyes. Sometime when I'm less broke I'll get an e-ink monitor.
+- [Ly](https://github.com/fairyglade/ly)-display manager
+- [Flameshot](https://flameshot.org)-screenshots
+- [Thunar](https://docs.xfce.org/xfce/thunar/start)-I mean. I use `ls`.
+- [Picom](https://github.com/yshui/picom)-honestly I'm currently just using this for transparent borders
 - [Xfce4 Mime Settings](https://docs.xfce.org/xfce/xfce4-settings/4.14/mime)-big thanks to xfce for having so many useful modular components.
 - [Quantum Mechanical Keyboards](https://github.com/spiderforrest/qmk_firmware)-honorable mention. My fork of QMK, I use the [Lily58](https://github.com/kata0510/Lily58)
