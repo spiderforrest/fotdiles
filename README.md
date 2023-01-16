@@ -17,7 +17,6 @@ Hi there! Here are my dotfiles, not much to say here. Software:
 - [Redshift](https://github.com/jonls/redshift)-my eyes. Sometime when I'm less broke I'll get an e-ink monitor.
 - [Ly](https://github.com/fairyglade/ly)-display manager
 - [Flameshot](https://flameshot.org)-screenshots
-- [Thunar](https://docs.xfce.org/xfce/thunar/start)-I mean. I use `ls`.
 - [Picom](https://github.com/yshui/picom)-honestly I'm currently just using this for transparent borders
 - [Xfce4 Mime Settings](https://docs.xfce.org/xfce/xfce4-settings/4.14/mime)-big thanks to xfce for having so many useful modular components.
 - [Quantum Mechanical Keyboards](https://github.com/spiderforrest/qmk_firmware)-honorable mention. My fork of QMK, I use the [Lily58](https://github.com/kata0510/Lily58)
