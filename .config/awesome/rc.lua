@@ -1,4 +1,5 @@
 local awful = require("awful")
+local sharedtags = require("sharedtags")
 
 -- {{{ Handle runtime errors
 local naughty = require("naughty")
@@ -24,7 +25,9 @@ dofile(awful.util.getdir("config") .. "/" .. "rules.lua")
 
 dofile(awful.util.getdir("config") .. "/" .. "signals.lua")
 
--- start script
+-- on start
 awful.spawn.with_shell("~/bin/postwm.sh")
+sharedtags.jumpto(tags[11]) --show terms
+sharedtags.jumpto(tags[1]) -- and focus main
 
 -- vim: foldmethod=marker
