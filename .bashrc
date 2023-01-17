@@ -40,6 +40,7 @@ disown
 
 ### functions ###
 
+
 # history but less obnoxious
 hst() {
     if [[ -n "$1" ]] ; then
@@ -84,6 +85,13 @@ github() {
     cd "$dir" || return
     alacritty &
     alacritty &
+}
+# update configs
+yove() {
+    yadm pull
+    yadm add -u
+    yadm commit -m "$*"
+    yadm push
 }
 
 
