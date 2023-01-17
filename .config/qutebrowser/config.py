@@ -4,7 +4,7 @@ config.load_autoconfig()
 
 # dracula theme
 import dracula.draw
-dracula.draw.style(c, {
+dracula.draw.blood(c, {
     'spacing': {
         'vertical': 6,
         'horizontal': 8

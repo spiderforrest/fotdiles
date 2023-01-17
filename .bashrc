@@ -88,8 +88,6 @@ github() {
 }
 # update configs
 yove() {
-    yadm pull
-    yadm add -u
     yadm commit -m "$*"
     yadm push
 }
