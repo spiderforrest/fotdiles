@@ -9,13 +9,11 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.nimble/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export EDITOR=nvim
 
 # ignore the rest if not interactive
 [[ $- != *i* ]] && return
-
-# add directories to $PATH
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 # history configs
 export HISTCONTROL=ignoreboth
@@ -35,6 +33,10 @@ fi
 if [[ -f "$HOME/project/git/qmk_firmware/util/qmk_tab_complete.sh" ]] ; then
     source "$HOME/project/git/qmk_firmware/util/qmk_tab_complete.sh"
 fi
+
+# keep configs updated
+yadm pull > /dev/null &
+disown
 
 ### functions ###
 
