@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+qtebrowser -r school &
+disown
+slack &
+disown
+spotify &
+disown
+ripcord &
+disown
+telegram-desktop &
+disown
+
+cd ~/project/git/alchemy/react/
+ls

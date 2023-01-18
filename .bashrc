@@ -57,9 +57,9 @@ shove() {
     git status
     if [[ "$1" ]] ; then
         echo '/// continue? ///'
-    if git status | grep -q main ; then
-        echo '/// and you'\''re on main you nincompoop ///'
-    fi
+        if git status | grep -q main ; then
+            echo '/// and you'\''re on main you nincompoop ///'
+        fi
         read -r
         git commit -m "$*"
         git push
@@ -73,21 +73,43 @@ shove() {
     git commit -m "$message"
     git push
 }
+# github() {
+#     if [[ -z $1 ]] ; then return ; fi
+#     cd ~/project/git/ || return
+#     if echo "$1" | grep -q http; then
+#         text=$(git clone "$1" 2>&1 >/dev/null)
+#     else
+#         text=$(git clone "https://github.com/$1.git" 2>&1 >/dev/null)
+#     fi
+#     dir=$(echo "$text" | grep -oE "'([^']*)'")
+#     cd "$dir" || return
+#     alacritty &
+#     alacritty &
+# }
 github() {
     if [[ -z $1 ]] ; then return ; fi
-    cd ~/project/git || return
     if echo "$1" | grep -q http; then
-        text=$(git clone "$1" 2>&1 >/dev/null)
+        git clone "$1"
     else
-        text=$(git clone "https://github.com/$1.git" 2>&1 >/dev/null)
+        git clone "https://github.com/$1.git"
     fi
-    dir=$(echo "$text" | grep -oE "'([^']*)'")
-    cd "$dir" || return
-    alacritty &
-    alacritty &
 }
+
+
 # update configs
 yove() {
+    yadm pull
+    yadm add -u
+    yadm status
+    if [[ "$1" ]] ; then
+        echo '/// fr? ///'
+        read -r
+        yadm commit -m "$*"
+        yadm push
+        return
+    fi
+    echo "/// add a commit message ///"
+    read -r message
     yadm commit -m "$*"
     yadm push
 }
@@ -161,7 +183,7 @@ alias ls='ls -BNp1 --group-directories-first --color=auto --hyperlink=auto'
 alias ch='chore'
 alias godo='chore'
 alias gitfix='sed -i s/mindforrest/spiderforrest/ */.git/config'
-alias binfix='chmod +x ~/bin/* && cd ~/bin'
+alias binfix='chmod +x ~/bin/*'
 alias fastread='fsrx'
 alias serv='ssh spider@spood.org -p 773'
 alias fserv='sftp -P 773 spider@spood.org'
