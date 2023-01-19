@@ -49,6 +49,12 @@ awful.rules.rules = {
         properties = { tag = tags[11] }
     },
 
+    -- music
+    { rule_any =
+        { class = "Spotify" },
+        properties = { tag = tags[12] }
+    },
+
     -- chat clients
     { rule_any =
         { class = {
@@ -57,17 +63,11 @@ awful.rules.rules = {
             "Ripcord",
             "Slack" }
         },
-        properties = { tag = tags[12] }
-    },
-
-    -- music
-    { rule_any =
-        { class = "Spotify" },
         properties = { tag = tags[13] }
     },
 
     -- fuck you zoom
-    -- see signals for most of that
+    -- see signals.lua for most of that
     { rule_any =
         { name = "Zoom Meeting"},
         properties = { floating = false }

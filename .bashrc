@@ -88,6 +88,10 @@ shove() {
 # }
 github() {
     if [[ -z $1 ]] ; then return ; fi
+    # shush shellcheck
+    if [[ -z "$(pwd | grep git)" ]] ; then
+        cd "$HOME/project/git" || return
+    fi
     if echo "$1" | grep -q http; then
         git clone "$1"
     else
@@ -110,7 +114,7 @@ yove() {
     fi
     echo "/// add a commit message ///"
     read -r message
-    yadm commit -m "$*"
+    yadm commit -m "$message"
     yadm push
 }
 
@@ -266,6 +270,9 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+# while i'm in school, i'm gonna just start with this a my last dir as a shortcut
+export OLDPWD="$HOME/project/git/alchemy/react"
 # attempt to set the terminal title
 trap 'echo -ne "\033]2;Alacritty | $(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
+
 #EOF

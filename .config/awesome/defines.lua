@@ -45,9 +45,9 @@ tags = sharedtags({
     { name = 9, layout = awful.layout.layouts[1], screen = 2},
     { name = 0, layout = awful.layout.layouts[1], screen = 2}, --10
     { name = " ", layout = awful.layout.layouts[1], screen = 2, useless_gap = 50}, --11
-    { name = "", layout = awful.layout.layouts[1], screen = 2}, --12
-    { name = "", layout = awful.layout.layouts[1], screen = 2}, --13
-    { name = " ", layout = awful.layout.layouts[2], screen = 2}, --14
+    { name = "", layout = awful.layout.layouts[1], screen = 2}, --12
+    { name = "", layout = awful.layout.layouts[1], screen = 2}, --13
+    { name = " ", layout = awful.layout.layouts[5], screen = 2}, --14
     -- { name ="uhhhHH you shouldn't see this", screen = 99} -- hidden
 })
 

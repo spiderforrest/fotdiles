@@ -2,6 +2,7 @@
 
 qtebrowser -r school &
 disown
+disown
 slack &
 disown
 spotify &

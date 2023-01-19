@@ -242,8 +242,8 @@ quick_bind{
     end
     bind_keys_to_tag(10,0)
     bind_keys_to_tag(11,"`")
-    bind_keys_to_tag(12,"'")
-    bind_keys_to_tag(13,"-")
+    bind_keys_to_tag(12,"-")
+    bind_keys_to_tag(13,"'")
     bind_keys_to_tag(14,"=")
 
     -- Set keys
