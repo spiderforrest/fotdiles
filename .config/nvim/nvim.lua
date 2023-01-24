@@ -200,9 +200,9 @@ endif ]]
 
 -- {{{ theme
 -- options are light, dark, and null
-set.background=''
+set.background='dark'
 -- options are gelatin, cookie, cocoa, and chocolate
-g.everforest_background = 'cookie'
+g.everforest_background = 'gelatin'
 g.airline_theme = 'everforest'
 vs('colorscheme everforest') -- }}}
 

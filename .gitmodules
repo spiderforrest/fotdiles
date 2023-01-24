@@ -4,3 +4,6 @@
 [submodule ".config/qutebrowser/dracula"]
 	path = .config/qutebrowser/dracula
 	url = https://github.com/dracula/qutebrowser
+[submodule ".config/awesome/awesomewm-micky"]
+	path = .config/awesome/awesomewm-micky
+	url = https://github.com/basaran/awesomewm-micky

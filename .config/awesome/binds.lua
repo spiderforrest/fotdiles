@@ -67,16 +67,16 @@ quick_bind{
         { desc="quit xorg", key="r", mod={meta, alt, ctrl, shft}, lua=awesome.quit, grp="awe"},
         { desc="lock screen", key="[", mod={meta, alt}, prog="betterlockscreen -l dim"},
 
-        { desc="jump to urgent client", key="x", mod={meta, alt}, grp="client", lua=function() awful.client.urgent.jumpto() end },
+        { desc="jump to urgent client", key="x", grp="client", lua=function() awful.client.urgent.jumpto() end },
 
         --nav
-        -- { key="Tab", desc="go to last client", grp="client",
-        -- lua=function()
-        --     awful.client.focus.history.previous()
-        --     if client.focus then
-        --         client.focus:raise()
-        --     end
-        -- end},
+        { desc="go to last client", key=" ", grp="client",
+        lua=function()
+            awful.client.focus.history.previous()
+            if client.focus then
+                client.focus:raise()
+            end
+        end},
         -- { key="Return", desc="go to last tag", grp="tag", lua=function() awful.tag.history.restore() end},
         { desc="next client in stack", key="e", lua=function() awful.client.focus.byidx(1) end, grp="client" },
         { desc="previous client in stack", key="i", lua=function() awful.client.focus.byidx(-1) end, grp="client" },

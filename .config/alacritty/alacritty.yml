@@ -115,6 +115,7 @@ font:
     # family: Hurmit Nerd Font Mono
     # family: FantasqueSansMono Nerd Font
     family: Space Mono
+    # family: Monocraft
     # family: Z003
 
     # The `style` can be specified to pick a specific face.

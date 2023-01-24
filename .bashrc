@@ -50,6 +50,23 @@ hst() {
     fi
 }
 
+# touch grass or something
+cfg() {
+    dir="$HOME/.config"
+    case "$1" in
+        bash | bashrc)      nvim "$HOME/.bashrc"                    ;;
+        v | vim | nvim)     nvim "$dir/nvim/nvim.lua"               ;;
+        term | alacritty)   nvim "$dir/alacritty/alacritty.yml"     ;;
+        redshift)           nvim "$dir/redshift/redshift.conf"      ;;
+        picom)              nvim "$dir/picom/picom.conf"            ;;
+        wm | awesome)
+            if [[ -z "$2" ]] ; then
+                            nvim "$dir/awesome/rc.lua"
+            else
+                            nvim "$dir/awesome/$2.lua"
+            fi                                                      ;;
+    esac
+}
 # git gud
 shove() {
     git pull
@@ -192,7 +209,6 @@ alias fastread='fsrx'
 alias serv='ssh spider@spood.org -p 773'
 alias fserv='sftp -P 773 spider@spood.org'
 alias why_would_you_do_this_dude_why='xclip -o | shuf'
-cfg() { nvim "$HOME/.config/synced/$1"; }
 alias :q="exit" # ...
 
 # fixes/improvements
