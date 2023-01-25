@@ -54,11 +54,13 @@ hst() {
 cfg() {
     dir="$HOME/.config"
     case "$1" in
-        bash | bashrc)      nvim "$HOME/.bashrc"                    ;;
-        v | vim | nvim)     nvim "$dir/nvim/nvim.lua"               ;;
-        term | alacritty)   nvim "$dir/alacritty/alacritty.yml"     ;;
+        bash* | sh*)        nvim "$HOME/.bashrc"                    ;;
+        v* | nvim)          nvim "$dir/nvim/nvim.lua"               ;;
+        term* | alacritty)  nvim "$dir/alacritty/alacritty.yml"     ;;
         redshift)           nvim "$dir/redshift/redshift.conf"      ;;
+        i3)                 nvim "$dir/i3/config"                   ;;
         picom)              nvim "$dir/picom/picom.conf"            ;;
+        bin | script*)      nvim "$HOME/bin/$2"                     ;;
         wm | awesome)
             if [[ -z "$2" ]] ; then
                             nvim "$dir/awesome/rc.lua"
@@ -210,6 +212,7 @@ alias serv='ssh spider@spood.org -p 773'
 alias fserv='sftp -P 773 spider@spood.org'
 alias why_would_you_do_this_dude_why='xclip -o | shuf'
 alias :q="exit" # ...
+alias work='alacritty --hold -e bash -ic "npm i && npm start ; bash" & alacritty --hold -e bash -ic "git checkout -b dev ; bash" & cd src'
 
 # fixes/improvements
 alias sl='sl -la'
