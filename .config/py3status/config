@@ -20,29 +20,48 @@ py3status {
 #	nagbar_font = 'pango:DejaVu Sans Mono 10'
 }
 
-order += "spotify"
+#order += "spotify"
 #order += "arch_updates"
-order += "nvidia_smi"
+#order += "nvidia_smi"
 #order += "ipv6"
-order += "ethernet _first_"
+#order += "networkmanager"
+order += "wireless _first_"
+#order += "ethernet _first_"
 order += "volume_status mic"
 order += "volume_status master"
+order += "battery_level"
+order += "backlight"
 order += "disk /"
 order += "load"
 order += "memory"
-#order += "tztime local"
-#order += "async_script"
-order += "group clock"
+order += "tztime local"
+#order += "clock"
+order += "async_script"
+
 
 
 wireless _first_ {
-        format_up = "W: (%quality at %essid) %ip"
-        format_down = "W: down"
+        format_up = "%essid, %quality (%ip)"
+        format_down = "wifi down"
 }
 
 ethernet _first_ {
         format_up = "local: %ip"
         format_down = "before you bork networkmanager just reboot pls"
+}
+
+backlight {
+	format = "light: {level}"
+}
+
+battery_level {
+	threshold_full = 90
+	threshold_degraded = 35
+	charging_character = "^"
+	blocks = "v"
+	battery_id = "all"
+	hide_seconds = "true"
+	format = "{icon} {percent}%,{time_remaining}"
 }
 
 disk "/" {
@@ -60,6 +79,10 @@ memory {
         format_degraded = "MEMORY < %available"
 }
 
+tztime local {
+        format = "%Y-%m-%d, %H:%M:%S"
+}
+ 
 volume_status mic { 
   format = "live" 
   format_muted = "shh" 
@@ -91,20 +114,13 @@ volume_status master {
 
 # display nvidia properties
 nvidia_smi {
-	on_error = "hide"
     format_gpu = '[\?color=temperature.gpu {temperature.gpu}°C,] '
     format_gpu += '[\?color=memory.used_percent {memory.used} {memory.used_unit}'
     format_gpu += '[\?color=darkgray&show  \@ ]{memory.used_percent:.1f}%]'
 }
 
 
-# shows AUR and pac's updates
-arch_updates {
-	cache_timeout = 1000
-	hide_if_zero = true
-	format = "Syu:{aur}/{pacman}"
-}
-
+# dep: python-dbus
 spotify {
 	button_next = 3
 	button_play_pause = 1
@@ -117,15 +133,5 @@ spotify {
 }
 
 async_script {
-	script_path = "/home/emily/bin/sextime -l -x '.' -z '&'"
-}
-
-group clock {
-	async_script {
-		script_path = "/home/emily/bin/sextime -l -x '.' -z '&'"
-	}
-
-	tztime local {
-			format = "%Y-%m-%d, %H:%M:%S"
-	}
+	script_path = '/home/spider/bin/sextime -l'
 }
