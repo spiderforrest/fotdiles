@@ -52,6 +52,7 @@ hst() {
 
 # touch grass or something
 cfg() {
+    if [[ -z "$1" ]] ; then return; fi
     dir="$HOME/.config"
     case "$1" in
         bash* | sh*)        nvim "$HOME/.bashrc"                    ;;
@@ -67,6 +68,8 @@ cfg() {
             else
                             nvim "$dir/awesome/$2.lua"
             fi                                                      ;;
+        # idk it's probably awesome
+        *)                  nvim "$dir/awesome/$1.lua"              ;;
     esac
 }
 # git gud
