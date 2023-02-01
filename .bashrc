@@ -58,7 +58,7 @@ cfg() {
         bash* | sh*)        nvim "$HOME/.bashrc"                    ;;
         v* | nvim)          nvim "$dir/nvim/nvim.lua"               ;;
         term* | alacritty)  nvim "$dir/alacritty/alacritty.yml"     ;;
-        redshift)           nvim "$dir/redshift/redshift.conf"      ;;
+        red | redshift | ow)nvim "$dir/redshift/redshift.conf"      ;;
         i3)                 nvim "$dir/i3/config"                   ;;
         picom)              nvim "$dir/picom/picom.conf"            ;;
         bin | script*)      nvim "$HOME/bin/$2"                     ;;
