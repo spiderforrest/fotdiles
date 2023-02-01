@@ -9,7 +9,6 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.nimble/bin:$PATH"
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export EDITOR=nvim
 
 # ignore the rest if not interactive
@@ -215,7 +214,7 @@ alias serv='ssh spider@spood.org -p 773'
 alias fserv='sftp -P 773 spider@spood.org'
 alias why_would_you_do_this_dude_why='xclip -o | shuf'
 alias :q="exit" # ...
-alias work='alacritty --hold -e bash -ic "npm i && npm start ; bash" & alacritty --hold -e bash -ic "git checkout -b dev ; bash" & cd src'
+alias webdev='alacritty --hold -e bash -ic "npm i && npm start ; bash" & alacritty --hold -e bash -ic "git checkout -b dev ; bash" & cd src'
 
 # fixes/improvements
 alias sl='sl -la'
@@ -292,8 +291,6 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-# while i'm in school, i'm gonna just start with this a my last dir as a shortcut
-export OLDPWD="$HOME/project/git/alchemy/react"
 # attempt to set the terminal title
 trap 'echo -ne "\033]2;$TERM | $(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
 
