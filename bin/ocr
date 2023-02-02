@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Siddharth Dushantha 2020
-# 
+#
 # https://github.com/sdushantha/bin
 #
 
@@ -22,8 +22,14 @@ for dependency in "${dependencies[@]}"; do
     }
 done
 
-# Take screenshot by selecting the area
-maim -s "$IMAGE_FILE"
+
+# take images passed in as an arg or take screenshot
+if [[ -n "$1" ]] ; then
+    IMAGE_FILE="$1"
+else
+    # Take screenshot by selecting the area
+    maim -s "$IMAGE_FILE"
+fi
 
 # Get the exit code of the previous command.
 # So in this case, it is the screenshot command. If it did not exit with an
@@ -38,7 +44,7 @@ STATUS=$?
 # Do the magic (∩^o^)⊃━☆ﾟ.*･｡ﾟ
 # Notice how I have removing the extension .txt from the file path. This is
 # because tesseract adds .txt to the given file path anyways. So if we were to
-# specify /tmp/ocr.txt as the file path, tesseract would out the text to 
+# specify /tmp/ocr.txt as the file path, tesseract would out the text to
 # /tmp/ocr.txt.txt
 tesseract "$IMAGE_FILE" "${TEXT_FILE//\.txt/}" 2> /dev/null
 
@@ -61,7 +67,10 @@ xclip -selection clip < "$TEXT_FILE"
 notify-send "ocr" "$(cat $TEXT_FILE)"
 
 # Clean up
-# "Always leave the area better than you found it" 
+# "Always leave the area better than you found it"
 #                       - My first grade teacher
 rm "$TEXT_FILE"
-rm "$IMAGE_FILE"
+# unless you used a prexesting image
+if [[ -z "$1" ]] ; then
+    rm "$IMAGE_FILE"
+fi
