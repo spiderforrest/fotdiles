@@ -45,7 +45,7 @@ settings:
   changelog_after_upgrade:
     global: minor
   colors.webpage.darkmode.enabled:
-    global: true
+    global: false
   completion.cmd_history_max_items:
     global: -1
   completion.open_categories:
@@ -248,7 +248,7 @@ settings:
   tabs.select_on_remove:
     global: prev
   tabs.show:
-    global: never
+    global: multiple
   tabs.title.alignment:
     global: center
   tabs.title.format:
