@@ -1,6 +1,6 @@
 #!/bin/bash
-set -euo pipefail
-IFS=$'\n\t'
+# set -euo pipefail
+# IFS=$'\n\t'
 
 # get time in a custom seximal format
 
@@ -83,7 +83,7 @@ if [[ $loop == 1 ]] ; then
 # reason of i'm sorry i'm too lazy to refactor
 else
     # check if arg passed
-    if [[ -z $1 ]] ; then
+    if [[ -z "$1" ]] ; then
         printf "Missing argument. -h for usage.\n"
         exit
     fi
