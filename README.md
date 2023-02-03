@@ -1,8 +1,8 @@
 ## spider's config files
 
-Hi there! Here are my dotfiles, not much to say here. Software:
+Hi there! Here are my dotfiles, not much to say there. Software:
 
-- [Bedrock Linux](https://bedrocklinux.org)-A meta distribution that manages assembling a system of parts from multiple distributions. Below are the actual distributions I use as strata, roughly ordered by usage.
+- [Bedrock Linux](https://bedrocklinux.org)-A meta distribution that manages assembling a system of parts from multiple distributions. Below are the actual distributions I use as stratums, roughly ordered by usage.
     - [void-musl/void](https://voidlinux.org)-I prefer void [musl](https://musl.libc.org) for most system components, but with the glibc dependence of some applications I must use, I fall back to fetching packages from void-glibc, then archlinux, and so on.
     - [Arch](https://archlinux.org)-btw. (mostly useful for the AUR and compatibility)
     - [Alpine](https://alpinelinux.org)-honestly I mostly use alpine to test things.
