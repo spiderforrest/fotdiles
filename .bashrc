@@ -201,6 +201,7 @@ extract() {
 # shorthands
 alias v='nvim'
 alias vw='nvim -u $HOME/.config/synced/writing.vim'
+alias ni='neovide --multigrid'
 alias suv='sudoedit'
 alias chkdns='ping 8.8.8.8'
 alias la='ls -Bbp1 -gah --group-directories-first --time-style=+%b\ %d --color=auto --hyperlink=auto'
