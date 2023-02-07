@@ -198,6 +198,24 @@ endif ]]
 -- load_extension, somewhere after setup function:
 --require('telescope').load_extension('fzf') -- }}}
 
+-- {{{ neovide
+g.neovide_hide_mouse_when_typing = true
+g.neovide_remember_window_size = false
+g.neovide_fullscreen = false
+g.neovide_cursor_animation_length = 0.08
+g.neovide_cursor_trail_size = 0.2
+g.neovide_cursor_vfx_particle_curl = 0.6
+g.neovide_cursor_vfx_particle_density = 14
+g.neovide_cursor_vfx_particle_lifetime = 3
+g.neovide_cursor_vfx_opacity = 200
+-- g.neovide_cursor_vfx_mode = "railgun"
+g.neovide_cursor_vfx_mode = "pixiedust"
+-- g.neovide_cursor_vfx_mode = "ripple"
+
+
+
+-- }}}
+
 -- {{{ theme
 -- options are light, dark, and null
 set.background='dark'
