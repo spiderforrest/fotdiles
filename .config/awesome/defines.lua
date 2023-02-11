@@ -35,6 +35,8 @@ awful.layout.layouts = {
     awful.layout.suit.magnifier,
 }
 
+
+
 -- use drauthius/awesome-sharetags to share tags between monitors
 tags = sharedtags({
     { name = 1, layout = awful.layout.layouts[2], screen = 1},
@@ -55,9 +57,9 @@ tags = sharedtags({
 })
 
 -- helper function to compact binding keys while i wait for the git version to git its shit together
-function quick_bind(meta_tbl)
+function quick_bind(keybind_meta_tbl)
     local localkeys = {}
-    for _idx, t in ipairs(meta_tbl) do
+    for _idx, t in ipairs(keybind_meta_tbl) do
         -- combine the input with a template table
         local tbl = gears.table.crush({
             mod = { meta },

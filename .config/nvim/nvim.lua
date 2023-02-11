@@ -242,6 +242,11 @@ map('n', '<leader>y', '"*y', bindopt)
 map('n', '<leader>Y', '"*Y', bindopt)
 map('n', '<leader>p', '"*p', bindopt)
 map('n', '<leader>P', '"*P', bindopt)
+map('v', '<leader>d', '"_d', bindopt)
+map('v', '<leader>y', '"*y', bindopt)
+map('v', '<leader>Y', '"*Y', bindopt)
+map('v', '<leader>p', '"*p', bindopt)
+map('v', '<leader>P', '"*P', bindopt)
 -- clear highlighting
 map('n', '<leader>/', ':noh<CR>', bindopt)
 -- comment

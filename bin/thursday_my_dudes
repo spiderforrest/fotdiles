@@ -4,7 +4,7 @@
 
 if [[ "$(date +%a)" == "Thu" ]] ; then
     # oops.
-    ~/bin/allume set 20
+    # ~/bin/allume set 20
     # YOUR:ER OUT OF TIME
     i3-msg workspace number "69:IT'S OUT OF TOUCH THURSDAY"
     # UBT iM OUT OF MY HEAD WHEN UR NOT AROUnD
