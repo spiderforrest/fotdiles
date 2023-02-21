@@ -199,6 +199,8 @@ endif ]]
 --require('telescope').load_extension('fzf') -- }}}
 
 -- {{{ neovide
+set.guifont = { "Space Mono", "h6" }
+set.linespace=2
 g.neovide_hide_mouse_when_typing = true
 g.neovide_remember_window_size = false
 g.neovide_fullscreen = false

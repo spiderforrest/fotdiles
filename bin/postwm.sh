@@ -30,13 +30,13 @@ xrdb ~/.Xresources &
 # this is the one time where i'm doing the wrong thing but not just using 'sleep'
 ensureOn(){
     if pgrep -x "$1" > /dev/null; then return; fi
-    "$1" &
+    "$&" &
 }
 
 # background shit
 ensureOn picom
 ensureOn redshift
-ensureOn syncthing
+ensureOn syncthing --no-browser
 
 # forground shit
 alacritty --title="todo" --class=serv,serv -e bash -c "$HOME/.cargo/bin/chore ; ssh -p 773 spider@192.168.0.61" &

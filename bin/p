@@ -89,8 +89,8 @@ case "$argA" in
 
     # Install a package
     i | install)
-    echo "// installing $* //"
     shift 1
+    echo "// installing $* //"
     $pmInstall "$*"
     ;;
 
@@ -103,8 +103,8 @@ case "$argA" in
 
     # Remove a package
     r | remove)
-    echo "// removing $* //"
     shift 1
+    echo "// removing $* //"
     $pmRemove "$*"
     ;;
     # Clean the system, busywork
@@ -178,4 +178,3 @@ case "$argA" in
     ;;
 esac
 echo "// done. run $0 help if needed. //"
-

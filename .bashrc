@@ -216,7 +216,8 @@ alias serv='ssh spider@spood.org -p 773'
 alias fserv='sftp -P 773 spider@spood.org'
 alias why_would_you_do_this_dude_why='xclip -o | shuf'
 alias :q="exit" # ...
-alias webdev='alacritty --hold -e bash -ic "npm i && npm start ; bash" & alacritty --hold -e bash -ic "git checkout -b dev ; bash" & cd src'
+alias fork="alacritty & nvim"
+
 
 # fixes/improvements
 alias sl='sl -la'

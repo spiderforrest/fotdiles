@@ -549,3 +549,9 @@ DEL meet with freelance @hell
 ADD x meet with freelance @hell
 ---
 ADD rug holder in place inatir
+---
+DEL rug holder in place inatir
+ADD x rug holder in place inatir
+---
+DEL aws @hell
+ADD x aws @hell
