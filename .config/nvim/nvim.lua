@@ -1,5 +1,11 @@
 -- ini.lua
 
+---- speed up my shitty startup time, so much jank bc require uses . as a dir seperator
+--local function dotRequire(module_name)
+--    return assert(loadfile(assert(package.searchpath(module_name, package.path, "/"))))
+--end
+--dotRequire('/.config/nvim/plugged/impatient.nvim/lua/impatient')
+
 -- {{{ defines
 vim.g.mapleader = ' '
 local vs = vim.cmd
@@ -51,135 +57,6 @@ set.relativenumber = true
 -- set scrolloff = 5
 -- }}}
 
--- {{{ plugins
--- install vim-plug if missing & run PlugInstall if new plugins are detected
-vs [[ if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-endif
-au VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \| PlugInstall --sync
-\| endif ]]
-
--- start plugin section
-vim.call('plug#begin', '~/.config/nvim/plugged')
-
--- detect keyboard and use remapping plugin
-vs [[ if system("lsusb | grep -c Lily58")
-	Plug 'spiderforrest/vim-colemak'
-endif ]]
--- file manager
---plug('mcchrish/nnn.vim')
-plug('ms-jpq/chadtree')
--- sit in a tree
-plug('nvim-lua/plenary.nvim')
-plug('nvim-treesitter/nvim-treesitter')
-plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
--- themes
-plug('spiderforrest/everforest')
-plug('karoliskoncevicius/sacredforest-vim')
-plug('shaunsingh/oxocarbon.nvim', { ['do'] = './install.sh' })
--- colorssss
-plug('norcalli/nvim-colorizer.lua')
-plug('sheerun/vim-polyglot')
--- plug('MaxMEllon/vim-jsx-pretty')
-g.vim_jsx_pretty_colorful_config = 1
--- bar
-g.colorizer_skip_comments = 1
-g.colorizer_x11_names = 1
-g.colorizer_auto_map = 1
-plug('vim-airline/vim-airline')
--- undo
-plug('mbbill/undotree')
--- flat window & focus
-plug('junegunn/goyo.vim')
-plug('junegunn/limelight.vim')
--- phat phuck prediction
-plug('neovim/nvim-lspconfig')
-plug('williamboman/mason-lspconfig.nvim')
-plug('williamboman/mason.nvim')
-plug('ms-jpq/coq_nvim', { ['branch'] = 'coq'})
-plug('ms-jpq/coq.artifacts', { ['branch'] = 'artifacts'})
-plug('ms-jpq/coq.thirdparty', { ['branch'] = '3p'})
-plug('dsznajder/vscode-es7-javascript-react-snippets', { ['do'] = 'yarn install --frozen-lockfile && yarn compile' })
-
--- couldn't get this to work without calling vimscript. i will fix. someday. maybe.
-vs [[ let g:coq_settings = {
-    \'auto_start': 'shut-up' ,
-    \'limits.completion_manual_timeout': 3,
-    \'display': {
-        \'pum.fast_close': v:false ,
-        \'ghost_text.context': [" ",""] ,
-        \'pum.kind_context': [" 「",""] ,
-        \'pum.source_context': [" | ","」"],
-        \'preview.border': 'solid',
-    \}
-\} ]]
-plug('mattn/emmet-vim')
-
--- undo
-plug('mbbill/undotree')
--- stats
-plug('wakatime/vim-wakatime')
--- whitespace
-plug('nathanaelkane/vim-indent-guides')
-g.indent_guides_auto_colors = 0
-g.indent_guides_guide_size = 1
-g.indent_guides_enable_on_vim_startup = 1
-g.indent_guides_start_level = 2
-plug('ntpeters/vim-better-whitespace')
-g.better_whitespace_ctermcolor=8
--- lint
-plug('dense-analysis/ale')
-g.ale_fixers = {
-   ['javascript'] = 'prettier',
-   ['css'] = 'prettier',
-   ['html'] = 'prettier',
-}
-g.ale_fix_on_save = 1
-g['airline#extensions#ale#enabled'] = 1
-
--- autocommenter
-plug('tpope/vim-commentary')
--- markdown
-plug('godlygeek/tabular')
-plug('plasticboy/vim-markdown')
--- latex
--- plug('vim-latex/vim-latex')
--- csv
-plug('chrisbra/csv.vim')
--- VIM TWO PLAYER MODE 1V1 ME NERD
-plug('jbyuki/instant.nvim')
-g['instant_username'] = "$HOSTNAME"
--- autoformat/align
-plug('junegunn/vim-easy-align')
--- text wrappers
-plug('tpope/vim-surround')
-plug('tpope/vim-ragtag')
-plug('luochen1990/rainbow')
-vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "" })
-g.rainbow_active = 1
--- code checking, install shellcheck for bash
-plug('vim-syntastic/syntastic')
--- cpp syntax
-plug('bfrg/vim-cpp-modern')
--- rust shit
-plug('rust-lang/rust.vim')
-vs 'syntax enable'
-vs 'filetype plugin indent on'
-
--- git
-plug('airblade/vim-gitgutter')
-plug('tpope/vim-fugitive')
-
--- end plug section
-vim.call('plug#end')
-vs [[ if exists('+termguicolors')
-    set termguicolors
-    lua require'colorizer'.setup()
-endif ]]
--- }}}
-
 -- {{{ unused fuzzy
 -- You dont need to set any of these options. These are the default ones. Only
 -- the loading is important
@@ -224,7 +101,7 @@ set.background='dark'
 -- options are gelatin, cookie, cocoa, and chocolate
 g.everforest_background = 'gelatin'
 g.airline_theme = 'everforest'
-vs('colorscheme everforest') -- }}}
+--vs('colorscheme everforest') -- }}}
 
 -- {{{ binds
 -- call plugins
@@ -384,6 +261,144 @@ require("coq_3p"){
       unsafe = { "rm", "poweroff", "reboot", "mv", "cp", "rmdir" }
     },
 }
+-- }}}
+
+-- {{{ plugins
+-- install packer if missing & run install if new plugins are detected
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
+-- plugins go in here
+return require('packer').startup(function(use)
+      use 'wbthomason/packer.nvim'
+    -- i am speed(startup speed, since holy shit my vim is bloated)
+    use {'lewis6991/impatient.nvim'}
+    -- detect keyboard and use remapping plugin
+    vs [[ if system("lsusb | grep -c Lily58")
+        use { 'spiderforrest/vim-colemak' }
+    endif ]]
+    -- file manager
+    --use {'mcchrish/nnn.vim'}
+    use {'ms-jpq/chadtree'}
+    -- sit in a tree
+    use {'nvim-lua/plenary.nvim'}
+    use {'nvim-treesitter/nvim-treesitter'}
+    use {'nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' }}
+    -- themes
+    use {'spiderforrest/everforest'}
+    use {'karoliskoncevicius/sacredforest-vim'}
+    use {'shaunsingh/oxocarbon.nvim', { ['do'] = './install.sh' }}
+    -- colorssss
+    use {'norcalli/nvim-colorizer.lua'}
+    use {'sheerun/vim-polyglot'}
+    use {'MaxMEllon/vim-jsx-pretty'}
+    g.vim_jsx_pretty_colorful_config = 1
+    -- bar
+    g.colorizer_skip_comments = 1
+    g.colorizer_x11_names = 1
+    g.colorizer_auto_map = 1
+    use {'vim-airline/vim-airline'}
+    -- undo
+    use {'mbbill/undotree'}
+    -- flat window & focus
+    use {'junegunn/goyo.vim'}
+    use {'junegunn/limelight.vim'}
+    -- phat phuck prediction
+    use {'neovim/nvim-lspconfig'}
+    use {'williamboman/mason-lspconfig.nvim'}
+    use {'williamboman/mason.nvim'}
+    use {'ms-jpq/coq_nvim', { ['branch'] = 'coq'}}
+    use {'ms-jpq/coq.artifacts', { ['branch'] = 'artifacts'}}
+    use {'ms-jpq/coq.thirdparty', { ['branch'] = '3p'}}
+    use {'dsznajder/vscode-es7-javascript-react-snippets', { ['do'] = 'yarn install --frozen-lockfile && yarn compile' }}
+
+    -- couldn't get this to work without calling vimscript. i will fix. someday. maybe.
+    vs [[ let g:coq_settings = {
+        \'auto_start': 'shut-up' ,
+        \'limits.completion_manual_timeout': 3,
+        \'display': {
+            \'pum.fast_close': v:false ,
+            \'ghost_text.context': [" ",""] ,
+            \'pum.kind_context': [" 「",""] ,
+            \'pum.source_context': [" | ","」"],
+            \'preview.border': 'solid',
+        \}
+    \} ]]
+    use {'mattn/emmet-vim'}
+
+    -- undo
+    use {'mbbill/undotree'}
+    -- stats
+    use {'wakatime/vim-wakatime'}
+    -- whitespace
+    use {'nathanaelkane/vim-indent-guides'}
+    g.indent_guides_auto_colors = 0
+    g.indent_guides_guide_size = 1
+    g.indent_guides_enable_on_vim_startup = 1
+    g.indent_guides_start_level = 2
+    use {'ntpeters/vim-better-whitespace'}
+    g.better_whitespace_ctermcolor=8
+    -- lint
+    use {'dense-analysis/ale'}
+    g.ale_fixers = {
+       ['javascript'] = 'prettier',
+       ['css'] = 'prettier',
+       ['html'] = 'prettier',
+    }
+    g.ale_fix_on_save = 1
+    g['airline#extensions#ale#enabled'] = 1
+
+    -- autocommenter
+    use {'tpope/vim-commentary'}
+    -- markdown
+    use {'godlygeek/tabular'}
+    use {'plasticboy/vim-markdown'}
+    -- latex
+    -- use {'vim-latex/vim-latex'}
+    -- csv
+    use {'chrisbra/csv.vim'}
+    -- VIM TWO PLAYER MODE 1V1 ME NERD
+    use {'jbyuki/instant.nvim'}
+    g['instant_username'] = "$HOSTNAME"
+    -- autoformat/align
+    use {'junegunn/vim-easy-align'}
+    -- text wrappers
+    use {'tpope/vim-surround'}
+    use {'tpope/vim-ragtag'}
+    use {'luochen1990/rainbow'}
+    vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "" })
+    g.rainbow_active = 1
+    -- code checking, install shellcheck for bash
+    use {'vim-syntastic/syntastic'}
+    -- cpp syntax
+    use {'bfrg/vim-cpp-modern'}
+    -- rust shit
+    use {'rust-lang/rust.vim'}
+    vs 'syntax enable'
+    vs 'filetype plugin indent on'
+
+    -- git
+    use {'airblade/vim-gitgutter'}
+    use {'tpope/vim-fugitive'}
+    if packer_bootstrap then
+        require('packer').sync()
+    end
+end)
+-- end plug section
+-- vs [[ if exists('+termguicolors')
+--     set termguicolors
+--     lua require'colorizer'.setup()
+-- endif ]]
 -- }}}
 
 -- vim:foldmethod=marker

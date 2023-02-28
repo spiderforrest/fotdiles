@@ -30,7 +30,7 @@ xrdb ~/.Xresources &
 # this is the one time where i'm doing the wrong thing but not just using 'sleep'
 ensureOn(){
     if pgrep -x "$1" > /dev/null; then return; fi
-    "$&" &
+    "$*" &
 }
 
 # background shit
