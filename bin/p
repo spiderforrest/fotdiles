@@ -67,7 +67,7 @@ case "$distro" in
             echo "// refreshing xlocates //"
             pmm-xlocate -S
             echo "// clearing cache and brutally murdering parentless orhapns //"
-            sudo pmm-remove -Oo
+            sudo pmm-remove -Ooy
             pmm --check-pmm-configuration
             echo "// current packages outside of world: //"
             pmm --diff-world
