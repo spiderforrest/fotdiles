@@ -47,14 +47,9 @@ set.wrap = false
 set.virtualedit = 'block'
 set.textwidth=135
 set.number = true
-set.relativenumber = true
+set.formatoptions = 'tclro12jpaw' -- i just wrote this and i already forgor just check :h fo-table
+-- set.relativenumber = true --gotta turn u off for teaching :(
 
--- for wrting
--- set number = false
--- set relativenumber = false
--- set wrap
--- set spell
--- set scrolloff = 5
 -- }}}
 
 -- {{{ unused fuzzy
@@ -177,9 +172,14 @@ endfunc ]]
 
 -- writing mode!
 vs [[ function! s:goyo_enter()
+    set nonumber
+    set norelativenumber
+    set wrap
+    set spell
+    set scrolloff=5
     set noshowmode
     set noshowcmd
-    set scrolloff=999
+    set fo-=t
     noh
     " toggle plugins
     Limelight
@@ -192,9 +192,14 @@ vs [[ function! s:goyo_enter()
     cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
 endfunction
 function! s:goyo_leave()
+  set number
+  set relativenumber
+  set nowrap
+  set nospell
   set showmode
   set showcmd
-  set scrolloff=10
+  set fo+=t
+  set scrolloff=3
   Limelight!
   set fillchars="~":\ ,fold:\ ,vert:\│
   " Quit Vim if this is the only remaining buffer

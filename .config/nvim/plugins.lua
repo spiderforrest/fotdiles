@@ -8,11 +8,20 @@ local set = vim.opt
 local g = vim.g
 local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
 -- this weird set of functions is just for lualine-weird syntax, can't figure out a better way to do it
-local function line_sym_1 ()
+local function line_sym_1()
     return '🕷'
 end
-local function line_sym_2 ()
+local function line_sym_2()
     return '🕸️'
+end
+local function line_wc()
+    -- print highlighted/total if in visual
+    -- if vim.api.nvim_get_mode().mode == 'v' then
+    --     print('hi')
+    --     return tostring(fn.wordcount().visual_words) .. "/" .. tostring(fn.wordcount().words)
+    -- end
+    -- print cursorpos/total
+    return tostring(fn.wordcount().visual_words or fn.wordcount().cursor_words) .. "/" .. tostring(fn.wordcount().words)
 end
 -- bootstrap lazy on blank installs
 if not vim.loop.fs_stat(lazypath) then
@@ -122,7 +131,7 @@ require("lazy").setup(
                     }},
                     lualine_x = {'fileformat'},
                     lualine_y = { 'encoding', { 'filetype', icons_enabled = false, }},
-                    lualine_z = {'progress', 'location', line_sym_2}
+                    lualine_z = { line_wc, 'progress', 'location', line_sym_2}
                 },
                 inactive_sections = {
                     lualine_c = {
