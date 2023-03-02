@@ -280,6 +280,7 @@ case "$HOSTNAME" in
         alias share='sudo chmod 777 -R /share'
         alias pay='hledger iadd'
         alias mine='cd /home/mine && sudo su mine && cd -' # I'm so fancy
+        alias legsix='ssh 192.168.0.17'
         export LEDGER_FILE="$HOME/misc/profit/hledger.journal"
         echo
         neofetch
