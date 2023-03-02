@@ -15,12 +15,7 @@ local function line_sym_2()
     return '🕸️'
 end
 local function line_wc()
-    -- print highlighted/total if in visual
-    -- if vim.api.nvim_get_mode().mode == 'v' then
-    --     print('hi')
-    --     return tostring(fn.wordcount().visual_words) .. "/" .. tostring(fn.wordcount().words)
-    -- end
-    -- print cursorpos/total
+    -- print selectionwords or cursorpos/total
     return tostring(fn.wordcount().visual_words or fn.wordcount().cursor_words) .. "/" .. tostring(fn.wordcount().words)
 end
 -- bootstrap lazy on blank installs
