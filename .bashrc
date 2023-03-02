@@ -79,6 +79,24 @@ cfg() {
 }
 # git gud
 shove() {
+    # check if i'm just in my home dir
+    if [[ "$PWD" == "$HOME" ]] ; then
+        yadm pull
+        yadm add -u
+        yadm status
+        if [[ "$1" ]] ; then
+            echo '/// fr? ///'
+            read -r
+            yadm commit -m "$*"
+            yadm push
+            return
+        fi
+        echo "/// add a commit message ///"
+        read -r message
+        yadm commit -m "$message"
+        yadm push
+        return
+    fi
     git pull
     git add -A
     git status
