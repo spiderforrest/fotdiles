@@ -124,8 +124,8 @@ require("lazy").setup(
                             return true
                         end
                     }},
-                    lualine_x = {'fileformat'},
-                    lualine_y = { 'encoding', { 'filetype', icons_enabled = false, }, line_wc},
+                    lualine_x = {'fileformat', line_wc},
+                    lualine_y = { 'encoding', { 'filetype', icons_enabled = false } },
                     lualine_z = { 'progress', 'location', line_sym_2}
                 },
                 inactive_sections = {
