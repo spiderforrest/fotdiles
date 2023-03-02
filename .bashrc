@@ -144,26 +144,6 @@ github() {
     fi
 }
 
-
-# update configs
-yove() {
-    yadm pull
-    yadm add -u
-    yadm status
-    if [[ "$1" ]] ; then
-        echo '/// fr? ///'
-        read -r
-        yadm commit -m "$*"
-        yadm push
-        return
-    fi
-    echo "/// add a commit message ///"
-    read -r message
-    yadm commit -m "$message"
-    yadm push
-}
-
-
 # consolidates ls,cat,mkdir,vim,touch,cd,vim again
 uh() {
     # check second arg for edit/enter flag for editing existing files or moving directories-saves me like four keypresses to just append 'v' or 'e' when uh-ing aroud to edit
