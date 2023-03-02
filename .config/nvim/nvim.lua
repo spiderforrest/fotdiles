@@ -109,44 +109,41 @@ g.airline_theme = 'everforest'
 
 -- {{{ binds
 -- call plugins
-map('v', '<Enter>', ':EasyAlign<CR>', bindopt)
-map('n', '<leader>f', ':CHADopen<CR>', bindopt)
-map('n', '<leader>f', ':CHADopen<CR>', bindopt)
-map('n', '<leader>u', ':UndotreeToggle<CR>', bindopt)
-map('n', '<leader>g', ':Goyo<CR>', bindopt)
-map('n', '<leader>e', 'ysj<em><CR>', bindopt)
-map('n', '<leader>s', ':%s/ //g<CR>ggVG:EasyAlign *', bindopt)
+map('v', '<Enter>',    ':EasyAlign<CR>', bindopt)
+map('n', '<leader>f',  ':CHADopen<CR>', bindopt)
+map('n', '<leader>u',  ":UndotreeToggle<CR>", bindopt)
+map('n', '<leader>g',  ':Goyo<CR>', bindopt)
+map('n', '<leader>e',  'ysj<em><CR>', bindopt)
+map('n', '<leader>w',  ':lua MiniMap.toggle()<CR>', bindopt)
+map('n', 'f',          ':lua MiniJump2d.start(MiniJump2d.builtin_opts.single_character)<CR>', bindopt)
 -- nav buffers
 map('n', '<leader>bn', ':bn<CR>', bindopt)
 map('n', '<leader>bp', ':bp<CR>', bindopt)
 -- external clipboard stuff
-map('n', '<leader>d', '"_d', bindopt)
-map('n', '<leader>y', '"*y', bindopt)
-map('n', '<leader>Y', '"*Y', bindopt)
-map('n', '<leader>p', '"*p', bindopt)
-map('n', '<leader>P', '"*P', bindopt)
-map('v', '<leader>d', '"_d', bindopt)
-map('v', '<leader>y', '"*y', bindopt)
-map('v', '<leader>Y', '"*Y', bindopt)
-map('v', '<leader>p', '"*p', bindopt)
-map('v', '<leader>P', '"*P', bindopt)
+map('n', '<leader>d',  '"_d', bindopt)
+map('n', '<leader>y',  '"+y', bindopt)
+map('n', '<leader>Y',  '"+Y', bindopt)
+map('n', '<leader>p',  '"+p', bindopt)
+map('n', '<leader>P',  '"+P', bindopt)
+map('v', '<leader>d',  '"_d', bindopt)
+map('v', '<leader>y',  '"+y', bindopt)
+map('v', '<leader>Y',  '"+Y', bindopt)
+map('v', '<leader>p',  '"+p', bindopt)
+map('v', '<leader>P',  '"+P', bindopt)
 -- clear highlighting
-map('n', '<leader>/', ':noh<CR>', bindopt)
--- comment
-map('n', '<leader>\\', ':Commentary<CR>', bindopt)
-map('v', '<leader>\\', ':Commentary<CR>', bindopt)
+map('n', '<leader>/',  ':noh<CR>', bindopt)
 -- diffs
 map('n', '<leader>tg', ':diffget<CR>', bindopt)
 map('n', '<leader>tp', ':diffput<CR>', bindopt)
 map('n', '<leader>tt', ':diffthis<CR>', bindopt)
 -- i am blind as hell
-map('n', '<leader>r', ':set invrelativenumber<CR>', bindopt)
-map('n', '<leader>c', ':set invcursorline<CR>:set invcursorcolumn<CR>', bindopt)
+map('n', '<leader>r',  ':set invrelativenumber<CR>', bindopt)
+map('n', '<leader>c',  ':set invcursorline<CR>:set invcursorcolumn<CR>', bindopt)
 -- lazy wrap toggles
-map('n', '<F5>', ':set linebreak<CR>', bindopt)
-map('n', '<F6>', ':set nolinebreak<CR>', bindopt)
+map('n', '<F5>',       ':set linebreak<CR>', bindopt)
+map('n', '<F6>',       ':set nolinebreak<CR>', bindopt)
 -- please see ToggleMouse for an explaination, my shame is immeasurable
-map('n', '<leader>m', ':call ToggleMouse()<cr>', bindopt)
+map('n', '<leader>m',  ':call ToggleMouse()<cr>', bindopt)
 -- toss open live-server in a new term
 map('n', '<leader>js', ':silent !alacritty -e "live-server" &<CR>:redraw!<CR>', bindopt)
 map('n', '<leader>jn', ':silent !alacritty -e "npm start" &<CR>:redraw!<CR>', bindopt)
@@ -186,7 +183,6 @@ vs [[ function! s:goyo_enter()
     noh
     " toggle plugins
     Limelight
-    DisableWhitespace
     " hide the ~
     set fillchars=eob:\ ,fold:\ ,vert:\│
     " copy pasted for letting :q quit
@@ -200,7 +196,6 @@ function! s:goyo_leave()
   set showcmd
   set scrolloff=10
   Limelight!
-  EnableWhitespace
   set fillchars="~":\ ,fold:\ ,vert:\│
   " Quit Vim if this is the only remaining buffer
   if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1

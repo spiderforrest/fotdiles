@@ -56,12 +56,17 @@ cfg() {
     dir="$HOME/.config"
     case "$1" in
         bash* | sh*)        nvim "$HOME/.bashrc"                    ;;
-        v* | nvim)          nvim "$dir/nvim/nvim.lua"               ;;
         term* | alacritty)  nvim "$dir/alacritty/alacritty.yml"     ;;
         red | redshift | ow)nvim "$dir/redshift/redshift.conf"      ;;
         i3)                 nvim "$dir/i3/config"                   ;;
         picom)              nvim "$dir/picom/picom.conf"            ;;
         bin | script*)      nvim "$HOME/bin/$2"                     ;;
+        v* | nvim)
+            if [[ -z "$2" ]] ; then
+                          nvim "$dir/nvim/nvim.lua" 
+            else
+                          nvim "$dir/nvim/$2.lua" 
+            fi                                                      ;;
         wm | awesome)
             if [[ -z "$2" ]] ; then
                             nvim "$dir/awesome/rc.lua"
