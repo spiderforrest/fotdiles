@@ -218,8 +218,12 @@ require("lazy").setup(
             require('mini.jump2d').setup{ mappings = { start_jumping = '<leader> ' } }
             -- require('mini.pairs').setup()
             require('mini.bracketed').setup()
+            require('mini.fuzzy').setup()
         end
         },
+        {
+        'nvim-telescope/telescope.nvim', tag = '0.1.1', dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' }
+        }
         -- }}}
 
     }, --this looks really funny when the folds are closed lmao

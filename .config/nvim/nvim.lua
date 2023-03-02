@@ -1,10 +1,8 @@
 -- ini.lua
 
----- speed up my shitty startup time, so much jank bc require uses . as a dir seperator
---local function dotRequire(module_name)
---    return assert(loadfile(assert(package.searchpath(module_name, package.path, "/"))))
---end
---dotRequire('/.config/nvim/plugged/impatient.nvim/lua/impatient')
+-- {{{ plugin call
+dofile(vim.fn.stdpath("config") .. "/plugins.lua")
+-- }}}
 
 -- {{{ defines
 vim.g.mapleader = ' '
@@ -12,13 +10,11 @@ local vs = vim.cmd
 local fn = vim.fn
 local g = vim.g
 local map = vim.api.nvim_set_keymap
+local lmap = vim.keymap.set
 local set = vim.opt
 local plug = vim.fn['plug#']
 local bindopt = { noremap = true, silent = true }
--- }}}
-
--- {{{ plugin call
-dofile(fn.stdpath("config") .. "/plugins.lua")
+local telescope = require('telescope.builtin')
 -- }}}
 
 -- {{{ just settings :)
@@ -114,8 +110,12 @@ map('n', '<leader>f',  ':CHADopen<CR>', bindopt)
 map('n', '<leader>u',  ":UndotreeToggle<CR>", bindopt)
 map('n', '<leader>g',  ':Goyo<CR>', bindopt)
 map('n', '<leader>e',  'ysj<em><CR>', bindopt)
-map('n', '<leader>w',  ':lua MiniMap.toggle()<CR>', bindopt)
-map('n', 'f',          ':lua MiniJump2d.start(MiniJump2d.builtin_opts.single_character)<CR>', bindopt)
+lmap('n', '<leader>tf', function() telescope.find_files() end, bindopt)
+lmap('n', '<leader>tg', function() telescope.live_grep() end, bindopt)
+lmap('n', '<leader>tb', function() telescope.buffers() end, bindopt)
+lmap('n', '<leader>th', function() telescope.help_tags() end, bindopt)
+lmap('n', 'f', function() MiniJump2d.start(MiniJump2d.builtin_opts.single_character) end, bindopt)
+lmap('n', '<leader>w', function() MiniMap.toggle() end, bindopt)
 -- nav buffers
 map('n', '<leader>bn', ':bn<CR>', bindopt)
 map('n', '<leader>bp', ':bp<CR>', bindopt)
