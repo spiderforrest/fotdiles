@@ -1,23 +1,5 @@
 
 -- {{{ setup
--- i am speed
--- defines
-local fn = vim.fn
-local vs = vim.cmd
-local set = vim.opt
-local g = vim.g
-local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
--- this weird set of functions is just for lualine-weird syntax, can't figure out a better way to do it
-local function line_sym_1()
-    return '🕷'
-end
-local function line_sym_2()
-    return '🕸️'
-end
-local function line_wc()
-    -- print selectionwords or cursorpos/total
-    return tostring(fn.wordcount().visual_words or fn.wordcount().cursor_words) .. "/" .. tostring(fn.wordcount().words)
-end
 -- bootstrap lazy on blank installs
 if not vim.loop.fs_stat(lazypath) then
     fn.system({
@@ -26,10 +8,8 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
-set.rtp:prepend(lazypath)
--- }}}
 
--- {{{ lazy setup
+-- lazy setup
 require("lazy").setup(
     {
         -- manage self
@@ -44,7 +24,7 @@ require("lazy").setup(
                 return false
             end
         },
-        -- }}}
+-- }}}
 
         -- {{{ appearance
         -- themes
@@ -155,7 +135,7 @@ require("lazy").setup(
         { 'neovim/nvim-lspconfig', event = 'VeryLazy' },
         { 'williamboman/mason-lspconfig.nvim', event = 'VeryLazy' },
         { 'williamboman/mason.nvim', event = 'VeryLazy' },
-        -- coq
+        -- {{{ coq
         { 'ms-jpq/coq_nvim',
         branch = 'coq',
         event = 'VeryLazy',
@@ -171,10 +151,59 @@ require("lazy").setup(
                     \'preview.border': 'solid',
                     \}
                     \} ]]
-        end
-        },
-        { 'ms-jpq/coq.artifacts', branch = 'artifacts', event = 'VeryLazy' },
-        { 'ms-jpq/coq.thirdparty', branch = '3p', event = 'VeryLazy' },
+                    require("mason").setup()
+                    require("mason-lspconfig").setup()
+
+                    -- lsp header
+                    local lsp = require("lspconfig")
+                    local coq = require("coq")
+
+                    -- lsp list, just follow the formula i am aware i could simplify this but i don't know lua so
+                    lsp.html.setup{}
+                    lsp.html.setup(coq.lsp_ensure_capabilities{})
+                    lsp.eslint.setup{}
+                    lsp.eslint.setup(coq.lsp_ensure_capabilities{})
+                    lsp.cssls.setup{}
+                    lsp.cssls.setup(coq.lsp_ensure_capabilities{})
+                    lsp.clangd.setup{}
+                    lsp.clangd.setup(coq.lsp_ensure_capabilities{})
+                    lsp.rome.setup{}
+                    lsp.rome.setup(coq.lsp_ensure_capabilities{})
+                    lsp.bashls.setup{}
+                    lsp.bashls.setup(coq.lsp_ensure_capabilities{})
+                    lsp.jsonls.setup{}
+                    lsp.jsonls.setup(coq.lsp_ensure_capabilities{})
+                    lsp.vimls.setup{}
+                    lsp.vimls.setup(coq.lsp_ensure_capabilities{})
+                    --2lazy to figure out custom shit
+                    --lsp.grammerly.setup{}
+                    --lsp.grammerly.setup(coq.lsp_ensure_capabilities{})
+
+                    -- custom sources for completion
+                    require("coq_3p"){
+                        { src = "nvimlua", short_name = "nCFL", conf_only = false },
+                        -- math completion
+                        { src = "bc", short_name = "MATH", precision = 6 },
+                        -- lol
+                        { src = "cow", trigger = "!cow" },
+                        -- banner
+                        { src = "figlet", short_name = "BAN", trigger = "!ban"},
+                        -- shell output pipe. soo sketchy. soo great.
+                        {
+                            src = "repl",
+                            short_name = "BASH",
+                            sh = "bash",
+                            max_lines = 99,
+                            deadline = 500,
+                            -- christ this is gonna fuck me over
+                            unsafe = { "rm", "poweroff", "reboot", "mv", "cp", "rmdir" }
+                        },
+                    }
+                end
+            },
+            { 'ms-jpq/coq.artifacts', branch = 'artifacts', event = 'VeryLazy' },
+            { 'ms-jpq/coq.thirdparty', branch = '3p', event = 'VeryLazy' },
+            -- }}}
         -- lsp/lint raw
         { 'dsznajder/vscode-es7-javascript-react-snippets', build = 'yarn install --frozen-lockfile && yarn compile' , event = 'VeryLazy' },
         -- { 'vim-syntastic/syntastic', event = 'VeryLazy' },
@@ -226,7 +255,11 @@ require("lazy").setup(
         end
         },
         {
-        'nvim-telescope/telescope.nvim', tag = '0.1.1', dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' }
+        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
+        config = function()
+            telescope = require('telescope.builtin')
+        end
         }
         -- }}}
 
