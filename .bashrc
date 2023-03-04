@@ -34,9 +34,6 @@ if [[ -f "$HOME/project/git/qmk_firmware/util/qmk_tab_complete.sh" ]] ; then
     source "$HOME/project/git/qmk_firmware/util/qmk_tab_complete.sh"
 fi
 
-# keep configs updated
-yadm pull > /dev/null &
-disown
 
 ### functions ###
 
