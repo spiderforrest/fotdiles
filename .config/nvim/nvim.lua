@@ -2,7 +2,7 @@
 -- I use a tonn more external plugins, those are just the big ones-check ./plugins.lua for all of them
 
 -- bloated btw, I want a full IDE and writing tools, I need to get things done on a daily basis and
--- tuning my vim for hours to shave 20ms oft startup is not worth it
+-- tuning my vim for hours to shave 20ms of startup is not worth it
 -- as fun as that sounds to me :(
 
 -- calls

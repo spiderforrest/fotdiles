@@ -185,18 +185,18 @@ awful.screen.connect_for_each_screen(function(s)
   layout = wibox.layout.fixed.horizontal,
   s.title_container,
   s.buttonsbox_container,
-},
-{ -- Right widgets
-layout = wibox.layout.fixed.horizontal,
-spacing_widget = wibox.widget.textbox(" |"),
-spacing = 9,
-nvidia,
-networkmanager,
-sink_bar,
-source,
-mytextclock,
-s.systray,
-        },
+  },
+  { -- Right widgets
+  layout = wibox.layout.fixed.horizontal,
+  spacing_widget = wibox.widget.textbox(" |"),
+  spacing = 9,
+  nvidia,
+  networkmanager,
+  sink_bar,
+  source,
+  mytextclock,
+  s.systray,
+          },
       }
     end)
     -- }}}
