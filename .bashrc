@@ -60,20 +60,20 @@ cfg() {
         bin | script*)      nvim "$HOME/bin/$2"                     ;;
         v* | nvim)
             if [[ -z "$2" ]] ; then
-                          nvim "$dir/nvim/nvim.lua" 
+                          nvim "$dir/nvim/nvim.lua"
             else
-                          nvim "$dir/nvim/$2.lua" 
+                          nvim "$dir/nvim/$2.lua"
             fi                                                      ;;
-        wm | awesome)
+        # idk it's probably awesome
+        wm | awesome | *)
             if [[ -z "$2" ]] ; then
                             nvim "$dir/awesome/rc.lua"
             else
                             nvim "$dir/awesome/$2.lua"
             fi                                                      ;;
-        # idk it's probably awesome
-        *)                  nvim "$dir/awesome/$1.lua"              ;;
     esac
 }
+
 # git gud
 shove() {
     # check if i'm just in my home dir
@@ -115,19 +115,7 @@ shove() {
     git commit -m "$message"
     git push
 }
-# github() {
-#     if [[ -z $1 ]] ; then return ; fi
-#     cd ~/project/git/ || return
-#     if echo "$1" | grep -q http; then
-#         text=$(git clone "$1" 2>&1 >/dev/null)
-#     else
-#         text=$(git clone "https://github.com/$1.git" 2>&1 >/dev/null)
-#     fi
-#     dir=$(echo "$text" | grep -oE "'([^']*)'")
-#     cd "$dir" || return
-#     alacritty &
-#     alacritty &
-# }
+# shorthand to clone down a github repo with minimal link format
 github() {
     if [[ -z $1 ]] ; then return ; fi
     # shush shellcheck
@@ -201,7 +189,6 @@ extract() {
 
 # shorthands
 alias v='nvim'
-alias vw='nvim -u $HOME/.config/synced/writing.vim'
 alias ni='neovide --multigrid'
 alias suv='sudoedit'
 alias chkdns='ping 8.8.8.8'
@@ -216,7 +203,7 @@ alias serv='ssh spider@spood.org -p 773'
 alias fserv='sftp -P 773 spider@spood.org'
 alias why_would_you_do_this_dude_why='xclip -o | shuf'
 alias :q="exit" # ...
-alias fork="alacritty & nvim"
+alias fork="alacritty & disown"
 
 
 # fixes/improvements
