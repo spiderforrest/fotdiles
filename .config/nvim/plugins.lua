@@ -230,7 +230,8 @@ require("lazy").setup(
 
         -- {{{ workflow
         { 'ms-jpq/chadtree', branch = 'chad', build =  'python3 -m chadtree deps', event = 'VeryLazy' }, -- file manager
-        { 'samodostal/image.nvim', event = 'VeryLazy', config = function() require('image').setup() end }, -- ascii image veiwer -- consider switching to wezterm
+        -- { 'samodostal/image.nvim', event = 'VeryLazy', config = function() require('image').setup() end }, -- ascii image veiwer -- consider switching to wezterm
+        -- { 'edluffy/hologram.nvim', event = 'VeryLazy', config = function () require('hologram').setup{auto_display = true} end }, -- inline image rendering tanks mr wezterm
         { 'mbbill/undotree', event = 'VeryLazy' }, -- undo manager
         { 'wakatime/vim-wakatime', event = 'VeryLazy' }, -- time tracker
         -- VIM TWO PLAYER MODE 1V1 ME NERD
