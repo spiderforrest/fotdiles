@@ -260,13 +260,14 @@ require("lazy").setup(
             telescope = require('telescope.builtin')
         end
         },
-        { 'rareitems/printer.nvim',
+        { 'rareitems/printer.nvim', -- makes print statements real quickly
             config = function()
                 require('printer').setup({
                     keymap = "gp"
                 })
             end
         },
+        {'akinsho/toggleterm.nvim', version = "*", config = true, opts = {open_mapping = [[<c-\>]], }, event = 'VeryLazy' }
         -- }}}
 
     }, --this looks really funny when the folds are closed lmao

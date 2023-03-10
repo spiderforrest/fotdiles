@@ -28,8 +28,12 @@ map('v', '<leader>Y',   '"+Y', bindopt)
 map('v', '<leader>p',   '"+p', bindopt)
 map('v', '<leader>P',   '"+P', bindopt)
 -- }}}
+
 -- clear highlighting
 map('n', '<leader>/',   ':noh<CR>', bindopt)
+
+
+
 -- diffs
 map('n', '<leader>tg',  ':diffget<CR>', bindopt)
 map('n', '<leader>tp',  ':diffput<CR>', bindopt)

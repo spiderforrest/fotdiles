@@ -36,7 +36,8 @@ return {
 -- {{{ behaviors
     window_close_confirmation = 'NeverPrompt', -- really?
     scrollback_lines = 5000,
-    term = "wezterm" -- see https://wezfurlong.org/wezterm/config/lua/config/term.html
+    term = "wezterm", -- see https://wezfurlong.org/wezterm/config/lua/config/term.html
+    warn_about_missing_glyph = false, -- sometimes my vim ui calls extremely rare glyphs, no idea what they're supposed to look like
 -- }}} behaviors
 }
 
