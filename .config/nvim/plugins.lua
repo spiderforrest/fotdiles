@@ -18,7 +18,7 @@ require("lazy").setup(
         { 'spiderforrest/vim-colemak', event = 'BufEnter', -- running it before everything else bc i'll start typing lol
         -- flag off if Lily isn't here :(
             enabled=function()
-                if fn.system("lsusb | grep -c Lily58") then
+                if fn.system({"grep", "-c", "Lily58"}, fn.system('lsusb')) then
                     return true
                 end
                 return false
