@@ -36,6 +36,7 @@ return {
 -- {{{ behaviors
     window_close_confirmation = 'NeverPrompt', -- really?
     scrollback_lines = 5000,
+    term = "wezterm" -- see https://wezfurlong.org/wezterm/config/lua/config/term.html
 -- }}} behaviors
 }
 

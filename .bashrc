@@ -285,5 +285,4 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 # attempt to set the terminal title
 trap 'echo -ne "\033]2;$TERM | $(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
-
 #EOF

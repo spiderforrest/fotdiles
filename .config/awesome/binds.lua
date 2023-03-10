@@ -103,7 +103,7 @@ quick_bind{
 
     -- runners
     { desc="qutebrowser", key="q", prog="qutebrowser", grp="run" },
-    { desc="Term", key="Return", prog="wezterm", grp="run" },
+    { desc="Term", key="Return", prog="wezterm start --class=Terminal", grp="run" },
     { desc="dmenu", key="r", prog="j4-dmenu-desktop --term='wezterm'", grp="run" },
     { desc="no network spotify", key="s", mod={meta, alt}, prog="firejail --net=none spotify", grp="run" },
     { desc="emoji picker", key="e", mod={meta, alt}, prog="rofimoji", grp="run" },
