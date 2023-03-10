@@ -230,7 +230,7 @@ require("lazy").setup(
 
         -- {{{ workflow
         { 'ms-jpq/chadtree', branch = 'chad', build =  'python3 -m chadtree deps', event = 'VeryLazy' }, -- file manager
-        { 'samodostal/image.nvim', event = 'VeryLazy' }, -- ascii image veiwer
+        { 'samodostal/image.nvim', event = 'VeryLazy', config = function() require('image').setup() end }, -- ascii image veiwer -- consider switching to wezterm
         { 'mbbill/undotree', event = 'VeryLazy' }, -- undo manager
         { 'wakatime/vim-wakatime', event = 'VeryLazy' }, -- time tracker
         -- VIM TWO PLAYER MODE 1V1 ME NERD
@@ -241,7 +241,7 @@ require("lazy").setup(
         -- quickfix
         { 'kevinhwang91/nvim-bqf', event = 'VeryLazy' }, -- redoes quickfix gui
         -- self described swiss army knife plugin
-        { 'echasnovski/mini.nvim', event = 'VeryLazy', version = false, config = function ()
+        { 'echasnovski/mini.nvim', event = 'VeryLazy', version = false, config = function()
             require('mini.indentscope').setup{ draw = { delay = 0 }, symbol = '·' } -- dots on scope
             require('mini.cursorword').setup{ delay = 0 } -- highlight word
             require('mini.map').setup() -- chart on the right that i never fucking use
