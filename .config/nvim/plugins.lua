@@ -239,6 +239,8 @@ require("lazy").setup(
         { 'tpope/vim-fugitive', event = 'VeryLazy' },
         -- formatting
         { 'chrisbra/csv.vim', event = 'VeryLazy' },
+        -- quickfix
+        { 'kevinhwang91/nvim-bqf', event = 'VeryLazy' },
         -- self described swiss army knife plugin
         { 'echasnovski/mini.nvim', event = 'VeryLazy', version = false, config = function ()
             require('mini.indentscope').setup{ draw = { delay = 0 }, symbol = '·' }

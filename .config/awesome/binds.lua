@@ -151,7 +151,7 @@ quick_bind{
 
     awful.key({ meta,           }, "BackSpace", function (c) c:kill()                         end,
     {description = "close", group = "client"}),
-    awful.key({ meta,       }, "space",  awful.client.floating.toggle                     ,
+    awful.key({ meta, shft},       "f",  awful.client.floating.toggle                     ,
     {description = "toggle floating", group = "client"}),
     awful.key({ meta            }, "Tab", function (c) c:swap(awful.client.getmaster()) end,
     {description = "move to master", group = "client"}),
