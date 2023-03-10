@@ -7,3 +7,6 @@
 [submodule ".config/awesome/awesomewm-micky"]
 	path = .config/awesome/awesomewm-micky
 	url = https://github.com/basaran/awesomewm-micky
+[submodule ".config/nvim/snips"]
+	path = .config/nvim/snips
+	url = https://github.com/ms-jpq/snips

@@ -21,7 +21,7 @@ set.linebreak = true
 set.showmatch = true
 set.showbreak = '»'
 set.smartcase = true
--- DO NOT TOUCH THIS WHY THE FUCK IS IT SYMLINKING TO MY HOME DIRECTORY
+-- DO NOT TOUCH THIS WHY THE FUCK WAS IT SYMLINKING TO MY HOME DIRECTORY
 vs('set undodir=~/.config/nvim/undodir')
 set.undofile = true
 set.incsearch = true
@@ -37,6 +37,8 @@ set.smartcase = true
 set.history=10000
 set.wrap = false
 set.virtualedit = 'all'
+set.splitright = true
+set.splitbelow = true
 set.textwidth=135
 set.number = true
 set.formatoptions = 'tclro12jpaw' -- i just wrote this and i already forgor just check :h fo-table

@@ -55,23 +55,24 @@ cfg() {
     case "$1" in
         bash* | sh*)        nvim "$HOME/.bashrc"                    ;;
         term* | wez*)       nvim "$dir/wezterm/wezterm.lua"         ;;
-        red | redshift | ow)nvim "$dir/redshift/redshift.conf"      ;;
+        red* | ow)          nvim "$dir/redshift/redshift.conf"      ;;
         i3)                 nvim "$dir/i3/config"                   ;;
         picom)              nvim "$dir/picom/picom.conf"            ;;
         bin | script*)      nvim "$HOME/bin/$2"                     ;;
         v* | nvim)
             if [[ -z "$2" ]] ; then
-                          nvim "$dir/nvim/nvim.lua"
+                            nvim "$dir/nvim/nvim.lua"
             else
-                          nvim "$dir/nvim/$2.lua"
+                            nvim "$dir/nvim/$2.lua"
             fi                                                      ;;
-        # idk it's probably awesome
-        wm | awesome | *)
+        wm | awesome)
             if [[ -z "$2" ]] ; then
                             nvim "$dir/awesome/rc.lua"
             else
                             nvim "$dir/awesome/$2.lua"
             fi                                                      ;;
+        # idk it's probably awesome
+        *)                  nvim "$dir/awesome/$1.lua"              ;;
     esac
 }
 
@@ -285,4 +286,5 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 # attempt to set the terminal title
 trap 'echo -ne "\033]2;$TERM | $(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
+
 #EOF

@@ -15,7 +15,7 @@ require("lazy").setup(
         -- manage self
         'folke/lazy.nvim',
         -- keymap
-        { 'spiderforrest/vim-colemak',
+        { 'spiderforrest/vim-colemak', event = 'BufEnter', -- running it before everything else bc i'll start typing lol
         -- flag off if Lily isn't here :(
             enabled=function()
                 if fn.system({"lsusb", "|", "grep", "-c", "Lily58"}) then
@@ -41,7 +41,6 @@ require("lazy").setup(
             colorscheme everforest
             if exists('+termguicolors')
                 set termguicolors
-                lua require('colorizer').setup()
                 endif
                 ]]
               end,
@@ -49,7 +48,13 @@ require("lazy").setup(
         { 'karoliskoncevicius/sacredforest-vim', event = 'VeryLazy' }, -- kinda softer version of my scheme
         { 'shaunsingh/oxocarbon.nvim', event = 'VeryLazy' }, -- purble :)
         -- (syntax) colorssss
-        'norcalli/nvim-colorizer.lua', -- highlight color codes in colors
+        -- 'norcalli/nvim-colorizer.lua', -- highlight color codes in colors
+        { 'uga-rosa/ccc.nvim', event = 'VeryLazy',
+            init = function()
+                local ccc = require("ccc")
+                ccc.setup({ highlighter = { auto_enable = true } })
+            end
+        },
         { 'sheerun/vim-polyglot', event = 'VeryLazy',
             init = function()
                 g.vim_jsx_pretty_colorful_config = 1
@@ -76,6 +81,7 @@ require("lazy").setup(
         -- flat window & focus
         { 'junegunn/goyo.vim', event = 'VeryLazy' }, -- make that lil window in the middle that i like
         { 'junegunn/limelight.vim', event = 'VeryLazy' }, -- highlight current block brighter
+        -- ui revamp
         -- {{{ bar
         { 'nvim-lualine/lualine.nvim', event = 'VeryLazy', config = function()
             require('lualine').setup {
@@ -128,84 +134,75 @@ require("lazy").setup(
             }
         end }, -- }}}
         { 'kyazdani42/nvim-web-devicons', event = 'VeryLazy' }, -- icons and emojis n shit: 🗿
+        { 'eandrju/cellular-automaton.nvim', event = 'VeryLazy' }, -- no comment.
         -- }}}
 
         -- {{{ coq and lsps
         -- lsp meta
-        { 'neovim/nvim-lspconfig', event = 'VeryLazy' }, -- default configs for lsps
-        { 'williamboman/mason.nvim', event = 'VeryLazy' }, -- lsp manager
-        { 'williamboman/mason-lspconfig.nvim', event = 'VeryLazy' }, -- lsp manager integration
+        -- lsp megamanger, most of these configs are copypasted, it's easier than doing it myself
+        -- insert bell curve meme of 'lsp zero' 'custom lsp initializing' 'lsp zero'                    { 'VonHeikemen/lsp-zero.nvim',
+        { 'VonHeikemen/lsp-zero.nvim',
+            event = 'VeryLazy', -- this mf takes like a full 100ms to start up jfc
+            branch = 'v1.x',
+            dependencies = {
+                {'neovim/nvim-lspconfig'}, -- default lsp configs
+                {'williamboman/mason.nvim'}, -- lsp manager
+                {'williamboman/mason-lspconfig.nvim'}, -- integration for the above
+            },
+            config = function()
+                local lsp = require('lsp-zero').preset({
+                    name = 'minimal',
+                    set_lsp_keymaps = true,
+                    suggest_lsp_servers = true,
+                    cmp_capabilities = false, -- completions handled by coq
+                })
+
+                lsp.nvim_workspace() -- (Optional) Configure lua language server for neovim
+                require("coq")
+                lsp.setup()
+            end
+        },
         -- {{{ coq
         { 'ms-jpq/coq_nvim', -- prediction
         branch = 'coq',
         event = 'VeryLazy',
         init = function()
-            vs [[ let g:coq_settings = {
-                \'auto_start': 'shut-up' ,
-                \'limits.completion_manual_timeout': 3,
-                \'display': {
-                    \'pum.fast_close': v:false ,
-                    \'ghost_text.context': [" ",""] ,
-                    \'pum.kind_context': [" 「",""] ,
-                    \'pum.source_context': [" | ","」"],
-                    \'preview.border': 'solid',
-                    \}
-                    \} ]]
-                    require("mason").setup()
-                    require("mason-lspconfig").setup()
-
-                    -- lsp header
-                    local lsp = require("lspconfig")
-                    local coq = require("coq")
-
-                    -- lsp list, just follow the formula i am aware i could simplify this but i don't know lua so
-                    lsp.html.setup{}
-                    lsp.html.setup(coq.lsp_ensure_capabilities{})
-                    lsp.eslint.setup{}
-                    lsp.eslint.setup(coq.lsp_ensure_capabilities{})
-                    lsp.cssls.setup{}
-                    lsp.cssls.setup(coq.lsp_ensure_capabilities{})
-                    lsp.clangd.setup{}
-                    lsp.clangd.setup(coq.lsp_ensure_capabilities{})
-                    lsp.rome.setup{}
-                    lsp.rome.setup(coq.lsp_ensure_capabilities{})
-                    lsp.bashls.setup{}
-                    lsp.bashls.setup(coq.lsp_ensure_capabilities{})
-                    lsp.jsonls.setup{}
-                    lsp.jsonls.setup(coq.lsp_ensure_capabilities{})
-                    lsp.vimls.setup{}
-                    lsp.vimls.setup(coq.lsp_ensure_capabilities{})
-                    --2lazy to figure out custom shit
-                    --lsp.grammerly.setup{}
-                    --lsp.grammerly.setup(coq.lsp_ensure_capabilities{})
-
-                    -- custom sources for completion
-                    require("coq_3p"){
-                        { src = "nvimlua", short_name = "nCFL", conf_only = false },
-                        -- math completion
-                        { src = "bc", short_name = "MATH", precision = 6 },
-                        -- lol
-                        { src = "cow", trigger = "!cow" },
-                        -- banner
-                        { src = "figlet", short_name = "BAN", trigger = "!ban"},
-                        -- shell output pipe. soo sketchy. soo great.
-                        {
-                            src = "repl",
-                            short_name = "BASH",
-                            sh = "bash",
-                            max_lines = 99,
-                            deadline = 500,
-                            -- christ this is gonna fuck me over
-                            unsafe = { "rm", "poweroff", "reboot", "mv", "cp", "rmdir" }
-                        },
-                    }
-                end
-            },
-            { 'ms-jpq/coq.artifacts', branch = 'artifacts', event = 'VeryLazy' },
-            { 'ms-jpq/coq.thirdparty', branch = '3p', event = 'VeryLazy' },
+        g.coq_settings = {
+                ['auto_start'] = 'shut-up' ,
+                ['limits.completion_manual_timeout'] = 3,
+                ['display'] = {
+                    ['pum.fast_close'] = false ,
+                    ['ghost_text.context'] = { " ",""}  ,
+                    ['pum.kind_context'] = { " 「",""}  ,
+                    ['pum.source_context'] = { " | ","」"} ,
+                    ['preview.border'] = 'solid',
+                }
+            }
+            -- custom sources for completion
+            require("coq_3p"){
+                { src = "nvimlua", short_name = "nCFL", conf_only = false },
+                -- math completion
+                { src = "bc", short_name = "MATH", precision = 6 },
+                -- lol
+                { src = "cow", trigger = "!cow" },
+                -- banner
+                { src = "figlet", short_name = "BAN", trigger = "!ban"},
+                -- shell output pipe. soo sketchy. soo great.
+                { src = "repl",
+                    short_name = "BASH",
+                    sh = "bash",
+                    max_lines = 99,
+                    deadline = 500,
+                    -- christ this is gonna fuck me over
+                    unsafe = { "rm", "poweroff", "reboot", "mv", "cp", "rmdir" }
+                },
+            }
+        end
+        },
+        { 'ms-jpq/coq.artifacts', branch = 'artifacts', event = 'VeryLazy' },
+        { 'ms-jpq/coq.thirdparty', branch = '3p', event = 'VeryLazy' },
             -- }}}
         -- lsp/lint raw
-        { 'dsznajder/vscode-es7-javascript-react-snippets', build = 'yarn install --frozen-lockfile && yarn compile' , event = 'VeryLazy' }, -- god i hate react
         -- { 'vim-syntastic/syntastic', event = 'VeryLazy' },
         { 'rust-lang/rust.vim', ft = 'rs', config = function() vs [[
             syntax enable'
@@ -213,7 +210,7 @@ require("lazy").setup(
             ]] end
         },
         { 'chrisbra/csv.vim', ft = 'csv' },
-        'mattn/emmet-vim', -- complex tag wrapping generator-writes most my html
+        { 'mattn/emmet-vim', event = 'VeryLazy' }, -- complex tag wrapping generator-writes most my html
         -- ale
         { 'dense-analysis/ale', event = 'VeryLazy', -- big guy for handling complex lsp integration
         init = function()
@@ -235,7 +232,7 @@ require("lazy").setup(
         { 'mbbill/undotree', event = 'VeryLazy' }, -- undo manager
         { 'wakatime/vim-wakatime', event = 'VeryLazy' }, -- time tracker
         -- VIM TWO PLAYER MODE 1V1 ME NERD
-        { 'jbyuki/instant.nvim', init = function() g['instant_username'] = "$HOSTNAME" end  }, -- allows remote connections to share session
+        { 'jbyuki/instant.nvim', event = 'VeryLazy', init = function() g['instant_username'] = "$HOSTNAME" end  }, -- allows remote connections to share session
         -- git
         { 'airblade/vim-gitgutter', event = 'VeryLazy' }, -- show git on left bar
         { 'tpope/vim-fugitive', event = 'VeryLazy' },
@@ -256,8 +253,8 @@ require("lazy").setup(
             require('mini.fuzzy').setup() -- fuzzy finding
         end
         },
-        {
-        'nvim-telescope/telescope.nvim', tag = '0.1.1', -- big fuzzy finder
+        { "smjonas/inc-rename.nvim", config = function() require("inc_rename").setup() end, event = 'VeryLazy' }, -- rename based off tree sitter
+        { 'nvim-telescope/telescope.nvim', tag = '0.1.1', event = 'VeryLazy', -- big fuzzy finder
         dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
         config = function()
             telescope = require('telescope.builtin')
