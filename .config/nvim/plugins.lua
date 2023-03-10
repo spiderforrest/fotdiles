@@ -259,7 +259,14 @@ require("lazy").setup(
         config = function()
             telescope = require('telescope.builtin')
         end
-        }
+        },
+        { 'rareitems/printer.nvim',
+            config = function()
+                require('printer').setup({
+                    keymap = "gp"
+                })
+            end
+        },
         -- }}}
 
     }, --this looks really funny when the folds are closed lmao
