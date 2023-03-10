@@ -22,6 +22,14 @@ return {
         -- color_scheme = 'DjangoSmooth', --maybe too bright
     -- }}}
     cursor_thickness = '95%', -- why does 5% make this much difference? it makes the unfocused cursor thinner
+
+    -- {{{ bindings
+    -- i don't use like. any of the features and i'm mostly gonna get annoyed
+    disable_default_key_bindings = true,
+    disable_default_mouse_bindings = true,
+    use_ime = false, -- fixes the INSANELY WEIRD issue of home row mod keys getting processed later than normal keys
+    -- how does that happen even?? my guess is async race condition of processing keys but sheeesh
+
 }
 
 -- vim:foldmethod=marker

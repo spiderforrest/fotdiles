@@ -11,6 +11,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.nimble/bin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export EDITOR=nvim
+export pref_term="wezterm"
 
 # ignore the rest if not interactive
 [[ $- != *i* ]] && return
@@ -53,7 +54,7 @@ cfg() {
     dir="$HOME/.config"
     case "$1" in
         bash* | sh*)        nvim "$HOME/.bashrc"                    ;;
-        term* | alacritty)  nvim "$dir/alacritty/alacritty.yml"     ;;
+        term* | wez*)       nvim "$dir/wezterm/wezterm.lua"         ;;
         red | redshift | ow)nvim "$dir/redshift/redshift.conf"      ;;
         i3)                 nvim "$dir/i3/config"                   ;;
         picom)              nvim "$dir/picom/picom.conf"            ;;
