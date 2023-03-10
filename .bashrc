@@ -191,6 +191,7 @@ extract() {
 
 # shorthands
 alias v='nvim'
+alias vw='nvim "+lua writing()"' # it feels real good changing that to a lua funtion call oooooooo
 alias ni='neovide --multigrid'
 alias suv='sudoedit'
 alias chkdns='ping 8.8.8.8'

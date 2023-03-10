@@ -79,8 +79,8 @@ require("lazy").setup(
             end
         },
         -- flat window & focus
-        { 'junegunn/goyo.vim', event = 'VeryLazy' }, -- make that lil window in the middle that i like
-        { 'junegunn/limelight.vim', event = 'VeryLazy' }, -- highlight current block brighter
+        { 'junegunn/goyo.vim', cmd = 'Goyo' }, -- make that lil window in the middle that i like
+        { 'junegunn/limelight.vim', cmd = 'Limelight' }, -- highlight current block brighter
         -- ui revamp
         -- {{{ bar
         { 'nvim-lualine/lualine.nvim', event = 'VeryLazy', config = function()
@@ -267,7 +267,15 @@ require("lazy").setup(
                 })
             end
         },
-        {'akinsho/toggleterm.nvim', version = "*", config = true, opts = {open_mapping = [[<c-\>]], }, event = 'VeryLazy' }
+        {'akinsho/toggleterm.nvim', version = "*", event = 'VeryLazy',
+            init = function() require('toggleterm').setup{
+                open_mapping = [[\\]], -- open with double backslash
+                terminal_mappings = true, -- close by typing \\
+                insert_mappings = false, -- i sometimes actually do have to type \\
+                direction = 'vertical', -- open on right by default
+                size = 50, -- by default he teeny!!
+            } end
+        },
         -- }}}
 
     }, --this looks really funny when the folds are closed lmao

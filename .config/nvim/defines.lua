@@ -54,48 +54,57 @@ vs [[function! ToggleMouse()
 endfunc ]]
 
 -- {{{ writing mode!
-vs [[ function! s:goyo_enter()
-    set nonumber
-    set norelativenumber
-    set wrap
-    set spell
-    set scrolloff=5
-    set noshowmode
-    set noshowcmd
-    set fo-=t
-    noh
-    " toggle plugins
-    Limelight
-    " hide the ~
-    set fillchars=eob:\ ,fold:\ ,vert:\│
-    " copy pasted for letting :q quit
-    let b:quitting = 0
-    let b:quitting_bang = 0
-    autocmd QuitPre <buffer> let b:quitting = 1
-    cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-endfunction
-function! s:goyo_leave()
-  set number
-  set relativenumber
-  set nowrap
-  set nospell
-  set showmode
-  set showcmd
-  set fo+=t
-  set scrolloff=3
-  Limelight!
-  set fillchars="~":\ ,fold:\ ,vert:\│
-  " Quit Vim if this is the only remaining buffer
-  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    if b:quitting_bang
-      qa!
-    else
-      qa
-    endif
-  endif
-endfunction
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave() ]]
+inWritingMode = false
+function writing() -- lua function to toggle the writing mode
+  if not inWritingMode then
+    vs [[
+      set nonumber
+      set norelativenumber
+      set wrap
+      set spell
+      set scrolloff=5
+      set noshowmode
+      set noshowcmd
+      set fo-=t
+      noh
+      " toggle plugins
+      Limelight
+      Goyo
+      " hide the ~
+      set fillchars=eob:\ ,fold:\ ,vert:\│
+      " copy pasted for letting :q quit
+      let b:quitting = 0
+      let b:quitting_bang = 0
+      autocmd QuitPre <buffer> let b:quitting = 1
+      cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+    ]]
+    inWritingMode = true
+  else
+    vs [[
+      set number
+      set relativenumber
+      set nowrap
+      set nospell
+      set showmode
+      set showcmd
+      set fo+=t
+      set scrolloff=3
+      Limelight!
+      Goyo
+      set fillchars="~":\ ,fold:\ ,vert:\│
+      " Quit Vim if this is the only remaining buffer
+      if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+        if b:quitting_bang
+          qa!
+        else
+          qa
+        endif
+      endif
+    ]]
+  inWritingMode = false
+  end
+end
+
 -- }}}
 -- }}}
 

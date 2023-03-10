@@ -2,7 +2,6 @@
 map('v', '<Enter>',     ':EasyAlign<CR>', bindopt)
 map('n', '<leader>f',   ':CHADopen<CR>', bindopt)
 map('n', '<leader>u',   ":UndotreeToggle<CR>", bindopt)
-map('n', '<leader>g',   ':Goyo<CR>', bindopt)
 map('n', '<leader>e',   'ysj<em><CR>', bindopt)
 map('n', "<leader>rs",  ":IncRename ", bindopt)
 lmap('n', '<leader>tf', function() telescope.find_files() end, bindopt)
@@ -13,9 +12,17 @@ lmap({ 'n', 'v' }, 't', function() MiniJump2d.start(MiniJump2d.builtin_opts.sing
 lmap('n', '<leader>w',  function() MiniMap.toggle() end, bindopt)
 
 -- }}}
+
+-- writing mode!
+lmap('n', '<leader>g',   function() writing() end, bindopt)
+
 -- nav buffers
 map('n', '<leader>bn',  ':bn<CR>', bindopt)
 map('n', '<leader>bp',  ':bp<CR>', bindopt)
+
+-- terminal fixes
+map('t', '<Esc>',       [[<c-\><c-n>]], bindopt)
+
 -- {{{ external clipboard stuff
 map('n', '<leader>d',   '"_d', bindopt)
 map('n', '<leader>y',   '"+y', bindopt)
@@ -31,8 +38,6 @@ map('v', '<leader>P',   '"+P', bindopt)
 
 -- clear highlighting
 map('n', '<leader>/',   ':noh<CR>', bindopt)
-
-
 
 -- diffs
 map('n', '<leader>tg',  ':diffget<CR>', bindopt)

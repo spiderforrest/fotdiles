@@ -4,6 +4,7 @@
 -- bloated btw, I want a full IDE and writing tools, I need to get things done on a daily basis and
 -- tuning my vim for hours to shave 20ms of startup is not worth it
 -- as fun as that sounds to me :(
+-- currently it's at about 50ms i think which is neato
 
 -- calls
 dofile(vim.fn.stdpath("config") .. "/defines.lua")
