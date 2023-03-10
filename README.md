@@ -11,7 +11,7 @@ Hi there! Here are my dotfiles, not much to say there. Software:
     - [Ubuntu](https://ubuntu.com)-sometimes you need some proprietary garbage to Just Work, and usually this is your best shot. After the AUR.
 - [Neovim](https://neovim.io)-hey emacs users can we call the war off and go beat up vscode please.
 - [AwesomeWM](https://awesomewm.org)-Awesome is a framework, not an application to configure, and my 'configs' are expansive. Lua.
-- [Alacritty](https://alacritty.org)-term.
+- [WezTerm](https://wezfurlong.org/wezterm)-term
 - [Qutebrowser](https://qutebrowser.org)-modal browser.
 - [Chore](https://github.com/paradigm/chore)-cli todo list by the guy who did bedrock. It's nice.
 - [Redshift](https://github.com/jonls/redshift)-my eyes. Sometime when I'm less broke I'll get an e-ink monitor.
@@ -21,3 +21,7 @@ Hi there! Here are my dotfiles, not much to say there. Software:
 - [Picom](https://github.com/yshui/picom)-honestly I'm currently just using this for transparent borders.
 - [Xfce4 Mime Settings](https://docs.xfce.org/xfce/xfce4-settings/4.14/mime)-big thanks to xfce for having so many useful modular components. I just use this to set [mime](https://specifications.freedesktop.org/mime-apps-spec/mime-apps-spec-latest.html) and don't touch it.
 - [Quantum Mechanical Keyboards](https://github.com/spiderforrest/qmk_firmware)-honorable mention. This is my fork of QMK, I use the [Lily58](https://github.com/kata0510/Lily58).
+
+I have unused former configs for
+- [i3wm](https://i3wm.org)
+- [Alacritty](https://alacritty.org)-term.
