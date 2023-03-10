@@ -46,10 +46,10 @@ require("lazy").setup(
                 ]]
               end,
         },
-        { 'karoliskoncevicius/sacredforest-vim', event = 'VeryLazy' },
-        { 'shaunsingh/oxocarbon.nvim', event = 'VeryLazy' },
+        { 'karoliskoncevicius/sacredforest-vim', event = 'VeryLazy' }, -- kinda softer version of my scheme
+        { 'shaunsingh/oxocarbon.nvim', event = 'VeryLazy' }, -- purble :)
         -- (syntax) colorssss
-        'norcalli/nvim-colorizer.lua',
+        'norcalli/nvim-colorizer.lua', -- highlight color codes in colors
         { 'sheerun/vim-polyglot', event = 'VeryLazy',
             init = function()
                 g.vim_jsx_pretty_colorful_config = 1
@@ -58,15 +58,15 @@ require("lazy").setup(
                 g.colorizer_auto_map = 1
             end
         },
-        { 'luochen1990/rainbow',
+        { 'luochen1990/rainbow', -- color nested brackets -- consider upgrading sometime to HiPhish/nvim-ts-rainbow2
             init = function()
                 vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "" })
                 g.rainbow_active = 1
             end
         },
         -- indentation
-        { 'nathanaelkane/vim-indent-guides', event = 'VeryLazy',
-            init = function()
+        { 'nathanaelkane/vim-indent-guides', event = 'VeryLazy', -- show lines for indentation
+            config = function()
                 g.indent_guides_auto_colors = 0
                 g.indent_guides_guide_size = 1
                 g.indent_guides_enable_on_vim_startup = 1
@@ -74,8 +74,8 @@ require("lazy").setup(
             end
         },
         -- flat window & focus
-        { 'junegunn/goyo.vim', event = 'VeryLazy' },
-        { 'junegunn/limelight.vim', event = 'VeryLazy' },
+        { 'junegunn/goyo.vim', event = 'VeryLazy' }, -- make that lil window in the middle that i like
+        { 'junegunn/limelight.vim', event = 'VeryLazy' }, -- highlight current block brighter
         -- {{{ bar
         { 'nvim-lualine/lualine.nvim', event = 'VeryLazy', config = function()
             require('lualine').setup {
@@ -127,16 +127,16 @@ require("lazy").setup(
                 extensions = {}
             }
         end }, -- }}}
-        { 'kyazdani42/nvim-web-devicons', event = 'VeryLazy' },
+        { 'kyazdani42/nvim-web-devicons', event = 'VeryLazy' }, -- icons and emojis n shit: 🗿
         -- }}}
 
         -- {{{ coq and lsps
         -- lsp meta
-        { 'neovim/nvim-lspconfig', event = 'VeryLazy' },
-        { 'williamboman/mason-lspconfig.nvim', event = 'VeryLazy' },
-        { 'williamboman/mason.nvim', event = 'VeryLazy' },
+        { 'neovim/nvim-lspconfig', event = 'VeryLazy' }, -- default configs for lsps
+        { 'williamboman/mason.nvim', event = 'VeryLazy' }, -- lsp manager
+        { 'williamboman/mason-lspconfig.nvim', event = 'VeryLazy' }, -- lsp manager integration
         -- {{{ coq
-        { 'ms-jpq/coq_nvim',
+        { 'ms-jpq/coq_nvim', -- prediction
         branch = 'coq',
         event = 'VeryLazy',
         init = function()
@@ -205,7 +205,7 @@ require("lazy").setup(
             { 'ms-jpq/coq.thirdparty', branch = '3p', event = 'VeryLazy' },
             -- }}}
         -- lsp/lint raw
-        { 'dsznajder/vscode-es7-javascript-react-snippets', build = 'yarn install --frozen-lockfile && yarn compile' , event = 'VeryLazy' },
+        { 'dsznajder/vscode-es7-javascript-react-snippets', build = 'yarn install --frozen-lockfile && yarn compile' , event = 'VeryLazy' }, -- god i hate react
         -- { 'vim-syntastic/syntastic', event = 'VeryLazy' },
         { 'rust-lang/rust.vim', ft = 'rs', config = function() vs [[
             syntax enable'
@@ -213,9 +213,9 @@ require("lazy").setup(
             ]] end
         },
         { 'chrisbra/csv.vim', ft = 'csv' },
-        'mattn/emmet-vim',
+        'mattn/emmet-vim', -- complex tag wrapping generator-writes most my html
         -- ale
-        { 'dense-analysis/ale', event = 'VeryLazy',
+        { 'dense-analysis/ale', event = 'VeryLazy', -- big guy for handling complex lsp integration
         init = function()
             g.ale_fixers = {
                 ['javascript'] = 'prettier',
@@ -229,35 +229,34 @@ require("lazy").setup(
         -- }}}
 
         -- {{{ workflow
-        { 'ms-jpq/chadtree', branch = 'chad', build =  'python3 -m chadtree deps', event = 'VeryLazy' },
-        { 'mbbill/undotree', event = 'VeryLazy' },
-        { 'wakatime/vim-wakatime', event = 'VeryLazy' },
+        { 'ms-jpq/chadtree', branch = 'chad', build =  'python3 -m chadtree deps', event = 'VeryLazy' }, -- file manager
+        { 'samodostal/image.nvim', event = 'VeryLazy' }, -- ascii image veiwer
+        { 'mbbill/undotree', event = 'VeryLazy' }, -- undo manager
+        { 'wakatime/vim-wakatime', event = 'VeryLazy' }, -- time tracker
         -- VIM TWO PLAYER MODE 1V1 ME NERD
-        { 'jbyuki/instant.nvim', init = function() g['instant_username'] = "$HOSTNAME" end  },
+        { 'jbyuki/instant.nvim', init = function() g['instant_username'] = "$HOSTNAME" end  }, -- allows remote connections to share session
         -- git
-        { 'airblade/vim-gitgutter', event = 'VeryLazy' },
+        { 'airblade/vim-gitgutter', event = 'VeryLazy' }, -- show git on left bar
         { 'tpope/vim-fugitive', event = 'VeryLazy' },
-        -- formatting
-        { 'chrisbra/csv.vim', event = 'VeryLazy' },
         -- quickfix
-        { 'kevinhwang91/nvim-bqf', event = 'VeryLazy' },
+        { 'kevinhwang91/nvim-bqf', event = 'VeryLazy' }, -- redoes quickfix gui
         -- self described swiss army knife plugin
         { 'echasnovski/mini.nvim', event = 'VeryLazy', version = false, config = function ()
-            require('mini.indentscope').setup{ draw = { delay = 0 }, symbol = '·' }
-            require('mini.cursorword').setup{ delay = 0 }
-            require('mini.map').setup()
-            require('mini.trailspace').setup()
-            require('mini.comment').setup{ mappings = { comment = '<leader>\\', comment_line = '<leader>\\' } }
-            require('mini.align').setup()
-            require('mini.surround').setup()
-            require('mini.jump2d').setup{ mappings = { start_jumping = '<leader> ' } }
-            -- require('mini.pairs').setup()
-            require('mini.bracketed').setup()
-            require('mini.fuzzy').setup()
+            require('mini.indentscope').setup{ draw = { delay = 0 }, symbol = '·' } -- dots on scope
+            require('mini.cursorword').setup{ delay = 0 } -- highlight word
+            require('mini.map').setup() -- chart on the right that i never fucking use
+            require('mini.trailspace').setup() -- trailing whitespace
+            require('mini.comment').setup{ mappings = { comment = '<leader>\\', comment_line = '<leader>\\' } } -- comment/uncomment
+            require('mini.align').setup() -- align columns
+            require('mini.surround').setup() -- edit wrappers like <li></li> and {}
+            require('mini.jump2d').setup{ mappings = { start_jumping = '<leader> ' } } -- hinting
+            -- require('mini.pairs').setup() -- auto adds the second bracket. usually annoying.
+            require('mini.bracketed').setup() -- jump various scopes via square bracket keys
+            require('mini.fuzzy').setup() -- fuzzy finding
         end
         },
         {
-        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        'nvim-telescope/telescope.nvim', tag = '0.1.1', -- big fuzzy finder
         dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
         config = function()
             telescope = require('telescope.builtin')

@@ -8,7 +8,7 @@ lmap('n', '<leader>tf', function() telescope.find_files() end, bindopt)
 lmap('n', '<leader>tg', function() telescope.live_grep() end, bindopt)
 lmap('n', '<leader>tb', function() telescope.buffers() end, bindopt)
 lmap('n', '<leader>th', function() telescope.help_tags() end, bindopt)
-lmap({ 'n', 'v' }, 'f', function() MiniJump2d.start(MiniJump2d.builtin_opts.single_character) end, bindopt)
+lmap({ 'n', 'v' }, 't', function() MiniJump2d.start(MiniJump2d.builtin_opts.single_character) end, bindopt)
 lmap('n', '<leader>w', function() MiniMap.toggle() end, bindopt)
 -- }}}
 -- nav buffers
