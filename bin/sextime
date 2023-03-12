@@ -83,7 +83,7 @@ if [[ $loop == 1 ]] ; then
 # reason of i'm sorry i'm too lazy to refactor
 else
     # check if arg passed
-    if [[ -z $1 ]] ; then
+    if [[ -z "${1+x}" ]] ; then
         printf "Missing argument. -h for usage.\n"
         exit
     fi

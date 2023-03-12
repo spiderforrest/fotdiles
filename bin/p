@@ -47,7 +47,7 @@ case "$distro" in
         }
         pmSearch() {
             if [[ -n "$(pmm-query -l | grep "$1")" ]] ; then
-                pmm-query -R "$1"
+                pmm-query -R "$*"
             else
                 echo "// not found local, trying remote //"
                 # no idea how pmm works but it gets garbage in my outputs so sanitize by putting it in a vat
@@ -57,7 +57,7 @@ case "$distro" in
                     echo "$remoteResults"
                 else
                     echo "// not found explicitly, searching... //"
-                    echo "$(pmm-query -Rs "$1" | tac)"
+                    echo "$(pmm-query -Rs "$*" | tac)"
                 fi
             fi
         }
@@ -67,7 +67,7 @@ case "$distro" in
             echo "// refreshing xlocates //"
             pmm-xlocate -S
             echo "// clearing cache and brutally murdering parentless orhapns //"
-            sudo pmm-remove -Oo
+            sudo pmm-remove -Ooy
             pmm --check-pmm-configuration
             echo "// current packages outside of world: //"
             pmm --diff-world
@@ -89,8 +89,9 @@ case "$argA" in
 
     # Install a package
     i | install)
-    echo "// installing $2 //"
-    $pmInstall "$2"
+    shift 1
+    echo "// installing $* //"
+    $pmInstall "$*"
     ;;
 
     # Update the system
@@ -102,8 +103,9 @@ case "$argA" in
 
     # Remove a package
     r | remove)
-    echo "// removing $2 //"
-    $pmRemove "$2"
+    shift 1
+    echo "// removing $* //"
+    $pmRemove "$*"
     ;;
     # Clean the system, busywork
     clean)
@@ -112,7 +114,8 @@ case "$argA" in
 
     # Query/search for a package
     q | s | query | search)
-    pmSearch "$2"
+    shift 1
+    pmSearch "$*"
     ;;
 
     # Lookup a binary
@@ -175,4 +178,3 @@ case "$argA" in
     ;;
 esac
 echo "// done. run $0 help if needed. //"
-

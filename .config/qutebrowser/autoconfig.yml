@@ -86,17 +86,23 @@ settings:
     https://www.easybib.com/project/style/mla?id=9f40e0be-4206-48d2-8750-5fcacb327a45: true
   content.local_content_can_access_remote_urls:
     global: true
+  content.media.audio_capture:
+    https://meet.google.com: true
   content.media.audio_video_capture:
+    https://meet.google.com: true
     https://video.simplepractice.com: true
   content.media.video_capture:
+    https://meet.google.com: true
     https://v6p9d9t4.ssl.hwcdn.net: true
     https://video.simplepractice.com: true
   content.notifications.enabled:
     https://123moviesclub.cc: false
+    https://biqu.equipment: false
     https://calendar.protonmail.com: true
     https://frameboxxindore.com: false
     https://ibb.co: false
     https://mail.protonmail.com: true
+    https://meet.google.com: true
     https://ww5.0123movie.net: false
     https://www.netflix.com: false
     https://www.reddit.com: false

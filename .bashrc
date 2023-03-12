@@ -11,6 +11,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.nimble/bin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export EDITOR=nvim
+export pref_term="wezterm"
 
 # ignore the rest if not interactive
 [[ $- != *i* ]] && return
@@ -34,9 +35,6 @@ if [[ -f "$HOME/project/git/qmk_firmware/util/qmk_tab_complete.sh" ]] ; then
     source "$HOME/project/git/qmk_firmware/util/qmk_tab_complete.sh"
 fi
 
-# keep configs updated
-yadm pull > /dev/null &
-disown
 
 ### functions ###
 
@@ -52,25 +50,52 @@ hst() {
 
 # touch grass or something
 cfg() {
+    if [[ -z "$1" ]] ; then return; fi
     dir="$HOME/.config"
     case "$1" in
         bash* | sh*)        nvim "$HOME/.bashrc"                    ;;
-        v* | nvim)          nvim "$dir/nvim/nvim.lua"               ;;
-        term* | alacritty)  nvim "$dir/alacritty/alacritty.yml"     ;;
-        redshift)           nvim "$dir/redshift/redshift.conf"      ;;
+        term* | wez*)       nvim "$dir/wezterm/wezterm.lua"         ;;
+        red* | ow)          nvim "$dir/redshift/redshift.conf"      ;;
         i3)                 nvim "$dir/i3/config"                   ;;
         picom)              nvim "$dir/picom/picom.conf"            ;;
         bin | script*)      nvim "$HOME/bin/$2"                     ;;
+        v* | nvim)
+            if [[ -z "$2" ]] ; then
+                            nvim "$dir/nvim/nvim.lua"
+            else
+                            nvim "$dir/nvim/$2.lua"
+            fi                                                      ;;
         wm | awesome)
             if [[ -z "$2" ]] ; then
                             nvim "$dir/awesome/rc.lua"
             else
                             nvim "$dir/awesome/$2.lua"
             fi                                                      ;;
+        # idk it's probably awesome
+        *)                  nvim "$dir/awesome/$1.lua"              ;;
     esac
 }
+
 # git gud
 shove() {
+    # check if i'm just in my home dir
+    if [[ "$PWD" == "$HOME" ]] ; then
+        yadm pull
+        yadm add -u
+        yadm status
+        if [[ "$1" ]] ; then
+            echo '/// fr? ///'
+            read -r
+            yadm commit -m "$*"
+            yadm push
+            return
+        fi
+        echo "/// add a commit message ///"
+        read -r message
+        yadm commit -m "$message"
+        yadm push
+        return
+    fi
     git pull
     git add -A
     git status
@@ -92,19 +117,7 @@ shove() {
     git commit -m "$message"
     git push
 }
-# github() {
-#     if [[ -z $1 ]] ; then return ; fi
-#     cd ~/project/git/ || return
-#     if echo "$1" | grep -q http; then
-#         text=$(git clone "$1" 2>&1 >/dev/null)
-#     else
-#         text=$(git clone "https://github.com/$1.git" 2>&1 >/dev/null)
-#     fi
-#     dir=$(echo "$text" | grep -oE "'([^']*)'")
-#     cd "$dir" || return
-#     alacritty &
-#     alacritty &
-# }
+# shorthand to clone down a github repo with minimal link format
 github() {
     if [[ -z $1 ]] ; then return ; fi
     # shush shellcheck
@@ -117,26 +130,6 @@ github() {
         git clone "https://github.com/$1.git"
     fi
 }
-
-
-# update configs
-yove() {
-    yadm pull
-    yadm add -u
-    yadm status
-    if [[ "$1" ]] ; then
-        echo '/// fr? ///'
-        read -r
-        yadm commit -m "$*"
-        yadm push
-        return
-    fi
-    echo "/// add a commit message ///"
-    read -r message
-    yadm commit -m "$message"
-    yadm push
-}
-
 
 # consolidates ls,cat,mkdir,vim,touch,cd,vim again
 uh() {
@@ -198,7 +191,8 @@ extract() {
 
 # shorthands
 alias v='nvim'
-alias vw='nvim -u $HOME/.config/synced/writing.vim'
+alias vw='nvim "+lua writing()"' # it feels real good changing that to a lua funtion call oooooooo
+alias ni='neovide --multigrid'
 alias suv='sudoedit'
 alias chkdns='ping 8.8.8.8'
 alias la='ls -Bbp1 -gah --group-directories-first --time-style=+%b\ %d --color=auto --hyperlink=auto'
@@ -212,7 +206,8 @@ alias serv='ssh spider@spood.org -p 773'
 alias fserv='sftp -P 773 spider@spood.org'
 alias why_would_you_do_this_dude_why='xclip -o | shuf'
 alias :q="exit" # ...
-alias work='alacritty --hold -e bash -ic "npm i && npm start ; bash" & alacritty --hold -e bash -ic "git checkout -b dev ; bash" & cd src'
+alias fork="alacritty & disown"
+
 
 # fixes/improvements
 alias sl='sl -la'
@@ -270,6 +265,7 @@ case "$HOSTNAME" in
         alias share='sudo chmod 777 -R /share'
         alias pay='hledger iadd'
         alias mine='cd /home/mine && sudo su mine && cd -' # I'm so fancy
+        alias legsix='ssh 192.168.0.17'
         export LEDGER_FILE="$HOME/misc/profit/hledger.journal"
         echo
         neofetch
@@ -289,9 +285,7 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-# while i'm in school, i'm gonna just start with this a my last dir as a shortcut
-export OLDPWD="$HOME/project/git/alchemy/react"
 # attempt to set the terminal title
-trap 'echo -ne "\033]2;Alacritty | $(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
+trap 'echo -ne "\033]2;$TERM | $(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
 
 #EOF
