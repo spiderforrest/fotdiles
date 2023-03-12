@@ -141,8 +141,8 @@ bindsym XF86AudioMute 				$run "pactl set-sink-mute 0 toggle ; pactl set-sink-mu
 bindsym $mod+XF86AudioMute 			$run "pactl set-source-mute 1 toggle ; pactl set-source-mute 2 toggle" ; $pykill
 
 # backlights #7 is the minimum bc idk, idc
-bindsym XF86MonBrightnessUp 		$run light -s sysfs/backlight/acpi_video0 -A 7 ; $pykill
-bindsym XF86MonBrightnessDown 		$run light -s sysfs/backlight/acpi_video0 -U 7 ; $pykill
+bindsym XF86MonBrightnessUp 		$run light -s sysfs/backlight/acpi_video0 -A 2 ; $pykill
+bindsym XF86MonBrightnessDown 		$run light -s sysfs/backlight/acpi_video0 -U 2 ; $pykill
 bindsym XF86KbdBrightnessUp 		$run light -s sysfs/leds/smc::kbd_backlight -A 1 
 bindsym XF86KbdBrightnessDown 		$run light -s sysfs/leds/smc::kbd_backlight -U 1
 
