@@ -6,11 +6,11 @@ return {
     font = wezterm.font_with_fallback { -- this does not remove default fallbacks. cool.
         'Space Mono', -- my main font
         'Hurmit Nerd Font Mono', -- prettiest more compatibility font
-        'Noto Color Emoji', -- emoji font
+        { family = 'Noto Color Emoji', assume_emoji_presentation = true },-- emoji font
         'Unifont', -- most complete fallback font: they have like 52k glyphts?? geebus
     },
     freetype_load_flags = 'NO_HINTING', -- no font hint
-    harfbuzz_features = { 'calt=1', 'clig=1', 'liga=0' }, -- font features, see: https://docs.microsoft.com/en-us/typography/opentype/spec/
+    harfbuzz_features = { 'calt=0', 'clig=1', 'liga=0' }, -- font features, see: https://docs.microsoft.com/en-us/typography/opentype/spec/
     font_size = 10.4,
     -- }}}
 
@@ -37,7 +37,7 @@ return {
     window_close_confirmation = 'NeverPrompt', -- really?
     scrollback_lines = 5000,
     term = "wezterm", -- see https://wezfurlong.org/wezterm/config/lua/config/term.html
-    warn_about_missing_glyph = false, -- sometimes my vim ui calls extremely rare glyphs, no idea what they're supposed to look like
+    warn_about_missing_glyphs = false, -- sometimes my vim ui calls extremely rare glyphs, no idea what they're supposed to look like
 -- }}} behaviors
 }
 

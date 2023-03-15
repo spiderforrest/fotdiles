@@ -48,19 +48,25 @@ require("lazy").setup(
         { 'karoliskoncevicius/sacredforest-vim', event = 'VeryLazy' }, -- kinda softer version of my scheme
         { 'shaunsingh/oxocarbon.nvim', event = 'VeryLazy' }, -- purble :)
         -- (syntax) colorssss
-        -- 'norcalli/nvim-colorizer.lua', -- highlight color codes in colors
         { 'uga-rosa/ccc.nvim', event = 'VeryLazy',
             init = function()
                 local ccc = require("ccc")
                 ccc.setup({ highlighter = { auto_enable = true } })
             end
         },
-        { 'sheerun/vim-polyglot', event = 'VeryLazy',
+        { 'sheerun/vim-polyglot', event = 'VeryLazy', -- syntax highlighter metapackage
             init = function()
                 g.vim_jsx_pretty_colorful_config = 1
                 g.colorizer_skip_comments = 1
                 g.colorizer_x11_names = 1
                 g.colorizer_auto_map = 1
+            end
+        },
+        { "Jxstxs/conceal.nvim", dependencies = "nvim-treesitter/nvim-treesitter", event = 'VeryLazy', -- fancy treesitter rerendering!
+            config = function()
+                vim.o.conceallevel = 2
+                conceal = require('conceal')
+                conceal.setup({})
             end
         },
         { 'luochen1990/rainbow', -- color nested brackets -- consider upgrading sometime to HiPhish/nvim-ts-rainbow2
@@ -213,7 +219,7 @@ require("lazy").setup(
         { 'mattn/emmet-vim', event = 'VeryLazy' }, -- complex tag wrapping generator-writes most my html
         -- ale
         { 'dense-analysis/ale', event = 'VeryLazy', -- big guy for handling complex lsp integration
-        init = function()
+        config = function()
             g.ale_fixers = {
                 ['javascript'] = 'prettier',
                 ['css'] = 'prettier',
@@ -232,7 +238,7 @@ require("lazy").setup(
         { 'mbbill/undotree', event = 'VeryLazy' }, -- undo manager
         { 'wakatime/vim-wakatime', event = 'VeryLazy' }, -- time tracker
         -- VIM TWO PLAYER MODE 1V1 ME NERD
-        { 'jbyuki/instant.nvim', event = 'VeryLazy', init = function() g['instant_username'] = "$HOSTNAME" end  }, -- allows remote connections to share session
+        { 'jbyuki/instant.nvim', event = 'VeryLazy', config = function() g['instant_username'] = "$HOSTNAME" end  }, -- allows remote connections to share session
         -- git
         { 'airblade/vim-gitgutter', event = 'VeryLazy' }, -- show git on left bar
         { 'tpope/vim-fugitive', event = 'VeryLazy' },
@@ -253,27 +259,37 @@ require("lazy").setup(
             require('mini.fuzzy').setup() -- fuzzy finding
         end
         },
-        { "smjonas/inc-rename.nvim", config = function() require("inc_rename").setup() end, event = 'VeryLazy' }, -- rename based off tree sitter
-        { 'nvim-telescope/telescope.nvim', tag = '0.1.1', event = 'VeryLazy', -- big fuzzy finder
+        { "smjonas/inc-rename.nvim", config = true, event = 'VeryLazy' }, -- rename based off tree sitter
+        { 'nvim-telescope/telescope.nvim', tag = '0.1.1', event = 'VeryLazy', config = true, -- big fuzzy finder
         dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
-        config = function()
-            telescope = require('telescope.builtin')
-        end
         },
-        { 'rareitems/printer.nvim', -- makes print statements real quickly
-            config = function()
-                require('printer').setup({
-                    keymap = "gp"
-                })
-            end
-        },
-        {'akinsho/toggleterm.nvim', version = "*", event = 'VeryLazy',
-            init = function() require('toggleterm').setup{
+        { 'rareitems/printer.nvim', event = 'VeryLazy', config = { keymap = "gp" } },-- makes print statements real quickly
+        {'akinsho/toggleterm.nvim', version = "*", event = 'VeryLazy', -- terminal handling
+            config = function() require('toggleterm').setup{
                 open_mapping = [[\\]], -- open with double backslash
                 terminal_mappings = true, -- close by typing \\
                 insert_mappings = false, -- i sometimes actually do have to type \\
                 direction = 'vertical', -- open on right by default
-                size = 50, -- by default he teeny!!
+                size = 80, -- by default he teeny!!
+            } end
+        },
+        { 'nvim-treesitter/playground', event = 'VeryLazy' }, -- look at the treesitter tree live
+        { 'nvim-treesitter/nvim-treesitter', event = 'VeryLazy', -- explicit treesitter definition
+            config = function() require('nvim-treesitter.configs').setup{
+                parser_install_dir = '~/.local/share/nvim/site/parser',
+                 autotag = {
+                    enable = true,
+                },
+                -- this is bugged, runs every launch, idk why
+                -- ensure_installed = {
+                --     "sql", "json", "json5", "javascript", "typescript", "css", -- webdev
+                --     "bash", "rust", "lua", "c", "cpp", "make", "vim", "html",
+                --     "markdown", "markdown_inline", "awk", "diff", "help", "passwd", "regex"
+                -- },
+                sync_install = false,
+                auto_install = false,
+                ignore_install = {},
+                highlight = { enable = true, additional_vim_regex_highlighting = false },
             } end
         },
         -- }}}
