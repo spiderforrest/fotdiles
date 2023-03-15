@@ -38,6 +38,12 @@ vs [[ if (exists('+colorcolumn'))
     highlight ColorColumn ctermbg=0
 endif ]]
 
+-- turn off fancy colors cos its orang on my phone lol
+-- good lord i use vim regularly on my phone
+if (fn.system('cat /etc/hostname'):find('legtwo')) then
+    vs [[au VimEnter * set notermguicolors]]
+  end
+
 -- When editing a file, always jump to the last known cursor position.
 vs [[ au BufReadPost *
   \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
