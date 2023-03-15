@@ -9,7 +9,16 @@ lmap('n', '<leader>tb', function() telescope.buffers() end, bindopt)
 lmap('n', '<leader>th', function() telescope.help_tags() end, bindopt)
 lmap({ 'n', 'v' }, 't', function() MiniJump2d.start(MiniJump2d.builtin_opts.single_character) end, bindopt)
 lmap('n', '<leader>w',  function() MiniMap.toggle() end, bindopt)
-lmap('n', '<leader>h',  function() conceal.toggle() end, bindopt)
+lmap('n', '<leader>h',  function() conceal.toggle_conceal() end, bindopt)
+
+-- Normal Mode Swapping:
+-- Swap The Master Node relative to the cursor with it's siblings, Dot Repeatable
+lmap("n", "gN", function() set.opfunc = "v:lua.STSSwapUpNormal_Dot" return "g@l" end, expopt)
+lmap("n", "gO", function() set.opfunc = "v:lua.STSSwapDownNormal_Dot" return "g@l" end, expopt)
+
+-- Swap Current Node at the Cursor with it's siblings, Dot Repeatable
+lmap("n", "gn", function() set.opfunc = "v:lua.STSSwapCurrentNodeNextNormal_Dot" return "g@l" end, expopt)
+lmap("n", "go", function() set.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot" return "g@l" end, expopt)
 
 -- }}}
 

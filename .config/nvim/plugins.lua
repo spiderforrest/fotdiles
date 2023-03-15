@@ -290,6 +290,7 @@ require("lazy").setup(
                 highlight = { enable = true, additional_vim_regex_highlighting = false },
             } end
         },
+        { 'ziontee113/syntax-tree-surfer', event = 'VeryLazy' } -- nav and modify based on the treesitter tree
         -- }}}
 
     }, --this looks really funny when the folds are closed lmao

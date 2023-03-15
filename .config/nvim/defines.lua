@@ -10,6 +10,7 @@ fn = vim.fn
 map = vim.api.nvim_set_keymap
 lmap = vim.keymap.set
 bindopt = { noremap = true, silent = true }
+expopt = { silent = true, noremap = true, expr = true }
 
 g.mapleader = ' ' -- setting leader before plugins initialize
 -- get the path for plugins and add it to vim's version of PATH
