@@ -2,7 +2,6 @@
 map('v', '<Enter>',     ':EasyAlign<CR>', bindopt)
 map('n', '<leader>f',   ':CHADopen<CR>', bindopt)
 map('n', '<leader>u',   ":UndotreeToggle<CR>", bindopt)
-map('n', '<leader>e',   'ysj<em><CR>', bindopt)
 map('n', "<leader>rs",  ":IncRename ", bindopt)
 lmap('n', '<leader>tf', function() telescope.find_files() end, bindopt)
 lmap('n', '<leader>tg', function() telescope.live_grep() end, bindopt)
@@ -10,6 +9,7 @@ lmap('n', '<leader>tb', function() telescope.buffers() end, bindopt)
 lmap('n', '<leader>th', function() telescope.help_tags() end, bindopt)
 lmap({ 'n', 'v' }, 't', function() MiniJump2d.start(MiniJump2d.builtin_opts.single_character) end, bindopt)
 lmap('n', '<leader>w',  function() MiniMap.toggle() end, bindopt)
+lmap('n', '<leader>h',  function() conceal.toggle() end, bindopt)
 
 -- }}}
 

@@ -48,7 +48,7 @@ require("lazy").setup(
         { 'karoliskoncevicius/sacredforest-vim', event = 'VeryLazy' }, -- kinda softer version of my scheme
         { 'shaunsingh/oxocarbon.nvim', event = 'VeryLazy' }, -- purble :)
         -- (syntax) colorssss
-        { 'uga-rosa/ccc.nvim', event = 'VeryLazy',
+        { 'uga-rosa/ccc.nvim', event = 'VeryLazy', -- color picker/highlighter
             init = function()
                 local ccc = require("ccc")
                 ccc.setup({ highlighter = { auto_enable = true } })
