@@ -276,16 +276,14 @@ require("lazy").setup(
         { 'nvim-treesitter/playground', event = 'VeryLazy' }, -- look at the treesitter tree live
         { 'nvim-treesitter/nvim-treesitter', event = 'VeryLazy', -- explicit treesitter definition
             config = function() require('nvim-treesitter.configs').setup{
-                parser_install_dir = '~/.local/share/nvim/site/parser',
                  autotag = {
                     enable = true,
                 },
-                -- this is bugged, runs every launch, idk why
-                -- ensure_installed = {
-                --     "sql", "json", "json5", "javascript", "typescript", "css", -- webdev
-                --     "bash", "rust", "lua", "c", "cpp", "make", "vim", "html",
-                --     "markdown", "markdown_inline", "awk", "diff", "help", "passwd", "regex"
-                -- },
+                ensure_installed = {
+                    "sql", "json", "json5", "javascript", "typescript", "css", "html", -- webdev
+                    "bash", "rust", "lua", "c", "cpp", "make", "vim",
+                    "markdown", "markdown_inline", "awk", "diff", "help", "passwd", "regex"
+                },
                 sync_install = false,
                 auto_install = false,
                 ignore_install = {},
