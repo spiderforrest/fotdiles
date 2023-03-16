@@ -8,7 +8,6 @@
 (("for"             @repeat) (#set! conceal ""))
 (("function"        @keyword) (#set! conceal ""))
 (("end"             @keyword) (#set! conceal "–"))
-(("do"              @repeat) (#set! conceal "d"))
 (("do"              @keyword) (#set! conceal ""))
 (("in"              @keyword) (#set! conceal "i"))
 (("local"           @keyword) (#set! conceal "~"))
