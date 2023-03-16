@@ -18,10 +18,11 @@ Hi there! Here are my dotfiles, not much to say there. Software:
 - [Ly](https://github.com/fairyglade/ly)-display manager.
 - [Flameshot](https://flameshot.org)-screenshots.
 - [Font Manager](https://github.com/FontManager/font-manager)-this bad boy makes fonts easy as hell, basically a must-have
+- [BTOP](https://github.com/aristocratos/btop)-process manager. she cute.
 - [Picom](https://github.com/yshui/picom)-honestly I'm currently just using this for transparent borders.
 - [Xfce4 Mime Settings](https://docs.xfce.org/xfce/xfce4-settings/4.14/mime)-big thanks to xfce for having so many useful modular components. I just use this to set [mime](https://specifications.freedesktop.org/mime-apps-spec/mime-apps-spec-latest.html) and don't touch it.
 - [Quantum Mechanical Keyboards](https://github.com/spiderforrest/qmk_firmware)-honorable mention. This is my fork of QMK, I use the [Lily58](https://github.com/kata0510/Lily58).
 
 I have unused former configs for
-- [i3wm](https://i3wm.org)
+- [i3wm](https://i3wm.org)-over time got more and more annoyed at restrictions. I realize how far off the deep end I am
 - [Alacritty](https://alacritty.org)-term.
