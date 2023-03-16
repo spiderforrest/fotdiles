@@ -32,6 +32,20 @@ function line_wc()
 end
 -- }}}
 
+-- tree surfur jump matcher, true jumps forward false jumps back
+function jumpNode(direction)
+  require('syntax-tree-surfer').filtered_jump({
+		"function",
+        "if_statement",
+		"else_clause",
+		"else_statement",
+		"elseif_statement",
+		"for_statement",
+		"while_statement",
+		"switch_statement",
+	}, direction)
+end
+
 -- highlght colmn 80
 vs [[ if (exists('+colorcolumn'))
     set colorcolumn=100

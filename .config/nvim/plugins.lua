@@ -146,7 +146,7 @@ require("lazy").setup(
         -- {{{ coq and lsps
         -- lsp meta
         -- lsp megamanger, most of these configs are copypasted, it's easier than doing it myself
-        -- insert bell curve meme of 'lsp zero' 'custom lsp initializing' 'lsp zero'                    { 'VonHeikemen/lsp-zero.nvim',
+        -- insert bell curve meme of 'lsp zero' 'custom lsp initializing' 'lsp zero'
         { 'VonHeikemen/lsp-zero.nvim',
             event = 'VeryLazy', -- this mf takes like a full 100ms to start up jfc
             branch = 'v1.x',
@@ -172,9 +172,10 @@ require("lazy").setup(
         { 'ms-jpq/coq_nvim', -- prediction
         branch = 'coq',
         event = 'VeryLazy',
-        init = function()
+        -- must set this BEFORE loading the plugin, but the actual config function i think loads COQ iteslf, 50ms lag
+        init = function() g.coq_settings = { ['auto_start'] = 'shut-up' } end,
+        config = function()
         g.coq_settings = {
-                ['auto_start'] = 'shut-up' ,
                 ['limits.completion_manual_timeout'] = 3,
                 ['display'] = {
                     ['pum.fast_close'] = false ,
@@ -186,16 +187,16 @@ require("lazy").setup(
             }
             -- custom sources for completion
             require("coq_3p"){
-                { src = "nvimlua", short_name = "nCFL", conf_only = false },
+                { src = "nvimlua", short_name = "nLu", conf_only = false },
                 -- math completion
-                { src = "bc", short_name = "MATH", precision = 6 },
+                { src = "bc", short_name = "MTH", precision = 6 },
                 -- lol
                 { src = "cow", trigger = "!cow" },
                 -- banner
                 { src = "figlet", short_name = "BAN", trigger = "!ban"},
                 -- shell output pipe. soo sketchy. soo great.
                 { src = "repl",
-                    short_name = "BASH",
+                    short_name = "SHL",
                     sh = "bash",
                     max_lines = 99,
                     deadline = 500,
@@ -233,7 +234,6 @@ require("lazy").setup(
 
         -- {{{ workflow
         { 'ms-jpq/chadtree', branch = 'chad', build =  'python3 -m chadtree deps', event = 'VeryLazy' }, -- file manager
-        -- { 'samodostal/image.nvim', event = 'VeryLazy', config = function() require('image').setup() end }, -- ascii image veiwer -- consider switching to wezterm
         -- { 'edluffy/hologram.nvim', event = 'VeryLazy', config = function () require('hologram').setup{auto_display = true} end }, -- inline image rendering tanks mr wezterm
         { 'mbbill/undotree', event = 'VeryLazy' }, -- undo manager
         { 'wakatime/vim-wakatime', event = 'VeryLazy' }, -- time tracker
@@ -290,7 +290,7 @@ require("lazy").setup(
                 highlight = { enable = true, additional_vim_regex_highlighting = false },
             } end
         },
-        { 'ziontee113/syntax-tree-surfer', event = 'VeryLazy' } -- nav and modify based on the treesitter tree
+        { 'ziontee113/syntax-tree-surfer', event = 'VeryLazy', config = true } -- nav and modify based on the treesitter tree
         -- }}}
 
     }, --this looks really funny when the folds are closed lmao

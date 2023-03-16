@@ -11,14 +11,16 @@ lmap({ 'n', 'v' }, 't', function() MiniJump2d.start(MiniJump2d.builtin_opts.sing
 lmap('n', '<leader>w',  function() MiniMap.toggle() end, bindopt)
 lmap('n', '<leader>h',  function() conceal.toggle_conceal() end, bindopt)
 
--- Normal Mode Swapping:
--- Swap The Master Node relative to the cursor with it's siblings, Dot Repeatable
-lmap("n", "gN", function() set.opfunc = "v:lua.STSSwapUpNormal_Dot" return "g@l" end, expopt)
-lmap("n", "gO", function() set.opfunc = "v:lua.STSSwapDownNormal_Dot" return "g@l" end, expopt)
-
+-- surf a tree, i guess (i really love this one it works great with my brain)
 -- Swap Current Node at the Cursor with it's siblings, Dot Repeatable
-lmap("n", "gn", function() set.opfunc = "v:lua.STSSwapCurrentNodeNextNormal_Dot" return "g@l" end, expopt)
-lmap("n", "go", function() set.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot" return "g@l" end, expopt)
+lmap("n", "<leader>o", function() set.opfunc = "v:lua.STSSwapCurrentNodeNextNormal_Dot" return "g@l" end, expopt)
+lmap("n", "<leader>n", function() set.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot" return "g@l" end, expopt)
+-- Swap The Master Node relative to the cursor with it's siblings, Dot Repeatable
+lmap("n", "<leader>i", function() set.opfunc = "v:lua.STSSwapUpNormal_Dot" return "g@l" end, expopt)
+lmap("n", "<leader>e", function() set.opfunc = "v:lua.STSSwapDownNormal_Dot" return "g@l" end, expopt)
+--Jump to next node matching list defined in defines.lua
+lmap("n", "go", function() jumpNode(true) end, bindopt)
+lmap("n", "gn", function() jumpNode(false) end, bindopt)
 
 -- }}}
 
