@@ -10,3 +10,6 @@
 [submodule ".config/nvim/snips"]
 	path = .config/nvim/snips
 	url = https://github.com/ms-jpq/snips
+[submodule ".config/nvim/coq-user-snippets"]
+	path = .config/nvim/coq-user-snippets
+	url = https://github.com/ms-jpq/snips
