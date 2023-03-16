@@ -80,9 +80,9 @@ cfg() {
 
 # git gud
 shove() {
-    # check if i'm just in my home dir
+    # check if i'm just in my home dir and use yadm
     if [[ "$PWD" == "$HOME" ]] ; then
-        yadm pull
+        yadm pull --no-recurse-submodules
         yadm add -u
         yadm status
         if [[ "$1" ]] ; then
@@ -98,7 +98,7 @@ shove() {
         yadm push
         return
     fi
-    git pull
+    git pull --no-recurse-submodules
     git add -A
     git status
     if [[ "$1" ]] ; then

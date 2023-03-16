@@ -1,0 +1,18 @@
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[user]
+	name = spiderforrest
+	email = spider@spood.org
+[core]
+	editor = nvim
+[color]
+	ui = true
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
+[alias]
+	confused = help
+[submodule]
+	recurse = true
