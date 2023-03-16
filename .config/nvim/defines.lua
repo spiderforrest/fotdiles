@@ -134,7 +134,7 @@ lazyConf = {
   -- defaults = { lazy = true },
   dev = {
     path = "~/project/git/",
-    patterns = { "spiderforrest" },
+    patterns = { "spiderforrest", "ziontee113"},
     fallback = true,
   },
   checker = {
