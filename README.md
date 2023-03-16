@@ -24,5 +24,5 @@ Hi there! Here are my dotfiles, not much to say there. Software:
 - [Quantum Mechanical Keyboards](https://github.com/spiderforrest/qmk_firmware)-honorable mention. This is my fork of QMK, I use the [Lily58](https://github.com/kata0510/Lily58).
 
 I have unused former configs for
-- [i3wm](https://i3wm.org)-over time got more and more annoyed at restrictions. I realize how far off the deep end I am
+- [i3wm](https://i3wm.org)-over time got more and more annoyed at restrictions. I realize how far off the deep end I am.
 - [Alacritty](https://alacritty.org)-term.
