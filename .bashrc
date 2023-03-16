@@ -63,7 +63,12 @@ cfg() {
             if [[ -z "$2" ]] ; then
                             nvim "$dir/nvim/nvim.lua"
             else
+                # check real quick if it's a top level file otherwise assume plugins
+                if [[ -e "$dir/nvim/$2.lua" ]] ; then
+                            nvim "$dir/nvim/$2.lua"
+                else
                             nvim "$dir/nvim/lua/plug/$2.lua"
+                fi
             fi                                                      ;;
         wm | awesome)
             if [[ -z "$2" ]] ; then
