@@ -63,7 +63,7 @@ cfg() {
             if [[ -z "$2" ]] ; then
                             nvim "$dir/nvim/nvim.lua"
             else
-                            nvim "$dir/nvim/$2.lua"
+                            nvim "$dir/nvim/lua/plug/$2.lua"
             fi                                                      ;;
         wm | awesome)
             if [[ -z "$2" ]] ; then
@@ -72,7 +72,9 @@ cfg() {
                             nvim "$dir/awesome/$2.lua"
             fi                                                      ;;
         # idk it's probably awesome
-        *)                  nvim "$dir/awesome/$1.lua"              ;;
+        # *)                  nvim "$dir/awesome/$1.lua"              ;;
+        # nope, prolly vim
+        *)                  nvim "$dir/nvim/lua/plug/$1.lua"        ;;
     esac
 }
 

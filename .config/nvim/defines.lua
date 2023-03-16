@@ -129,5 +129,23 @@ end
 -- }}}
 -- }}}
 
+-- {{{ lazy config
+lazyConf = {
+  -- defaults = { lazy = true },
+  dev = {
+    path = "~/project/git/",
+    patterns = { "spiderforrest" },
+    fallback = true,
+  },
+  checker = {
+    enabled = true,
+    concurrency = 1,
+    notify = false,
+  },
+  install = {
+    colorscheme = { "everforest", "habamax" }
+  },
+}
+
 
 -- vim:foldmethod=marker
