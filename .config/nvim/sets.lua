@@ -39,6 +39,7 @@ set.wrap = false
 set.virtualedit = 'all'
 set.splitright = true
 set.splitbelow = true
+set.splitkeep = 'screen'
 set.textwidth=135
 set.number = true
 set.formatoptions = 'tclro12jpaw' -- i just wrote this and i already forgor just check :h fo-table
