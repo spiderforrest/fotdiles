@@ -23,7 +23,7 @@ lmap("n", "go", function() jumpNode(true) end, bindopt)
 lmap("n", "gn", function() jumpNode(false) end, bindopt)
 -- Hold a node and swap it
 map("n", "gh", ":STSHoldFocusedNode<CR>", bindopt)
-map("n", "gH", ":STSSwapFocusedWithHeld<CR>", bindopt)
+map("n", "gH", ":STSSwapHeldAndFocusedNodes<CR>", bindopt)
 
 -- }}}
 
