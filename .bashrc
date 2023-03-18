@@ -59,7 +59,14 @@ cfg() {
         i3)                 nvim "$dir/i3/config"                   ;;
         picom)              nvim "$dir/picom/picom.conf"            ;;
         bin | script*)      nvim "$HOME/bin/$2"                     ;;
-        v* | nvim)
+        wm | awesome)
+            if [[ -z "$2" ]] ; then
+                            nvim "$dir/awesome/rc.lua"
+            else
+                            nvim "$dir/awesome/$2.lua"
+            fi                                                      ;;
+        # idk it's probably vim
+        v* | nvim | *)
             if [[ -z "$2" ]] ; then
                             nvim "$dir/nvim/nvim.lua"
             else
@@ -70,16 +77,6 @@ cfg() {
                             nvim "$dir/nvim/lua/plug/$2.lua"
                 fi
             fi                                                      ;;
-        wm | awesome)
-            if [[ -z "$2" ]] ; then
-                            nvim "$dir/awesome/rc.lua"
-            else
-                            nvim "$dir/awesome/$2.lua"
-            fi                                                      ;;
-        # idk it's probably awesome
-        # *)                  nvim "$dir/awesome/$1.lua"              ;;
-        # nope, prolly vim
-        *)                  nvim "$dir/nvim/lua/plug/$1.lua"        ;;
     esac
 }
 
