@@ -67,14 +67,17 @@ cfg() {
             fi                                                      ;;
         # idk it's probably vim
         v* | nvim | *)
-            if [[ -z "$2" ]] ; then
+            if [[ -z "$1" ]] ; then
                             nvim "$dir/nvim/nvim.lua"
             else
+                if [[ -n "$2" ]] ; then # if called with a prefix, strip it out
+                    shift 1
+                fi
                 # check real quick if it's a top level file otherwise assume plugins
-                if [[ -e "$dir/nvim/$2.lua" ]] ; then
-                            nvim "$dir/nvim/$2.lua"
+                if [[ -e "$dir/nvim/$1.lua" ]] ; then
+                            nvim "$dir/nvim/$1.lua"
                 else
-                            nvim "$dir/nvim/lua/plug/$2.lua"
+                            nvim "$dir/nvim/lua/plug/$1.lua"
                 fi
             fi                                                      ;;
     esac

@@ -53,7 +53,7 @@ end
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock("%a, %b. %d | %H:%M.%S", 1, "-08:00")
+mytextclock = wibox.widget.textclock("%a, %b. %d | %H:%M.%S", 1, "-07:00")
 -- gpu status
 nvidia = awful.widget.watch(gears.filesystem.get_dir('config') .. "../../bin/bar.sh network", 10)
 -- net
