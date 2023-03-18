@@ -1,3 +1,4 @@
+
 -- call plugins {{{
 map('v', '<Enter>',     ':EasyAlign<CR>', bindopt)
 map('n', '<leader>f',   ':CHADopen<CR>', bindopt)
@@ -22,9 +23,7 @@ lmap("n", "<leader>e", function() set.opfunc = "v:lua.STSSwapDownNormal_Dot" ret
 lmap("n", "go", function() jumpNode(true) end, bindopt)
 lmap("n", "gn", function() jumpNode(false) end, bindopt)
 -- Hold a node and swap it
-map("n", "gh", ":STSHoldFocusedNode<CR>", bindopt)
-map("n", "gH", ":STSSwapHeldAndFocusedNodes<CR>", bindopt)
-
+map("n", "gh", ":STSSwapOrHold<CR>", bindopt)
 -- }}}
 
 -- writing mode!
