@@ -127,6 +127,36 @@ function writing() -- lua function to toggle the writing mode
 end
 
 -- }}}
+
+-- set several keybinds to emulate a new visual mode, for navigating/editing ts nodes
+function visualNode()
+  -- select the current node, entering visual mode
+  vs[[STSSelectCurrentNode]]
+  -- set the binds for navigating
+  map('x', 'n', '<cmd>STSSelectPrevSiblingNode<CR>', bindopt)
+  map('x', 'o', '<cmd>STSSelectNextSiblingNode<CR>', bindopt)
+  map('x', 'e', '<cmd>STSSelectParentNode<CR>', bindopt)
+  map('x', 'i', '<cmd>STSSelectChildNode<CR>', bindopt)
+  --set the binds for editing
+  map('x', 'N', '<cmd>STSwapPrevVisual<CR>', bindopt)
+  map('x', 'O', '<cmd>STSwapNextVisual<CR>', bindopt)
+
+  -- cue the binds to be removed when visual mode is left
+  -- i had an autocmd but binding esc literally makes more sense
+  lmap({'n','i','x','o'}, '<ESC>', function ()
+      vim.keymap.del('x', 'n')
+      vim.keymap.del('x', 'o')
+      vim.keymap.del('x', 'e')
+      vim.keymap.del('x', 'i')
+      vim.keymap.del('x', 'N')
+      vim.keymap.del('x', 'O')
+      vim.keymap.del({'n','i','x','o'}, '<ESC>')
+      -- what the fuck
+      vs(vim.api.nvim_replace_termcodes('normal <ESC>', true, true, true))
+    end,
+    bindopt)
+end
+
 -- }}}
 
 -- {{{ lazy config
@@ -134,7 +164,7 @@ lazyConf = {
   -- defaults = { lazy = true },
   dev = {
     path = "~/project/git/",
-    patterns = { "spiderforrest", "ziontee113"},
+    patterns = { "spiderforrest"},
     fallback = true,
   },
   checker = {

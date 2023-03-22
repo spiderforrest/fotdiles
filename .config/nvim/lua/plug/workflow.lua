@@ -21,7 +21,7 @@ return {
         require('mini.surround').setup() -- edit wrappers like <li></li> and {}
         require('mini.jump2d').setup{ mappings = { start_jumping = '<leader> ' } } -- hinting
         -- require('mini.pairs').setup() -- auto adds the second bracket. usually annoying.
-        require('mini.bracketed').setup() -- jump various scopes via square bracket keys
+        -- require('mini.bracketed').setup() -- jump various scopes via square bracket keys
         require('mini.fuzzy').setup() -- fuzzy finding
     end
     },

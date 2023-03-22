@@ -1,4 +1,6 @@
 return {
+    -- for testing
+    { 'folke/which-key.nvim', config = true },
 -- themes
     { 'spiderforrest/everforest',
     lazy = false,
@@ -36,7 +38,6 @@ return {
     },
     { "Jxstxs/conceal.nvim", dependencies = "nvim-treesitter/nvim-treesitter", event = 'VeryLazy', -- fancy treesitter rerendering!
         config = function()
-            vim.o.conceallevel = 2
             conceal = require('conceal')
             conceal.setup({})
         end

@@ -88,6 +88,7 @@ settings:
     global: true
   content.media.audio_capture:
     https://meet.google.com: true
+    https://video.simplepractice.com: true
   content.media.audio_video_capture:
     https://meet.google.com: true
     https://video.simplepractice.com: true
