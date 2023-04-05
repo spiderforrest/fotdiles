@@ -6,7 +6,7 @@
 # ALL BELOW IS FOR REFERENCE ONLY #
 #       FUCK YOU NVIDIA 🖕        #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#nvidia-settings --load-config-only &
+# nvidia-settings --load-config-only &
 # fuckin nvidia, this fixes tearing?                                                                                                                                                                                                                                            #
 # nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"                                                                                                                                                                      #
 # xrandr --output DVI-D-0 --dpi 94 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-0 --dpi 94 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-0 --off --output DP-1 --off --output HDMI-1-1 --off --output DVI-D-1-1 --off --output HDMI-1-2 --off #
@@ -23,10 +23,11 @@ xrdb ~/.Xresources &
 # general binds
 #sxhkd &
 # wallpaper :)
-#feh --bg-fill Downloads/Broken_Landscape_V.jpg
-#feh --bg-fill "$HOME/.config/i3/$(find ~/.config/i3/ -name './*png' | shuf -n 1)"
+# feh --bg-fill Downloads/Broken_Landscape_V.jpg
+# feh --bg-fill "$HOME/.config/i3/$(find ~/.config/i3/ -name './*png' | shuf -n 1)"
 # feh --bg-tile ~/Pictures/Wallpapers/Ø!.png --class "feh-background"
 # feh --bg-tile ~/Pictures/Wallpapers/river_paintpractice.png
+feh --bg-tile ~/Pictures/eat a pic/void-linux-2001.png
 # this is the one time where i'm doing the wrong thing but not just using 'sleep'
 ensureOn(){
     if pgrep -x "$1" > /dev/null; then return; fi
