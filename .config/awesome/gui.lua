@@ -3,6 +3,7 @@ local gears = require("gears")
 local sharedtags   = require("sharedtags")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local naughty = require("naughty")
 
 local volume = require("widgets.volume")
 
@@ -85,6 +86,38 @@ end
                 -- parse and store obj_str
                     -- for pair_str in string.gfind(obj_str, '".-": ".-"')
                         -- the pattern should be.... '".-":' to get the key and ': ".-"' for value
+
+
+
+-- TODO:spider figure out how to actually get them up on the bar(not sure rn because async) that handles
+-- py3status just.... generating incomplete data the first few runs, probably signals with the bar
+
+-- create the table to fill with widgets
+-- i3bar_widget = {}
+-- awful.spawn.with_line_callback("py3status", { stdout = function (stdout)
+--   -- create the array that will be filled with the data from the json output and the iterator
+--   local decoded_json_arr = {}
+--   local module_itr = 0 -- lua arrays actually start at anything you want btw
+--   -- iterate through all the {} pairs-each is a i3/py3 module
+--   for module_str in string.gmatch(stdout, "{.-}") do
+--     -- create the module's table and grab the name to use as key
+--     local module_tbl = {}
+--     -- pull out each key/value pair and hyuck them in the module's table
+--     for key, val in string.gmatch(module_str, '"(.-)": "(.-)"') do
+--        module_tbl[key] = val
+--     end
+--     -- append the module's table to the decoded array
+--     decoded_json_arr[module_itr] = module_tbl
+--     module_itr = module_itr + 1
+--   end
+--   -- cool! now we have converted a json string to a lua table without copy pasting from stack overflow. proud of me.
+--
+--   -- populate a table with generated textbox widgets
+--   for i, module in ipairs(decoded_json_arr) do
+--     i3bar_widget[i] = wibox.widget.textbox
+--   end
+--   -- now iterate through the table and either create or update the widget
+-- end })
 -- }}}
 
 -- {{{ Wibar

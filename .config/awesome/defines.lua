@@ -57,9 +57,9 @@ tags = sharedtags({
 })
 
 -- helper function to compact binding keys while i wait for the git version to git its shit together
-function quick_bind(keybind_meta_tbl)
+function quick_bind(keybind_tbl)
     local localkeys = {}
-    for _idx, t in ipairs(keybind_meta_tbl) do
+    for _idx, t in ipairs(keybind_tbl) do
         -- combine the input with a template table
         local tbl = gears.table.crush({
             mod = { meta },
