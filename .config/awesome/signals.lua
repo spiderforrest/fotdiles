@@ -33,6 +33,11 @@ client.connect_signal("manage", function (c)
                 c.minimized = true
                 return
             end
+            if tostring(stdio) == '_NET_WM_NAME(UTF8_STRING) = "CrossCode Min v1.4.2-2"\n' then
+                naughty.notify{ title="crosscode size intercepted" }
+                c.fullscreen = true
+                return
+            end
         end)
         -- contain the rest
         c:move_to_tag(tags[14])

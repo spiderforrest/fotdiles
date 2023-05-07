@@ -4,6 +4,9 @@ local sharedtags   = require("sharedtags")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 
+local volume = require("widgets.volume")
+
+
 -- {{{ def functions
 -- list of clients
 function clientmenu(filter, selected_tags_only)
@@ -49,6 +52,39 @@ local function set_wallpaper(s)
     gears.wallpaper.maximized(wallpaper, s, true)
   end
 end
+-- }}}
+
+-- {{{ py3status bar jank
+    -- the actual widget should be several? or one widget.textbox
+        -- several might be easier for click events. also spacing
+    -- the text those want is in pango markup format
+        -- which basically just xml & html objects
+        -- <span foreground="green"></span> for instance does what u think it do
+            -- https://docs.gtk.org/Pango/struct.Color.html
+    -- parsing should be done by calling py3status with spawn.with_line_callback
+        -- then errytime py3status updates it'll run the cb fn
+    -- parsing itself should be done with string.gmatch
+        -- the format is basically comma seperated array that holds json for each element
+        -- should be able to get it into a lua metatable/array that contains everything for each element
+            -- then i should be able to translate to pango
+    -- click events can be handled with the lovely py3-cmd-just add a handler to pass clicks on & attach to each element
+
+    -- OF NOTE!
+        -- i should generate the handlers and such by keeping track of the elements
+        -- just use the cb to update the text & check if more need to be initialized
+        -- (and color)
+        -- to avoid recrating handlers every half second
+        -- just because this is a hobby project and i paid for the cpu cycles i'm gonna not use them
+
+    -- the lua patterns:
+        -- it looks like "{.-}" will match each object
+        -- i think i just need to pull each of them out!
+        -- and then parse them into a table
+        -- is this gonna be uhh
+            -- for obj_str in string.gfind(input, '{.-}') do
+                -- parse and store obj_str
+                    -- for pair_str in string.gfind(obj_str, '".-": ".-"')
+                        -- the pattern should be.... '".-":' to get the key and ': ".-"' for value
 -- }}}
 
 -- {{{ Wibar

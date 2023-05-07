@@ -3,7 +3,7 @@
 map('v', '<Enter>',     '<cmd>EasyAlign<CR>', bindopt)
 map('n', '<leader>f',   '<cmd>CHADopen<CR>', bindopt)
 map('n', '<leader>u',   '<cmd>UndotreeToggle<CR>', bindopt)
-map('n', '<leader>rs',  '<cmd>IncRename ', bindopt)
+map('n', '<leader>rs',  'IncRename ', bindopt)
 lmap('n', '<leader>tf', function() telescope.find_files() end, bindopt)
 lmap('n', '<leader>tg', function() telescope.live_grep() end, bindopt)
 lmap('n', '<leader>tb', function() telescope.buffers() end, bindopt)

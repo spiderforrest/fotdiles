@@ -1,6 +1,6 @@
 return {
     -- for testing
-    { 'folke/which-key.nvim', config = true },
+    -- { 'folke/which-key.nvim', config = true },
 -- themes
     { 'spiderforrest/everforest',
     lazy = false,
