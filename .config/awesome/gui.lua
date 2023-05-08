@@ -1,12 +1,7 @@
 local awful = require("awful")
 local gears = require("gears")
-local sharedtags   = require("sharedtags")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
-local naughty = require("naughty")
-
-local volume = require("widgets.volume")
-
 
 -- {{{ def functions
 -- list of clients
@@ -247,29 +242,28 @@ awful.screen.connect_for_each_screen(function(s)
     expand = "none",
     layout = wibox.layout.align.horizontal,
     { -- Left widgets
-    layout = wibox.layout.fixed.horizontal,
-    s.mylayoutbox,
-    mylauncher,
-    s.mytaglist,
-  },
-  { -- mids
-  layout = wibox.layout.fixed.horizontal,
-  s.title_container,
-  s.buttonsbox_container,
-  },
-  { -- Right widgets
-  layout = wibox.layout.fixed.horizontal,
-  spacing_widget = wibox.widget.textbox(" |"),
-  spacing = 9,
-  nvidia,
-  networkmanager,
-  sink_bar,
-  source,
-  mytextclock,
-  s.systray,
-          },
-      }
-    end)
+      layout = wibox.layout.fixed.horizontal,
+      s.mylayoutbox,
+      s.mytaglist,
+    },
+    { -- mids
+      layout = wibox.layout.fixed.horizontal,
+      s.title_container,
+      s.buttonsbox_container,
+    },
+    { -- Right widgets
+      layout = wibox.layout.fixed.horizontal,
+      spacing_widget = wibox.widget.textbox(" |"),
+      spacing = 9,
+      nvidia,
+      networkmanager,
+      sink_bar,
+      source,
+      mytextclock,
+      s.systray,
+    },
+  }
+end)
     -- }}}
 
     -- {{{ global titlebar
