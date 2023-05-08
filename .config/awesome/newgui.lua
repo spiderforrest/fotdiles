@@ -93,38 +93,11 @@ local i3bar_widgets = {}
 -- track the number of modules, so if it grows, we can regenerate the widgets
 local i3_module_counter = 0
 
-local function parseJson(json_str)
-  -- create the array that will be filled with the data from the json output and the iterator
-  local decoded_json_arr = {}
-  local module_itr = 0 -- lua arrays actually start at anything you want btw
-  -- iterate through all the {} pairs-each is a i3/py3 module
-  for module_str in string.gmatch(json_str, "{.-}") do
-    -- create the module's table and grab the name to use as key
-    local module_tbl = {}
-    -- pull out each key/value pair and hyuck them in the module's table
-    for key, val in string.gmatch(module_str, '"(.-)": "(.-)"') do
-       module_tbl[key] = val
-    end
-    -- append the module's table to the decoded array
-    decoded_json_arr[module_itr] = module_tbl
-    module_itr = module_itr + 1
-  end
-  -- check if there's more modules this run than the last and regenerate(or create them initally) if so
-  local regenerate_flag = i3_module_counter > module_itr
-  -- save the count for next run
-  i3_module_counter = module_itr
-  -- cool! now we have converted a json string to a lua table without copy pasting from stack overflow. proud of me.
-  return decoded_json_arr, regenerate_flag
-end
-
 -- create the widgets the modules repersent
 local function generate_widgets(modules, box)
-  naughty.notify{text="generating"}
-  naughty.notify{text = modules[0].full_text}
   -- populate a table with generated textbox widgets
   for i, _ in ipairs(modules) do
     -- just create a buncha empty textboxes, we'll just mutate them later
-    naughty.notify{text = i}
     i3bar_widgets[i] = wibox.widget.textbox()
   end
   -- empty out the statusline_box if there's anything in it
@@ -135,10 +108,36 @@ local function generate_widgets(modules, box)
   end
 end
 
+local function parseJson(json_str, box)
+  -- create the array that will be filled with the data from the json output and the iterator
+  local modules = {}
+  local module_itr = 0 -- lua arrays actually start at anything you want btw
+  -- iterate through all the {} pairs-each is a i3/py3 module
+  for module_str in string.gmatch(json_str, "{.-}") do
+    -- create the module's table and grab the name to use as key
+    local module_tbl = {}
+    -- pull out each key/value pair and hyuck them in the module's table
+    for key, val in string.gmatch(module_str, '"(.-)": "(.-)"') do
+       module_tbl[key] = val
+    end
+    -- append the module's table to the decoded array
+    modules[module_itr] = module_tbl
+    module_itr = module_itr + 1
+  end
+  -- check if there's more modules this run than the last and regenerate(or create them initally) if so
+  if i3_module_counter > module_itr then
+    generate_widgets(modules, box)
+  end
+  -- save the count for next run
+  i3_module_counter = module_itr
+  -- cool! now we have converted a json string to a lua table without copy pasting from stack overflow. proud of me.
+  return modules
+end
+
+
 -- set the text inside each widget to match the i3 output
 local function update_widgets(widgets, modules)
   for i, widget in ipairs(widgets) do
-    naughty.notify(modules[i].full_text)
     widget.text = modules[i].full_text
   end
 end
@@ -153,13 +152,9 @@ local statusline_box = wibox.layout.fixed.horizontal()
 --   }
 
 -- call the statusline command and set up the callback function
-awful.spawn.with_line_callback("py3status", { stdout = function (stdout)
+awful.spawn.with_line_callback("py3status -wm i3", { stdout = function (stdout)
   -- call the parser
-   local modules, regenerate = parseJson(stdout)
-   -- if there's more modules than the last run (or if it's the first run), create the widgets
-   if regenerate then
-     i3bar_widgets = generate_widgets(modules, statusline_box)
-   end
+  local modules = parseJson(stdout)
    update_widgets(i3bar_widgets, modules)
 end })
 -- }}}
