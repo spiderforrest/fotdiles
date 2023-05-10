@@ -155,7 +155,8 @@ awful.screen.connect_for_each_screen(function(s)
 end) -- }}}
 
 -- {{{ py3status bar jank
---[[      the actual widget should be several? or one widget.textbox
+--[[{{{ notes
+    the actual widget should be several? or one widget.textbox
           several might be easier for click events. also spacing
       the text those want is in pango markup format
           which basically just xml & html objects
@@ -185,8 +186,7 @@ end) -- }}}
                   parse and store obj_str
                       for pair_str in string.gfind(obj_str, '".-": ".-"')
                           the pattern should be.... '".-":' to get the key and ': ".-"' for value
---]]
-
+}}}]]
 
 -- create the table to fill with widgets
 local i3bar_widgets = {}
@@ -194,7 +194,7 @@ local i3bar_widgets = {}
 local i3_module_counter = 0
 
 -- create the widgets the modules repersent
-local function generate_widgets(modules, box)
+local function generate_widgets(modules, box) --{{{
   -- clear out the previous set of textboxes
   for _, widget in ipairs(i3bar_widgets) do
     box:remove_widgets(widget)
@@ -209,9 +209,9 @@ local function generate_widgets(modules, box)
   for _, widget in ipairs(i3bar_widgets) do
     box:add(widget)
   end
-end
+end --}}}
 
-local function parseJson(json_str, box)
+local function parseJson(json_str, box) --{{{
   -- create the array that will be filled with the data from the json output and the iterator
   local modules = {}
   local module_itr = 0 -- lua arrays actually start at anything you want btw
@@ -235,24 +235,22 @@ local function parseJson(json_str, box)
   i3_module_counter = module_itr
   -- cool! now we have converted a json string to a lua table without copy pasting from stack overflow. proud of me.
   return modules
-end
-
+end --}}}
 
 -- set the text inside each widget to match the i3 output
-local function update_widgets(widgets, modules)
+local function update_widgets(widgets, modules) --{{{
   -- naughty.notify{title="updating", text = modules[1].full_text}
   for i, widget in ipairs(widgets) do
-    widget.text = modules[i].full_text
+    widget.text = " | " .. modules[i].full_text
   end
-end
-
+end --}}}
 
 -- call the statusline command and set up the callback function
-awful.spawn.with_line_callback("py3status", { stdout = function (stdout)
+awful.spawn.with_line_callback("py3status", { stdout = function (stdout) --{{{
   -- call the parser
   local modules = parseJson(stdout, bar_right_container)
   update_widgets(i3bar_widgets, modules)
-end })
+end }) --}}}
 -- }}}
 
     -- {{{ global titlebar
