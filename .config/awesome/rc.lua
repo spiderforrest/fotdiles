@@ -17,7 +17,7 @@ end -- }}}
 
 dofile(awful.util.getdir("config") .. "/" .. "defines.lua")
 
-dofile(awful.util.getdir("config") .. "/" .. "newgui.lua")
+dofile(awful.util.getdir("config") .. "/" .. "gui.lua")
 
 dofile(awful.util.getdir("config") .. "/" .. "binds.lua")
 
