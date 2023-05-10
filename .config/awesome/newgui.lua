@@ -190,8 +190,6 @@ end) -- }}}
 
 -- create the table to fill with widgets
 local i3bar_widgets = {}
--- track the number of modules, so if it grows, we can regenerate the widgets
-local i3_module_counter = 0
 
 -- create the widgets the modules repersent
 local function generate_widgets(modules, box) --{{{
@@ -215,6 +213,8 @@ local function parseJson(json_str, box) --{{{
   -- create the array that will be filled with the data from the json output and the iterator
   local modules = {}
   local module_itr = 0 -- lua arrays actually start at anything you want btw
+  -- track the number of modules, so if it grows, we can regenerate the widgets
+  local i3_module_counter = #i3bar_widgets or 0
   -- iterate through all the {} pairs-each is a i3/py3 module
   for module_str in string.gmatch(json_str, "{.-}") do
     -- create the module's table and grab the name to use as key
@@ -246,11 +246,16 @@ local function update_widgets(widgets, modules) --{{{
 end --}}}
 
 -- call the statusline command and set up the callback function
-awful.spawn.with_line_callback("py3status", { stdout = function (stdout) --{{{
+local py3_pid = awful.spawn.with_line_callback("py3status", { stdout = function (stdout) --{{{
   -- call the parser
   local modules = parseJson(stdout, bar_right_container)
   update_widgets(i3bar_widgets, modules)
-end }) --}}}
+end })
+
+-- while i wait for a resolution on my bug report here's hack aha
+awful.spawn.with_shell("cpulimit -p " .. tostring(py3_pid) .. " -l 1")
+
+--}}}
 -- }}}
 
     -- {{{ global titlebar
