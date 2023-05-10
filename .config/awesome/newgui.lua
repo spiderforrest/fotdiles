@@ -50,7 +50,7 @@ local function set_wallpaper(s)
   end
 end
 
-local taglist_buttons = {
+local taglist_buttons = gears.table.join(
 awful.button({ }, 1, function(t) t:view_only() end),
 awful.button({ shift }, 1, function(t)
   if client.focus then
@@ -75,16 +75,16 @@ awful.button({ }, 4, function(t)
   if 1 == s.selected_tag.index then return end --prevent scrolling wrap
   awful.tag.viewprev(t.screen)
 end)
-}
+)
 
-local layoutbox_buttons = {
+local layoutbox_buttons = gears.table.join(
 awful.button({ }, 1, function () awful.layout.inc( 1) end),
 awful.button({ }, 3, function () awful.layout.inc(-1) end),
 awful.button({ }, 4, function () awful.layout.inc( 1) end),
 awful.button({ }, 5, function () awful.layout.inc(-1) end)
-}
+)
 
-local no_widget_tagscrolling = {
+local no_widget_tagscrolling = gears.table.join(
   awful.button({ }, 5, function(t)
     local s = awful.screen.focused()
     if #mouse.current_widgets > 1 then return end -- cancel if over actual widgets
@@ -99,8 +99,64 @@ local no_widget_tagscrolling = {
     if 1 == s.selected_tag.index then return end
     awful.tag.viewprev(t.screen)
   end)
-}
+)
 -- }}}
+
+
+-- {{{ Wibar
+
+-- this is above because I want it shared between screens
+local bar_right_container = wibox.layout.fixed.horizontal()
+
+-- generate everything per screen
+awful.screen.connect_for_each_screen(function(s)
+
+  set_wallpaper(s) -- wallpaper
+
+  -- the layout icon/scroller
+  s.layout_box = awful.widget.layoutbox(s)
+  -- create a taglist widget
+  s.taglist = awful.widget.taglist {
+    screen  = s,
+    -- hide tags greater than 5 if empty and nonfocused
+    filter  = function (t) return (t.index < 6 or #t:clients() > 0 or t.selected) end,
+    buttons = taglist_buttons
+  }
+  --global titlebar title container
+  s.title_container = wibox.container.margin()
+  -- global titlebar buttons contianer
+  s.title_client_buttons_container = wibox.container.margin()
+  -- tray
+  s.systray = wibox.widget.systray()
+  s.systray.visible = false -- hide by default tho, can't mix aesthetics
+
+  -- create the bar
+  s.bar = awful.wibar{ position = "top", screen = s }
+  s.bar:buttons(no_widget_tagscrolling)
+
+  -- create the layout boxes
+  local bar_container = wibox.layout.align.horizontal()
+  bar_container.expand = "none"
+
+  local bar_left_container = wibox.layout.fixed.horizontal()
+  local bar_mid_container = wibox.layout.fixed.horizontal()
+
+  -- imperatively populate the containers with widgets
+  bar_left_container:add(s.layout_box)
+  bar_left_container:add(s.taglist)
+
+  bar_mid_container:add(s.title_container)
+  bar_mid_container:add(s.title_client_buttons_container)
+
+  bar_right_container:add(s.systray)
+
+  -- imperatively populate the container tree/bar
+  bar_container.first = bar_left_container
+  bar_container.second = bar_mid_container
+  bar_container.third = bar_right_container
+  s.bar.widget = bar_container
+end)
+    -- }}}
 
 -- {{{ py3status bar jank
     -- the actual widget should be several? or one widget.textbox
@@ -194,70 +250,13 @@ local function update_widgets(widgets, modules)
 end
 
 
--- create the layout box-if i move this into a module, it'll probably be passed in
-local statusline_box = wibox.layout.fixed.horizontal()
--- local statusline_box = wibox.layout.fixed:setup{
---     layout = wibox.layout.fixed.horizontal,
---     spacing_widget = wibox.widget.textbox(" |"),
---     spacing = 9,
---   }
-
 -- call the statusline command and set up the callback function
-awful.spawn.with_line_callback("py3status", { stdout = function (stdout)
+awful.spawn.with_line_callback("bash -c py3status", { stdout = function (stdout)
   -- call the parser
-  local modules = parseJson(stdout, statusline_box)
+  local modules = parseJson(stdout, bar_right_container)
   update_widgets(i3bar_widgets, modules)
 end })
 -- }}}
-
--- {{{ Wibar
-
-awful.screen.connect_for_each_screen(function(s)
-
-  set_wallpaper(s) -- wallpaper
-
-  -- the layout icon/scroller
-  s.layout_box = awful.widget.layoutbox(s)
-  -- create a taglist widget
-  s.taglist = awful.widget.taglist {
-    screen  = s,
-    -- hide tags greater than 5 if empty and nonfocused
-    filter  = function (t) return (t.index < 6 or #t:clients() > 0 or t.selected) end,
-    buttons = taglist_buttons
-  }
-  --global titlebar title container
-  s.title_container = wibox.container.margin()
-  -- global titlebar buttons contianer
-  s.title_client_buttons_container = wibox.container.margin()
-  -- tray
-  s.systray = wibox.widget.systray()
-  s.systray.visible = false -- hide by default tho, can't mix aesthetics
-
-  -- create the bar
-  s.bar = awful.wibar({ position = "top", screen = s })
-
-  -- create the layout boxes
-  local bar_container = wibox.layout.align.horizontal()
-  local bar_left_container = wibox.layout.fixed.horizontal()
-  local bar_mid_container = wibox.layout.fixed.horizontal()
-  local bar_right_container = wibox.layout.fixed.horizontal()
-
-  -- imperatively populate the containers with widgets
-  bar_left_container:add(s.layout_box)
-  bar_left_container:add(s.taglist)
-
-  bar_mid_container:add(s.title_container)
-  bar_mid_container:add(s.title_client_buttons_container)
-
-  bar_right_container:add(wibox.widget.textbox{text = "hi"}) -- tmp
-
-  -- imperatively populate the container tree/bar
-  bar_container:add(bar_left_container)
-  bar_container:add(bar_mid_container)
-  bar_container:add(bar_right_container)
-  s.bar.widget = bar_container
-end)
-    -- }}}
 
     -- {{{ global titlebar
     local function title_create(c)
@@ -310,8 +309,8 @@ end)
       if not c.buttonsbox then
         c.buttonsbox = buttons_create(c)
       end
-      c.screen.buttonsbox_container.widget = c.buttonsbox
-      c.container = c.screen.buttonsbox_container
+      c.screen.title_client_buttons_container.widget = c.buttonsbox
+      c.container = c.screen.title_client_buttons_container
     end
 
     local function buttons_remove(c)

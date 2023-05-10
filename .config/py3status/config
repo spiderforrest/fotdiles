@@ -117,12 +117,12 @@ spotify {
 }
 
 async_script {
-	script_path = "/home/emily/bin/sextime -l -x '.' -z '&'"
+	script_path = "/home/spider/bin/sextime -l -x '.' -z '&'"
 }
 
 group clock {
 	async_script {
-		script_path = "/home/emily/bin/sextime -l -x '.' -z '&'"
+		script_path = "/home/spider/bin/sextime -l -x '.' -z '&'"
 	}
 
 	tztime local {
