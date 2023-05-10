@@ -102,21 +102,19 @@ local no_widget_tagscrolling = gears.table.join(
 )
 -- }}}
 
-
 -- {{{ Wibar
 
--- this is above because I want it shared between screens
+-- this is outside because I want it shared between screens
 local bar_right_container = wibox.layout.fixed.horizontal()
 
 -- generate everything per screen
 awful.screen.connect_for_each_screen(function(s)
-
   set_wallpaper(s) -- wallpaper
 
   -- the layout icon/scroller
   s.layout_box = awful.widget.layoutbox(s)
   -- create a taglist widget
-  s.taglist = awful.widget.taglist {
+  s.taglist = awful.widget.taglist{
     screen  = s,
     -- hide tags greater than 5 if empty and nonfocused
     filter  = function (t) return (t.index < 6 or #t:clients() > 0 or t.selected) end,
@@ -131,7 +129,7 @@ awful.screen.connect_for_each_screen(function(s)
   s.systray.visible = false -- hide by default tho, can't mix aesthetics
 
   -- create the bar
-  s.bar = awful.wibar{ position = "top", screen = s }
+  s.bar = awful.wibar{position = "top", screen = s}
   s.bar:buttons(no_widget_tagscrolling)
 
   -- create the layout boxes
@@ -147,53 +145,48 @@ awful.screen.connect_for_each_screen(function(s)
 
   bar_mid_container:add(s.title_container)
   bar_mid_container:add(s.title_client_buttons_container)
-
-  bar_right_container:add(s.systray)
+  bar_mid_container:add(s.systray)
 
   -- imperatively populate the container tree/bar
   bar_container.first = bar_left_container
   bar_container.second = bar_mid_container
   bar_container.third = bar_right_container
   s.bar.widget = bar_container
-end)
-    -- }}}
+end) -- }}}
 
 -- {{{ py3status bar jank
-    -- the actual widget should be several? or one widget.textbox
-        -- several might be easier for click events. also spacing
-    -- the text those want is in pango markup format
-        -- which basically just xml & html objects
-        -- <span foreground="green"></span> for instance does what u think it do
-            -- https://docs.gtk.org/Pango/struct.Color.html
-    -- parsing should be done by calling py3status with spawn.with_line_callback
-        -- then errytime py3status updates it'll run the cb fn
-    -- parsing itself should be done with string.gmatch
-        -- the format is basically comma seperated array that holds json for each element
-        -- should be able to get it into a lua metatable/array that contains everything for each element
-            -- then i should be able to translate to pango
-    -- click events can be handled with the lovely py3-cmd-just add a handler to pass clicks on & attach to each element
+--[[      the actual widget should be several? or one widget.textbox
+          several might be easier for click events. also spacing
+      the text those want is in pango markup format
+          which basically just xml & html objects
+          <span foreground="green"></span> for instance does what u think it do
+              https://docs.gtk.org/Pango/struct.Color.html
+      parsing should be done by calling py3status with spawn.with_line_callback
+          then errytime py3status updates it'll run the cb fn
+      parsing itself should be done with string.gmatch
+          the format is basically comma seperated array that holds json for each element
+          should be able to get it into a lua metatable/array that contains everything for each element
+              then i should be able to translate to pango
+      click events can be handled with the lovely py3-cmd-just add a handler to pass clicks on & attach to each element
 
-    -- OF NOTE!
-        -- i should generate the handlers and such by keeping track of the elements
-        -- just use the cb to update the text & check if more need to be initialized
-        -- (and color)
-        -- to avoid recrating handlers every half second
-        -- just because this is a hobby project and i paid for the cpu cycles i'm gonna not use them
+      OF NOTE!
+          i should generate the handlers and such by keeping track of the elements
+          just use the cb to update the text & check if more need to be initialized
+          (and color)
+          to avoid recrating handlers every half second
+          just because this is a hobby project and i paid for the cpu cycles i'm gonna not use them
 
-    -- the lua patterns:
-        -- it looks like "{.-}" will match each object
-        -- i think i just need to pull each of them out!
-        -- and then parse them into a table
-        -- is this gonna be uhh
-            -- for obj_str in string.gfind(input, '{.-}') do
-                -- parse and store obj_str
-                    -- for pair_str in string.gfind(obj_str, '".-": ".-"')
-                        -- the pattern should be.... '".-":' to get the key and ': ".-"' for value
+      the lua patterns:
+          it looks like "{.-}" will match each object
+          i think i just need to pull each of them out!
+          and then parse them into a table
+          is this gonna be uhh
+              for obj_str in string.gfind(input, '{.-}') do
+                  parse and store obj_str
+                      for pair_str in string.gfind(obj_str, '".-": ".-"')
+                          the pattern should be.... '".-":' to get the key and ': ".-"' for value
+--]]
 
-
-
--- TODO:spider figure out how to actually get them up on the bar(not sure rn because async) that handles
--- py3status just.... generating incomplete data the first few runs, probably signals with the bar
 
 -- create the table to fill with widgets
 local i3bar_widgets = {}
@@ -202,13 +195,16 @@ local i3_module_counter = 0
 
 -- create the widgets the modules repersent
 local function generate_widgets(modules, box)
+  -- clear out the previous set of textboxes
+  for _, widget in ipairs(i3bar_widgets) do
+    box:remove_widgets(widget)
+  end
+
   -- populate a table with generated textbox widgets
   for i, _ in ipairs(modules) do
     -- just create a buncha empty textboxes, we'll just mutate them later
-    i3bar_widgets[i] = wibox.widget.textbox({text = "hi"})
+    i3bar_widgets[i] = wibox.widget.textbox()
   end
-  -- empty out the statusline_box if there's anything in it
-  -- box:remove_widgets(true)
   -- add the widgets to the box
   for _, widget in ipairs(i3bar_widgets) do
     box:add(widget)
@@ -232,7 +228,7 @@ local function parseJson(json_str, box)
     module_itr = module_itr + 1
   end
   -- check if there's more modules this run than the last and regenerate(or create them initally) if so
-  if i3_module_counter > module_itr then
+  if i3_module_counter < module_itr then
     generate_widgets(modules, box)
   end
   -- save the count for next run
@@ -244,6 +240,7 @@ end
 
 -- set the text inside each widget to match the i3 output
 local function update_widgets(widgets, modules)
+  -- naughty.notify{title="updating", text = modules[1].full_text}
   for i, widget in ipairs(widgets) do
     widget.text = modules[i].full_text
   end
@@ -251,7 +248,7 @@ end
 
 
 -- call the statusline command and set up the callback function
-awful.spawn.with_line_callback("bash -c py3status", { stdout = function (stdout)
+awful.spawn.with_line_callback("py3status", { stdout = function (stdout)
   -- call the parser
   local modules = parseJson(stdout, bar_right_container)
   update_widgets(i3bar_widgets, modules)
