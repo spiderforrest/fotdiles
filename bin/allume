@@ -29,4 +29,5 @@ case $Mode in
     ;;
 esac
 
-killall -s USR1 py3status
+# killall -s USR1 py3status
+py3-cmd refresh volume_status

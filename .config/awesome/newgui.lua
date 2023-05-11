@@ -50,19 +50,7 @@ local function set_wallpaper(s)
   end
 end
 
-local taglist_buttons = gears.table.join(
-awful.button({ }, 1, function(t) t:view_only() end),
-awful.button({ shift }, 1, function(t)
-  if client.focus then
-    client.focus:move_to_tag(t)
-  end
-end),
-awful.button({ }, 3, awful.tag.viewtoggle),
-awful.button({ modkey }, 3, function(t)
-  if client.focus then
-    client.focus:toggle_tag(t)
-  end
-end),
+local scroll_tag_buttons = gears.table.join(
 awful.button({ }, 5, function(t)
   local s = awful.screen.focused()
   if not s.selected_tag then return end
@@ -75,6 +63,22 @@ awful.button({ }, 4, function(t)
   if 1 == s.selected_tag.index then return end --prevent scrolling wrap
   awful.tag.viewprev(t.screen)
 end)
+)
+
+local taglist_buttons = gears.table.join(
+  awful.button({ }, 1, function(t) naughty.notify{text=tostring(t)} end),
+  awful.button({ shft }, 1, function(t)
+    if client.focus then
+      client.focus:move_to_tag(t)
+    end
+  end),
+  awful.button({ }, 3, awful.tag.viewtoggle),
+  awful.button({ modkey }, 3, function(t)
+    if client.focus then
+      client.focus:toggle_tag(t)
+    end
+  end),
+  scroll_tag_buttons
 )
 
 local layoutbox_buttons = gears.table.join(
@@ -106,6 +110,7 @@ local no_widget_tagscrolling = gears.table.join(
 
 -- this is outside because I want it shared between screens
 local bar_right_container = wibox.layout.fixed.horizontal()
+local spacer = wibox.widget.textbox("   |  ")
 
 -- generate everything per screen
 awful.screen.connect_for_each_screen(function(s)
@@ -118,12 +123,14 @@ awful.screen.connect_for_each_screen(function(s)
     screen  = s,
     -- hide tags greater than 5 if empty and nonfocused
     filter  = function (t) return (t.index < 6 or #t:clients() > 0 or t.selected) end,
-    buttons = taglist_buttons
   }
-  --global titlebar title container
+  s.taglist:buttons(taglist_buttons)
+  -- global titlebar title container
   s.title_container = wibox.container.margin()
+  s.title_container:buttons(scroll_tag_buttons)
   -- global titlebar buttons contianer
   s.title_client_buttons_container = wibox.container.margin()
+  s.title_client_buttons_container:buttons(scroll_tag_buttons)
   -- tray
   s.systray = wibox.widget.systray()
   s.systray.visible = false -- hide by default tho, can't mix aesthetics
@@ -137,19 +144,17 @@ awful.screen.connect_for_each_screen(function(s)
   bar_container.expand = "none"
 
   local bar_left_container = wibox.layout.fixed.horizontal()
-  local bar_mid_container = wibox.layout.fixed.horizontal()
 
   -- imperatively populate the containers with widgets
   bar_left_container:add(s.layout_box)
   bar_left_container:add(s.taglist)
-
-  bar_mid_container:add(s.title_container)
-  bar_mid_container:add(s.title_client_buttons_container)
-  bar_mid_container:add(s.systray)
+  bar_left_container:add(spacer)
+  bar_left_container:add(s.title_container)
+  bar_left_container:add(s.title_client_buttons_container)
+  bar_left_container:add(s.systray)
 
   -- imperatively populate the container tree/bar
   bar_container.first = bar_left_container
-  -- bar_container.second = bar_mid_container
   bar_container.third = bar_right_container
   s.bar.widget = bar_container
 end) -- }}}
@@ -277,7 +282,7 @@ end })
 
 -- while i wait for a resolution on my bug report here's hack aha
 -- LGTM
-awful.spawn.with_shell("cpulimit -p " .. tostring(py3_pid) .. " -l 10")
+awful.spawn.with_shell("sleep 6 && cpulimit -p " .. tostring(py3_pid) .. " -l 3")
 
 --}}}
 -- }}}
