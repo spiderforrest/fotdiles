@@ -60,15 +60,16 @@ memory {
         format_degraded = "MEMORY < %available"
 }
 
-volume_status mic { 
-  format = "live" 
-  format_muted = "shh" 
+volume_status mic {
+  format = "live"
+  format_muted = "shh"
   channel = "Capture"
   is_input = true
   button_down = None
   button_up = None
+  button_mute = None
   thresholds = [(0, 'bad'), (100, 'degraded')]
-}   
+}
 
 volume_status master {
   format = "{percentage}"
@@ -90,11 +91,17 @@ volume_status master {
 }
 
 # display nvidia properties
+# nvidia_smi {
+# 	on_error = "hide"
+#     format_gpu = '[\?color=temperature.gpu {temperature.gpu}°C,] '
+#     format_gpu += '[\?color=memory.used_percent {memory.used} {memory.used_unit}'
+#     format_gpu += '[\?color=darkgray&show  \@ ]{memory.used_percent:.1f}%]'
+# }
 nvidia_smi {
 	on_error = "hide"
-    format_gpu = '[\?color=temperature.gpu {temperature.gpu}°C,] '
-    format_gpu += '[\?color=memory.used_percent {memory.used} {memory.used_unit}'
-    format_gpu += '[\?color=darkgray&show  \@ ]{memory.used_percent:.1f}%]'
+    format_gpu = '{temperature.gpu}C, '
+    format_gpu += '{memory.used} {memory.used_unit} \@ '
+    format_gpu += '{memory.used_percent:.1f}%'
 }
 
 

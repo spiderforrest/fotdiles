@@ -149,12 +149,13 @@ awful.screen.connect_for_each_screen(function(s)
 
   -- imperatively populate the container tree/bar
   bar_container.first = bar_left_container
-  bar_container.second = bar_mid_container
+  -- bar_container.second = bar_mid_container
   bar_container.third = bar_right_container
   s.bar.widget = bar_container
 end) -- }}}
 
 -- {{{ py3status bar jank
+
 --[[{{{ notes
     the actual widget should be several? or one widget.textbox
           several might be easier for click events. also spacing
@@ -191,6 +192,12 @@ end) -- }}}
 -- create the table to fill with widgets
 local i3bar_widgets = {}
 
+local function add_mouse_py3_passthrough (button, target) --{{{
+      return awful.button({ }, button, function ()
+        awful.spawn.with_shell( "py3-cmd click --button " .. tostring(button) .. " " .. tostring(target))
+      end)
+end --}}}
+
 -- create the widgets the modules repersent
 local function generate_widgets(modules, box) --{{{
   -- clear out the previous set of textboxes
@@ -199,9 +206,17 @@ local function generate_widgets(modules, box) --{{{
   end
 
   -- populate a table with generated textbox widgets
-  for i, _ in ipairs(modules) do
+  for i, module in ipairs(modules) do
     -- just create a buncha empty textboxes, we'll just mutate them later
     i3bar_widgets[i] = wibox.widget.textbox()
+    -- attach buttons
+    i3bar_widgets[i]:buttons(gears.table.join(
+      add_mouse_py3_passthrough(1, module.name),
+      add_mouse_py3_passthrough(2, module.name),
+      add_mouse_py3_passthrough(3, module.name),
+      add_mouse_py3_passthrough(4, module.name),
+      add_mouse_py3_passthrough(5, module.name)
+      ))
   end
   -- add the widgets to the box
   for _, widget in ipairs(i3bar_widgets) do
@@ -209,10 +224,10 @@ local function generate_widgets(modules, box) --{{{
   end
 end --}}}
 
-local function parseJson(json_str, box) --{{{
+local function parse_json(json_str, box) --{{{
   -- create the array that will be filled with the data from the json output and the iterator
   local modules = {}
-  local module_itr = 0 -- lua arrays actually start at anything you want btw
+  local module_itr = 1 -- lua arrays actually start at anything you want btw
   -- track the number of modules, so if it grows, we can regenerate the widgets
   local i3_module_counter = #i3bar_widgets or 0
   -- iterate through all the {} pairs-each is a i3/py3 module
@@ -239,21 +254,30 @@ end --}}}
 
 -- set the text inside each widget to match the i3 output
 local function update_widgets(widgets, modules) --{{{
-  -- naughty.notify{title="updating", text = modules[1].full_text}
   for i, widget in ipairs(widgets) do
-    widget.text = " | " .. modules[i].full_text
+    local string
+    if modules[i].color then
+      string = '<span color="' .. modules[i].color .. '">' .. gears.string.xml_escape(modules[i].full_text) .. "</span>"
+    else
+      string = '<span color="white">' .. gears.string.xml_escape(modules[i].full_text) .. '</span>'
+    end
+    if i ~= 1 then
+      string = " | " .. string
+    end
+    widget:set_markup_silently(string)
   end
 end --}}}
 
 -- call the statusline command and set up the callback function
 local py3_pid = awful.spawn.with_line_callback("py3status", { stdout = function (stdout) --{{{
   -- call the parser
-  local modules = parseJson(stdout, bar_right_container)
+  local modules = parse_json(stdout, bar_right_container)
   update_widgets(i3bar_widgets, modules)
 end })
 
 -- while i wait for a resolution on my bug report here's hack aha
-awful.spawn.with_shell("cpulimit -p " .. tostring(py3_pid) .. " -l 1")
+-- LGTM
+awful.spawn.with_shell("cpulimit -p " .. tostring(py3_pid) .. " -l 10")
 
 --}}}
 -- }}}
