@@ -115,6 +115,9 @@ settings:
     https://mail.google.com?extsrc=mailto&url=%25s: true
     https://mail.proton.me#mailto=%25s: true
     https://mail.protonmail.com#mailto=%25s: true
+  content.site_specific_quirks.skip:
+    global:
+    - js-string-replaceall
   downloads.location.suggestion:
     global: both
   downloads.position:

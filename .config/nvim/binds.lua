@@ -1,8 +1,8 @@
 
 -- call plugins {{{
-map('v', '<Enter>',     '<cmd>EasyAlign<CR>', bindopt)
-map('n', '<leader>f',   '<cmd>CHADopen<CR>', bindopt)
-map('n', '<leader>u',   '<cmd>UndotreeToggle<CR>', bindopt)
+map('v', '<Enter>',     '<cmd>EasyAlign<cr>', bindopt)
+map('n', '<leader>f',   '<cmd>CHADopen<cr>', bindopt)
+map('n', '<leader>u',   '<cmd>UndotreeToggle<cr>', bindopt)
 map('n', '<leader>rs',  'IncRename ', bindopt)
 lmap('n', '<leader>tf', function() telescope.find_files() end, bindopt)
 lmap('n', '<leader>tg', function() telescope.live_grep() end, bindopt)
@@ -20,16 +20,16 @@ lmap('n', '<leader>n', function() set.opfunc = 'v:lua.STSSwapCurrentNodePrevNorm
 lmap('n', 'go', function() jumpNode(true) end, bindopt)
 lmap('n', 'gn', function() jumpNode(false) end, bindopt)
 -- Hold a node and swap it
-map('n', 'gh', '<cmd>STSSwapOrHold<CR>', bindopt)
-map('v', 'gh', '<cmd>STSSwapOrHoldVisual<CR>', bindopt)
+map('n', 'gh', '<cmd>STSSwapOrHold<cr>', bindopt)
+map('v', 'gh', '<cmd>STSSwapOrHoldVisual<cr>', bindopt)
 -- }}}
 
 -- writing mode!
 lmap('n', '<leader>g',   function() writing() end, bindopt)
 
 -- nav buffers
-map('n', '<leader>bn',  '<cmd>bn<CR>', bindopt)
-map('n', '<leader>bp',  '<cmd>bp<CR>', bindopt)
+map('n', '<leader>bn',  '<cmd>bn<cr>', bindopt)
+map('n', '<leader>bp',  '<cmd>bp<cr>', bindopt)
 
 -- terminal fixes
 map('t', '<Esc>',       [[<c-\><c-n>]], bindopt)
@@ -48,22 +48,22 @@ map('v', '<leader>P',   '"+P', bindopt)
 -- }}}
 
 -- clear highlighting
-map('n', '<leader>/',   '<cmd>noh<CR>', bindopt)
+map('n', '<leader>/',   '<cmd>noh<cr>', bindopt)
 
 -- diffs
-map('n', '<leader>tg',  '<cmd>diffget<CR>', bindopt)
-map('n', '<leader>tp',  '<cmd>diffput<CR>', bindopt)
-map('n', '<leader>tt',  '<cmd>diffthis<CR>', bindopt)
+map('n', '<leader>tg',  '<cmd>diffget<cr>', bindopt)
+map('n', '<leader>tp',  '<cmd>diffput<cr>', bindopt)
+map('n', '<leader>tt',  '<cmd>diffthis<cr>', bindopt)
 -- i am blind as hell
-map('n', '<leader>r',   '<cmd>set invrelativenumber<CR>', bindopt)
-map('n', '<leader>c',   '<cmd>set invcursorline<CR><cmd>set invcursorcolumn<CR>', bindopt)
+map('n', '<leader>r',   '<cmd>set invrelativenumber<cr>', bindopt)
+map('n', '<leader>c',   '<cmd>set invcursorline<cr><cmd>set invcursorcolumn<cr>', bindopt)
 -- lazy wrap toggles
-map('n', '<F5>',        '<cmd>set linebreak<CR>', bindopt)
-map('n', '<F6>',        '<cmd>set nolinebreak<CR>', bindopt)
+map('n', '<F5>',        '<cmd>set linebreak<cr>', bindopt)
+map('n', '<F6>',        '<cmd>set nolinebreak<cr>', bindopt)
 -- please see ToggleMouse() in defines for an explaination, my shame is immeasurable
 map('n', '<leader>m',   '<cmd>call ToggleMouse()<cr>', bindopt)
 -- toss open live-server in a new term
-map('n', '<leader>js',  '<cmd>silent !alacritty -e "live-server" &<CR><cmd>redraw!<CR>', bindopt)
-map('n', '<leader>jn',  '<cmd>silent !alacritty -e "npm start" &<CR><cmd>redraw!<CR>', bindopt)
+map('n', '<leader>js',  '<cmd>silent !alacritty -e "live-server" &<cr><cmd>redraw!<cr>', bindopt)
+map('n', '<leader>jn',  '<cmd>silent !alacritty -e "npm start" &<cr><cmd>redraw!<cr>', bindopt)
 
 -- vim:foldmethod=marker

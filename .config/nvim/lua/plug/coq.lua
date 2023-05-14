@@ -82,7 +82,6 @@ return {
             ['html'] = 'prettier',
         }
         g.ale_fix_on_save = 1
-        g['airline#extensions#ale#enabled'] = 1
     end
     },
 }

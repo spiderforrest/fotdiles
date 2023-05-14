@@ -19,9 +19,9 @@ return {
             ]]
           end,
     },
-    { 'karoliskoncevicius/sacredforest-vim', event = 'VeryLazy' }, -- kinda softer version of my scheme
-    { 'shaunsingh/oxocarbon.nvim', event = 'VeryLazy' }, -- purble :)
-    -- (syntax) colorssss
+    { 'karoliskoncevicius/sacredforest-vim', lazy = true }, -- kinda softer version of my scheme
+    { 'shaunsingh/oxocarbon.nvim', lazy = true }, -- purble :)
+    -- colorssss
     { 'uga-rosa/ccc.nvim', event = 'VeryLazy', -- color picker/highlighter
         init = function()
             local ccc = require("ccc")
@@ -49,14 +49,6 @@ return {
         end
     },
     -- indentation
-    { 'nathanaelkane/vim-indent-guides', event = 'VeryLazy', -- show lines for indentation
-        config = function()
-            g.indent_guides_auto_colors = 0
-            g.indent_guides_guide_size = 1
-            g.indent_guides_enable_on_vim_startup = 1
-            g.indent_guides_start_level = 2
-        end
-    },
     -- flat window & focus
     { 'junegunn/goyo.vim', cmd = 'Goyo' }, -- make that lil window in the middle that i like
     { 'junegunn/limelight.vim', cmd = 'Limelight' }, -- highlight current block brighter

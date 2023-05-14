@@ -135,4 +135,8 @@ group clock {
 	tztime local {
 			format = "%Y-%m-%d, %H:%M:%S"
 	}
+
+    clock est {
+        format = "wrk: {America/New_York}"
+        format_time = "%H:%M:%S"
 }

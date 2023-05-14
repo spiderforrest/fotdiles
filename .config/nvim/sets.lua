@@ -10,7 +10,6 @@ g.airline_theme = 'everforest'
 
 
 -- {{{ just settings :)
-set.shiftwidth=4
 set.tabstop=4
 set.softtabstop=4
 set.scrolloff=2

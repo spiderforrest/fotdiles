@@ -58,6 +58,7 @@ cfg() {
         red* | ow)          nvim "$dir/redshift/redshift.conf"      ;;
         i3)                 nvim "$dir/i3/config"                   ;;
         picom)              nvim "$dir/picom/picom.conf"            ;;
+        bar)                nvim "$dir/py3status/config"            ;;
         bin | script*)      nvim "$HOME/bin/$2"                     ;;
         wm | awesome)
             if [[ -z "$2" ]] ; then
@@ -67,7 +68,7 @@ cfg() {
             fi                                                      ;;
         # idk it's probably vim
         v* | nvim | *)
-            if [[ -z "$1" ]] ; then
+            if [[ -e "$dir/nvim/$1.lua" ]] ; then
                             nvim "$dir/nvim/nvim.lua"
             else
                 if [[ -n "$2" ]] ; then # if called with a prefix, strip it out
@@ -293,6 +294,6 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # attempt to set the terminal title
-trap 'echo -ne "\033]2;$TERM | $(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
+trap 'echo -ne "\033]2;$TERM - $(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
 
 #EOF
