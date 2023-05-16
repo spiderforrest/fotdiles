@@ -57,11 +57,11 @@ return {
             auto_install = false,
             ignore_install = {},
             highlight = { enable = true, additional_vim_regex_highlighting = false },
-            rainbow = { -- the nvim-ts-rainbow2 module
-                enable = true,
-                -- Which query to use for finding delimiters
-                query = 'rainbow-parens',
-            },
+           rainbow = { -- the nvim-ts-rainbow2 module
+               enable = true,
+               -- Which query to use for finding delimiters
+               query = 'rainbow-parens',
+           },
         } end,
         dependencies = { 'HiPhish/nvim-ts-rainbow2' } -- this one's a module so it has to be loaded first
     },

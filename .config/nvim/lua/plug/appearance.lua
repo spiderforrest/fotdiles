@@ -36,13 +36,13 @@ return {
             g.colorizer_auto_map = 1
         end
     },
-    { "Jxstxs/conceal.nvim", dependencies = "nvim-treesitter/nvim-treesitter", event = 'VeryLazy', -- fancy treesitter rerendering!
+    { "Jxstxs/conceal.nvim", dependencies = {"nvim-treesitter/nvim-treesitter"}, event = 'VeryLazy', -- fancy treesitter rerendering!
         config = function()
             conceal = require('conceal')
             conceal.setup({})
         end
     },
-    { 'HiPhish/nvim-ts-rainbow2', event = 'VeryLazy', priority = 10},
+    { 'HiPhish/nvim-ts-rainbow2', event = 'VeryLazy', dependencies = "nvim-treesitter/nvim-treesitter" },
     -- indentation
     -- flat window & focus
     { 'junegunn/goyo.vim', cmd = 'Goyo' }, -- make that lil window in the middle that i like
