@@ -24,6 +24,7 @@ order += "spotify"
 #order += "arch_updates"
 order += "nvidia_smi"
 #order += "ipv6"
+order += "vpn_status"
 order += "ethernet _first_"
 order += "volume_status mic"
 order += "volume_status master"
@@ -43,6 +44,10 @@ wireless _first_ {
 ethernet _first_ {
         format_up = "local: %ip"
         format_down = "before you bork networkmanager just reboot pls"
+}
+
+vpn_status {
+    format = '{name}|!no vpn!'
 }
 
 disk "/" {

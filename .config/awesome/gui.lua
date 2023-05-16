@@ -141,7 +141,7 @@ awful.screen.connect_for_each_screen(function(s)
 
   -- create the layout boxes
   local bar_container = wibox.layout.align.horizontal()
-  bar_container.expand = "none"
+ -- bar_container.expand = "none"
 
   local bar_left_container = wibox.layout.fixed.horizontal()
 
@@ -265,6 +265,12 @@ local function update_widgets(widgets, modules) --{{{
       string = '<span color="' .. modules[i].color .. '">' .. gears.string.xml_escape(modules[i].full_text) .. "</span>"
     else
       string = '<span color="white">' .. gears.string.xml_escape(modules[i].full_text) .. '</span>'
+    end
+    -- the clock makes the whole thing wiggle wiggle wiggle, stop that
+    if modules[i].name == "tztime" or modules[i].name == "async_script" then
+      widget.forced_width = 160
+    elseif modules[i].name == 'clock' then -- the est one
+      widget.forced_width = 105
     end
     if i ~= 1 then -- don't put a seperator on the end
       string = " | " .. string
