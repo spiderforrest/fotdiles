@@ -42,12 +42,7 @@ return {
             conceal.setup({})
         end
     },
-    { 'luochen1990/rainbow', -- color nested brackets -- consider upgrading sometime to HiPhish/nvim-ts-rainbow2
-        init = function()
-            vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "" })
-            g.rainbow_active = 1
-        end
-    },
+    { 'HiPhish/nvim-ts-rainbow2', event = 'VeryLazy', priority = 10},
     -- indentation
     -- flat window & focus
     { 'junegunn/goyo.vim', cmd = 'Goyo' }, -- make that lil window in the middle that i like

@@ -13,3 +13,6 @@
 [submodule ".config/nvim/coq-user-snippets"]
 	path = .config/nvim/coq-user-snippets
 	url = https://github.com/ms-jpq/snips
+[submodule ".config/awesome/py32awe"]
+	path = .config/awesome/py32awe
+	url = https://github.com/spiderforrest/py32awe

@@ -25,11 +25,6 @@ return {
         require('mini.fuzzy').setup() -- fuzzy finding
     end
     },
-    { "smjonas/inc-rename.nvim", config = true, event = 'VeryLazy' }, -- rename based off tree sitter
-    { 'nvim-telescope/telescope.nvim', tag = '0.1.1', event = 'VeryLazy', config = true, -- big fuzzy finder
-    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
-    },
-    { 'rareitems/printer.nvim', event = 'VeryLazy', config = { keymap = "gp" } },-- makes print statements real quickly
     {'akinsho/toggleterm.nvim', version = "*", event = 'VeryLazy', -- terminal handling
         config = function() require('toggleterm').setup{
             open_mapping = [[\\]], -- open with double backslash
@@ -39,11 +34,19 @@ return {
             size = 80, -- by default he teeny!!
         } end
     },
+    { "smjonas/inc-rename.nvim", config = true, event = 'VeryLazy' }, -- rename based off tree sitter
+    { 'nvim-telescope/telescope.nvim', tag = '0.1.1', event = 'VeryLazy', config = true, -- big fuzzy finder
+        dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
+    },
+    { 'rareitems/printer.nvim', event = 'VeryLazy', config = { keymap = "gp" } },-- makes print statements real quickly
     { 'nvim-treesitter/playground', event = 'VeryLazy' }, -- look at the treesitter tree live
     { 'nvim-treesitter/nvim-treesitter', event = 'VeryLazy', -- explicit treesitter definition
         config = function() require('nvim-treesitter.configs').setup{
-             autotag = {
+            autotag = {
                 enable = true,
+            },
+            indent = {
+                enable = true
             },
             ensure_installed = {
                 "sql", "json", "json5", "javascript", "typescript", "css", "html", -- webdev
@@ -54,7 +57,13 @@ return {
             auto_install = false,
             ignore_install = {},
             highlight = { enable = true, additional_vim_regex_highlighting = false },
-        } end
+            rainbow = { -- the nvim-ts-rainbow2 module
+                enable = true,
+                -- Which query to use for finding delimiters
+                query = 'rainbow-parens',
+            },
+        } end,
+        dependencies = { 'HiPhish/nvim-ts-rainbow2' } -- this one's a module so it has to be loaded first
     },
     { 'ziontee113/syntax-tree-surfer', event = 'VeryLazy', config = true } -- nav and modify based on the treesitter tree
 }

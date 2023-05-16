@@ -14,7 +14,7 @@
                     'filename',
                     symbols = {
                         modified = '+',
-                        readonly = '-',
+                        readonly = '🚫',
                         unnamed = '/',
                         newfile = '!'
                     },

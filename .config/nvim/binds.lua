@@ -22,10 +22,13 @@ lmap('n', 'gn', function() jumpNode(false) end, bindopt)
 -- Hold a node and swap it
 map('n', 'gh', '<cmd>STSSwapOrHold<cr>', bindopt)
 map('v', 'gh', '<cmd>STSSwapOrHoldVisual<cr>', bindopt)
+
+-- toggle lsp overlay
+lmap("n", "<leader>l", function() require("lsp_lines").toggle() end, bindopt)
 -- }}}
 
 -- writing mode!
-lmap('n', '<leader>g',   function() writing() end, bindopt)
+lmap('n', '<leader>g', function() writing() end, bindopt)
 
 -- nav buffers
 map('n', '<leader>bn',  '<cmd>bn<cr>', bindopt)

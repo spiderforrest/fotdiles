@@ -43,10 +43,14 @@ set.textwidth=135
 set.number = true
 set.formatoptions = 'tclro12jpaw' -- i just wrote this and i already forgor just check :h fo-table
 set.relativenumber = true --gotta turn u off for teaching :(
+
 vim.o.conceallevel = 2
+set.filetype = 'on'
+set.syntax = 'on'
 
 -- }}}
 
+vim.diagnostic.config({ virtual_text = false }) -- using lsp_lines to show this
 
 -- {{{ neovide
 set.guifont = { "Space Mono", "h6" }
