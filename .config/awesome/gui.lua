@@ -298,7 +298,7 @@ awful.spawn.with_shell("sleep 6 && cpulimit -p " .. tostring(py3_pid) .. " -l 3"
     -- {{{ global titlebar
     local function title_create(c)
       return wibox.widget {
-        markup = "<i>" .. (c.name or "/someone should have set this sooner/") .. "</i>",
+        markup = "<i>" .. gears.string.xml_escape(c.name or "/someone should have set this sooner/") .. "</i>",
         align = "center",
         widget = wibox.widget.textbox,
       }
@@ -314,7 +314,7 @@ awful.spawn.with_shell("sleep 6 && cpulimit -p " .. tostring(py3_pid) .. " -l 3"
 
     local function title_update(c)
       if c.title then
-        c.title:set_markup("<i>" .. (c.name or "/uh oh, not found/") .. "</i>")
+        c.title:set_markup("<i>" .. gears.string.xml_escape(c.name or "/uh oh, not found/") .. "</i>")
       end
     end
 
