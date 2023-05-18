@@ -88,12 +88,15 @@ settings:
   content.local_content_can_access_remote_urls:
     global: true
   content.media.audio_capture:
+    https://diagnostics.simplepractice.com: true
     https://meet.google.com: true
     https://video.simplepractice.com: true
   content.media.audio_video_capture:
+    https://diagnostics.simplepractice.com: true
     https://meet.google.com: true
     https://video.simplepractice.com: true
   content.media.video_capture:
+    https://diagnostics.simplepractice.com: true
     https://meet.google.com: true
     https://v6p9d9t4.ssl.hwcdn.net: true
     https://video.simplepractice.com: true

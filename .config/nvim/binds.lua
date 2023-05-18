@@ -11,6 +11,7 @@ lmap('n', '<leader>th', function() telescope.help_tags() end, bindopt)
 lmap({'n','v'}, 't',    function() MiniJump2d.start(MiniJump2d.builtin_opts.single_character) end, bindopt)
 lmap('n', '<leader>w',  function() MiniMap.toggle() end, bindopt)
 lmap('n', '<leader>h',  function() conceal.toggle_conceal() end, bindopt)
+lmap('n', '<leader>ws', function() MiniTrailspace.trim() end, bindopt)
 
 -- surf a tree, i guess (i really love this one it works great with my brain)
 -- Swap Current Node at the Cursor with it's siblings, Dot Repeatable
