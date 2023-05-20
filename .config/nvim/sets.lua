@@ -27,7 +27,7 @@ set.incsearch = true
 set.showmatch = true
 set.confirm = true
 set.ruler = true
-set.autochdir = true
+--set.autochdir = true
 --set.autowriteall
 set.undolevels=1000
 set.backspace='indent,eol,start'
