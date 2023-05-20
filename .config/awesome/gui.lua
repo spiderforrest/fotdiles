@@ -159,7 +159,18 @@ awful.screen.connect_for_each_screen(function(s)
   s.bar.widget = bar_container
 end) -- }}}
 
-require("py32awe").setup{container = bar_right_container, bar_command_limit = 3, bar_command = "py3status"}
+require("py32awe").setup{container = bar_right_container, bar_command_limit = 3,
+  module_override_handler = function (module, widget)
+    -- the clock makes the whole thing wiggle wiggle wiggle, stop that
+    if module.name == "tztime" then
+      widget.forced_width = 161
+    elseif module.name == 'async_script' then
+      widget.forced_width = 168
+    elseif module.name == 'clock' then -- the est one
+      widget.forced_width = 105
+    end
+  end
+}
 
     -- {{{ global titlebar
     local function title_create(c)
