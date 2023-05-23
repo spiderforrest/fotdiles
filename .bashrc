@@ -195,6 +195,45 @@ extract() {
     esac
 }
 
+# work metafunction
+work() {
+    case "$1" in
+        autoclick) # their slackbot doesn't update
+            echo clicking at "$2"-180
+            i=1
+            while true; do
+                if [[ -n "$2" ]]; then
+                    sleep "$2"
+                else
+                    sleep 180
+                fi
+                xdotool click 1
+                echo click number "$i"
+                i=$((i+1))
+            done
+                ;;
+        clip | script) # the quicker i get past the boilerplate stuff the quicker i can actually help
+            case "$2" in
+                start | greet | intro)
+                    sed -n "1 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
+                    ;;
+                repo)
+                    studentName=$(xclip -o) # copy their name, run this, and you get the repo msg
+                    echo "It's nice to meet you, $studentName! May I have a link to your Github repository to look over?" |
+                        xclip -i -selection 'clipboard'
+                    ;;
+                thank | wait) # generic thanks for sending gimme time
+                    sed -n "13 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
+                    ;;
+                end)
+                    sed -n "5, 9 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
+                    ;;
+
+            *) echo 'ya done goofed' ;;
+        esac
+    esac
+}
+
 ### aliasi ###
 
 # shorthands

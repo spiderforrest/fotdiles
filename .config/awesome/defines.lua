@@ -8,7 +8,7 @@ local naughty = require("naughty")
 require("awful.autofocus")
 
 -- snap mouse to center of window
-require("awesomewm-micky")
+-- require("awesomewm-micky")
 
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_dir("config") .. "/themes/green/theme.lua")

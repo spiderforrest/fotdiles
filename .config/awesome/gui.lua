@@ -106,10 +106,10 @@ local no_widget_tagscrolling = gears.table.join(
 )
 -- }}}
 
--- {{{ Wibar
+-- {{{ wibar
 
 -- this is outside because I want it shared between screens
-local bar_right_container = wibox.layout.fixed.horizontal()
+local statusline_container = wibox.layout.fixed.horizontal()
 local spacer = wibox.widget.textbox("   |  ")
 
 -- generate everything per screen
@@ -144,32 +144,35 @@ awful.screen.connect_for_each_screen(function(s)
   bar_container.expand = "none"
 
   local bar_left_container = wibox.layout.fixed.horizontal()
+  local bar_right_container = wibox.layout.fixed.horizontal()
 
   -- imperatively populate the containers with widgets
   bar_left_container:add(s.layout_box)
   bar_left_container:add(s.taglist)
   bar_left_container:add(spacer)
-  bar_left_container:add(s.title_container)
-  bar_left_container:add(s.title_client_buttons_container)
   bar_left_container:add(s.systray)
+  bar_right_container:add(s.title_container)
+  bar_right_container:add(s.title_client_buttons_container)
 
   -- imperatively populate the container tree/bar
   bar_container.first = bar_left_container
+  bar_container.second = statusline_container
   bar_container.third = bar_right_container
   s.bar.widget = bar_container
 end) -- }}}
 
-require("py32awe").setup{container = bar_right_container, bar_command_limit = 3,
-  module_override_handler = function (module, widget)
-    -- the clock makes the whole thing wiggle wiggle wiggle, stop that
-    if module.name == "tztime" then
-      widget.forced_width = 161
-    elseif module.name == 'async_script' then
-      widget.forced_width = 168
-    elseif module.name == 'clock' then -- the est one
-      widget.forced_width = 105
-    end
-  end
+-- i'm soooo fancy
+require("py32awe").setup{container = statusline_container, bar_command_limit = 3,
+  -- module_override_handler = function (module, widget)
+  --   -- the clock makes the whole thing wiggle wiggle wiggle, stop that
+  --   if module.name == "tztime" then
+  --     widget.forced_width = 162
+  --   elseif module.name == 'async_script' then
+  --     widget.forced_width = 168
+  --   elseif module.name == 'clock' then -- the est one
+  --     widget.forced_width = 105
+  --   end
+  -- end
 }
 
     -- {{{ global titlebar
