@@ -225,6 +225,9 @@ work() {
                 thank | wait) # generic thanks for sending gimme time
                     sed -n "13 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
                     ;;
+                check | understand*)
+                    sed -n "17 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
+                    ;;
                 end)
                     sed -n "5, 9 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
                     ;;
