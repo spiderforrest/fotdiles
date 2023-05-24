@@ -198,7 +198,7 @@ extract() {
 # work metafunction
 work() {
     case "$1" in
-        autoclick) # their slackbot doesn't update
+        autoclick | watch) # their slackbot doesn't update
             echo clicking at "$2"-180
             i=1
             while true; do
@@ -225,10 +225,13 @@ work() {
                 thank | wait) # generic thanks for sending gimme time
                     sed -n "13 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
                     ;;
-                check | understand*)
+                check ) # do u get? or need more helb
                     sed -n "17 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
                     ;;
-                end)
+                off* ) # go open another ticket pls
+                    sed -n "21 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
+                    ;;
+                end | done) # thanks! bye
                     sed -n "5, 9 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
                     ;;
 
