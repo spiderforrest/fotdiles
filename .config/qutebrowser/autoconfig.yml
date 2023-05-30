@@ -91,6 +91,7 @@ settings:
     https://diagnostics.simplepractice.com: true
     https://meet.google.com: true
     https://video.simplepractice.com: true
+    https://webrtc.github.io: true
   content.media.audio_video_capture:
     https://diagnostics.simplepractice.com: true
     https://meet.google.com: true

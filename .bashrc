@@ -199,13 +199,13 @@ extract() {
 work() {
     case "$1" in
         autoclick | watch) # their slackbot doesn't update
-            echo clicking at "$2"-180
+            echo clicking at "$2"-120
             i=1
             while true; do
                 if [[ -n "$2" ]]; then
                     sleep "$2"
                 else
-                    sleep 180
+                    sleep 120
                 fi
                 xdotool click 1
                 echo click number "$i"
@@ -225,7 +225,7 @@ work() {
                 thank | wait) # generic thanks for sending gimme time
                     sed -n "13 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
                     ;;
-                check ) # do u get? or need more helb
+                check | ask) # do u get? or need more helb
                     sed -n "17 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
                     ;;
                 off* ) # go open another ticket pls
@@ -235,8 +235,9 @@ work() {
                     sed -n "5, 9 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
                     ;;
 
-            *) echo 'ya done goofed' ;;
-        esac
+                *) echo 'ya done goofed' ;;
+            esac ;;
+        *) echo 'ya done goofed' ;;
     esac
 }
 
@@ -260,6 +261,7 @@ alias fserv='sftp -P 773 spider@spood.org'
 alias why_would_you_do_this_dude_why='xclip -o | shuf'
 alias :q="exit" # ...
 alias fork="alacritty & disown"
+alias xmpp="profanity -a spider@chat.spood.org -t boothj5_slack"
 
 
 # fixes/improvements
