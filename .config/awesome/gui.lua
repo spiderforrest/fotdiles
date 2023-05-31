@@ -162,7 +162,7 @@ awful.screen.connect_for_each_screen(function(s)
 end) -- }}}
 
 -- i'm soooo fancy
-require("py32awe").setup{container = statusline_container, bar_command_limit = 3,
+require("py32awe").setup{container = statusline_container, bar_command = "script -qfec 'py3status'"
   -- module_override_handler = function (module, widget)
   --   -- the clock makes the whole thing wiggle wiggle wiggle, stop that
   --   if module.name == "tztime" then
