@@ -199,26 +199,30 @@ extract() {
 work() {
     case "$1" in
         autoclick | watch) # their slackbot doesn't update
-            echo clicking at "$2"-120
+            interval=${2:-120}
+            echo clicking at "$interval"
             i=1
             while true; do
-                if [[ -n "$2" ]]; then
-                    sleep "$2"
-                else
-                    sleep 120
-                fi
+                sleep interval
                 xdotool click 1
                 echo click number "$i"
                 i=$((i+1))
             done
                 ;;
+        remind)
+            interval=${2:-120}
+            while true; do
+                sleep "$interval"
+                notify-send "It's been $interval seconds, time to check the queueueue"
+            done
+            ;;
         clip | script) # the quicker i get past the boilerplate stuff the quicker i can actually help
             case "$2" in
                 start | greet | intro)
                     sed -n "1 p" "$HOME/work/scripts" | xclip -i -selection 'clipboard'
                     ;;
                 repo)
-                    studentName=$(xclip -o) # copy their name, run this, and you get the repo msg
+                    studentName=${3:-$(xclip -o)} # copy their name, run this, and you get the repo msg
                     echo "It's nice to meet you, $studentName! May I have a link to your Github repository to look over?" |
                         xclip -i -selection 'clipboard'
                     ;;
