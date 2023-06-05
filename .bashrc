@@ -203,7 +203,7 @@ work() {
             echo clicking at "$interval"
             i=1
             while true; do
-                sleep interval
+                sleep "$interval"
                 xdotool click 1
                 echo click number "$i"
                 i=$((i+1))
