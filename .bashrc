@@ -213,7 +213,8 @@ work() {
             interval=${2:-120}
             while true; do
                 sleep "$interval"
-                notify-send "It's been $interval seconds, time to check the queueueue"
+                echo reminding
+                notify-send -u critical "It's been $interval seconds, check the q"
             done
             ;;
         clip | script) # the quicker i get past the boilerplate stuff the quicker i can actually help
@@ -265,7 +266,7 @@ alias fserv='sftp -P 773 spider@spood.org'
 alias why_would_you_do_this_dude_why='xclip -o | shuf'
 alias :q="exit" # ...
 alias fork="alacritty & disown"
-alias xmpp="profanity -a spider@chat.spood.org -t boothj5_slack"
+alias xmpp="profanity -a spider@spood.org -t boothj5_slack"
 
 
 # fixes/improvements
