@@ -18,7 +18,8 @@ theme.icon_theme = "gruvbox-dark-icons-gtk"
 -- theme.wallpaper = usurface.crop(theme_path .. "../wallpapers/river_paintpractice.png", 384, 0, 1920, 1080)
 -- theme.wallpaper = theme_path .. "../wallpapers/Ø!.png"
 -- theme.wallpaper = theme_path .. "../wallpapers/dark Ø!.png"
-theme.wallpaper = theme_path .. "../wallpapers/dark gas Ø!.png"
+-- theme.wallpaper = theme_path .. "../wallpapers/dark gas Ø!.png"
+theme.wallpaper = theme_path .. "../wallpapers/dark gas snake Ø!.png"
 -- control if it's per screen or both
 theme.wallpaper_global = true
 -- theme.wallpaper_global = false

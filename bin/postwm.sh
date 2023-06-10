@@ -49,5 +49,5 @@ wezterm start --class=local bash -i -c "neofetch && python bin/archnews.py | sed
 # ensureOn pavucontrol-qt
 
 # this one is batshit
-NUMEN_DMENU=j4-desktop-dmenu
-ensureOn numen "$HOME/.config/numen/off.phrases"
+export NUMEN_DMENU=j4-desktop-dmenu
+#ensureOn numen "$HOME/.config/numen/off.phrases"
