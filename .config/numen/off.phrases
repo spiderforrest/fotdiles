@@ -1,0 +1,6 @@
+# binds for numen when dormant
+
+# needs shell to fully expand
+new man hi man: run notify-send "Numen active" \
+    run echo load /home/spider/.config/numen/phrases/*.phrases | numenc
+new man space: press space

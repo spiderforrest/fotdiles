@@ -2,7 +2,7 @@ return {
     { 'ms-jpq/chadtree', branch = 'chad', build =  'python3 -m chadtree deps', event = 'VeryLazy' }, -- file manager
     -- { 'edluffy/hologram.nvim', event = 'VeryLazy', config = function () require('hologram').setup{auto_display = true} end }, -- inline image rendering tanks mr wezterm
     { 'mbbill/undotree', event = 'VeryLazy' }, -- undo manager
-    { 'wakatime/vim-wakatime', event = 'VeryLazy' }, -- time tracker
+    -- { 'wakatime/vim-wakatime', event = 'VeryLazy' }, -- time tracker
     -- VIM TWO PLAYER MODE 1V1 ME NERD
     { 'jbyuki/instant.nvim', event = 'VeryLazy', config = function() g['instant_username'] = "$HOSTNAME" end  }, -- allows remote connections to share session
     -- git

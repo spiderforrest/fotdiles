@@ -1,0 +1,12 @@
+ # honestly this is one of the better dynamic macro tools i've come across
+ # check this shit:
+
+# ThErE'S No wAy eNaBlInG ThIs cOuLd eVeR CaUsE AnYtHiNg uNdEsIrAbLe tO HaPpEn
+#@transcribe shell: set numen_fmt echo normal \
+#	pen /etc/numen/scripts/tweak; /etc/numen/scripts/transcripts | head -n 1 | bash -
+
+# yes there's no way this isn't a massive security risk but cmon
+@transcribe work: set numen_fmt echo normal \
+	run /etc/numen/scripts/tweak; /etc/numen/scripts/transcripts | head -n 1 | xargs "$HOME/bin/work"
+
+shutdown leg six: press power

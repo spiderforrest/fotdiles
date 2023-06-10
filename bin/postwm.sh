@@ -47,3 +47,7 @@ wezterm start --class=local bash -i -c "neofetch && python bin/archnews.py | sed
 # bin/archnews.py | sed -n '1,18 p' && $HOME/bin/p u; bash" &
 # ensureOn keepassxc
 # ensureOn pavucontrol-qt
+
+# this one is batshit
+NUMEN_DMENU=j4-desktop-dmenu
+ensureOn numen "$HOME/.config/numen/off.phrases"

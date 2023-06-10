@@ -1,0 +1,17 @@
+# I use these for managing application windows but they just simulate keys,
+# so you'll need to configure your desktop environment, or you can use my
+# preconfigured desktop environment: https://git.sr.ht/~geb/tiles
+
+# Navigate to the window in the given direction
+next: stick off \
+	press super+e
+last: stick off \
+
+shrink: stick off \
+	press super+n
+grow: stick off \
+	press super+o
+
+# Toggle fullscreen
+screen: stick off \
+	press super+f
