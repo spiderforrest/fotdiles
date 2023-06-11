@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+script=""
+
+case "$1" in
+    autoclick | watch) # their slackbot doesn't update
+        interval=${2:-120}
+        echo clicking at "$interval"
+        i=1
+        while true; do
+            sleep "$interval"
+            xdotool click 1
+            echo click number "$i"
+            i=$((i+1))
+        done
+            ;;
+    remind)
+        interval=${2:-120}
+        while true; do
+            sleep "$interval"
+            echo reminding
+            notify-send -u critical "It's been $interval seconds, check the q"
+        done
+        ;;
+    clip | script) # the quicker i get past the boilerplate stuff the quicker i can actually help
+        case "$2" in
+            start | greet | intro)
+                script=$(sed -n "1 p" "$HOME/work/scripts")
+                ;;
+            quick)
+                script=$(sed -n "18 p" "$HOME/work/scripts")
+                ;;
+            repo)
+                studentName=${3:-$(xclip -o)} # copy their name, run this, and you get the repo msg
+                script="It's nice to meet you, $studentName! May I have a link to your Github repository to look over?"
+                shift
+                ;;
+            thank | wait | think) # generic thanks for sending gimme time
+                script=$(sed -n "13 p" "$HOME/work/scripts")
+                ;;
+            check | ask) # do u get? or need more helb
+                script=$(sed -n "17 p" "$HOME/work/scripts")
+                ;;
+            off* ) # go open another ticket pls
+                script=$(sed -n "21 p" "$HOME/work/scripts")
+                ;;
+            end | done | and) # thanks! bye
+                script=$(sed -n "5, 9 p" "$HOME/work/scripts")
+                ;;
+            *) echo 'ya done goofed' ; exit ;;
+
+        esac
+            if [[ $3 == "stdio" ]] ; then
+                echo "$script"
+            else
+                echo "$script" | xclip -i -selection 'clipboard'
+                notify-send "loaded $2"
+            fi
+        ;;
+    seed | mysql)
+        # reset my testing db
+        mysql -u root -p"password" -e "DROP DATABASE IF EXISTS testing_db; CREATE DATABASE testing_db;"
+        cat "$HOME/work/mysql_dotenv" >> .env # overrule their keys with mine
+        npm run seed
+        ;;
+    *) echo 'ya done goofed' ;;
+esac
+

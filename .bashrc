@@ -217,6 +217,7 @@ alias why_would_you_do_this_dude_why='xclip -o | shuf'
 alias :q="exit" # ...
 alias fork="alacritty & disown"
 alias xmpp="profanity -a spider@spood.org -t boothj5_slack"
+alias cold="notify-send 'Numen dormant' && numen $HOME/.config/numen/off.phrases"
 
 
 # fixes/improvements
