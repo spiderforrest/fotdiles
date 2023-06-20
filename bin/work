@@ -28,7 +28,7 @@ case "$1" in
                 script=$(sed -n "1 p" "$HOME/work/scripts")
                 ;;
             quick)
-                script=$(sed -n "18 p" "$HOME/work/scripts")
+                script=$(sed -n "28 p" "$HOME/work/scripts")
                 ;;
             repo)
                 studentName=${3:-$(xclip -o)} # copy their name, run this, and you get the repo msg

@@ -128,7 +128,7 @@ shove() {
 # shorthand to clone down a github repo with minimal link format
 github() {
     if [[ -z $1 ]] ; then return ; fi
-    # shush shellcheck
+    # shellcheck disable=SC2143
     if [[ -z "$(pwd | grep git)" ]] ; then
         cd "$HOME/project/git" || return
     fi
@@ -163,6 +163,8 @@ uh() {
     elif [[ -f "$1" ]] ; then
         cat "$1"
         # the shellcheck warning annoys me a lot more than it should
+            # but not enough to google how to disable it once, dude? really?
+        # shellcheck disable=SC2012
         printf "/// %s ///\n" "$(ls -abhHiluZ --color=always --group-directories-first --time-style=+%y/%m/%d\.%H%M --hyperlink=auto "$1" | tac)"
         # make directory or make/edit file
     elif [[ ! -e "$1" ]] ; then
@@ -217,7 +219,10 @@ alias why_would_you_do_this_dude_why='xclip -o | shuf'
 alias :q="exit" # ...
 alias fork="alacritty & disown"
 alias xmpp="profanity -a spider@spood.org -t boothj5_slack"
+# shellcheck disable=SC2139
 alias cold="notify-send 'Numen dormant' && numen $HOME/.config/numen/off.phrases"
+# shellcheck disable=SC2139
+alias nile="$HOME/project/git/nile/bin/nile"
 
 
 # fixes/improvements
