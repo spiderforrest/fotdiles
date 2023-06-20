@@ -19,6 +19,7 @@ Hi there! Here are my dotfiles, not much to say there. Software:
 - [Flameshot](https://flameshot.org)-screenshots.
 - [Font Manager](https://github.com/FontManager/font-manager)-this bad boy makes fonts easy as hell, basically a must-have.
 - [BTOP](https://github.com/aristocratos/btop)-process manager. she cute.
+- [Gajim](https://gajim.org)-mostly actually use [profanity](https://profanity-im.github.io/) but gui sometimes. if you're reading this you're probably in my xmpp server, but if not you're invited, contact me.
 - [Numen](https://git.sr.ht/~geb/numen)-a voice input tool to simulate inputs, dictate, or run scripts.
 - [Picom](https://github.com/yshui/picom)-honestly I'm currently just using this for transparent borders.
 - [Xfce4 Mime Settings](https://docs.xfce.org/xfce/xfce4-settings/4.14/mime)-big thanks to xfce for having so many useful modular components. I just use this to set [mime](https://specifications.freedesktop.org/mime-apps-spec/mime-apps-spec-latest.html) and don't touch it.

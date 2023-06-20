@@ -74,6 +74,12 @@ cfg() {
                 if [[ -n "$2" ]] ; then # if called with a prefix, strip it out
                     shift 1
                 fi
+                if [[ "$2" == "list" ]] ; then
+                    echo /// configs: ///
+                    ls -B "$dir/nvim"
+                    echo /// plugins: ///
+                    ls -B "$dir/nvim/lua/plug"
+                fi
                 # check real quick if it's a top level file otherwise assume plugins
                 if [[ -e "$dir/nvim/$1.lua" ]] ; then
                             nvim "$dir/nvim/$1.lua"
@@ -223,6 +229,7 @@ alias xmpp="profanity -a spider@spood.org -t boothj5_slack"
 alias cold="notify-send 'Numen dormant' && numen $HOME/.config/numen/off.phrases"
 # shellcheck disable=SC2139
 alias nile="$HOME/project/git/nile/bin/nile"
+nuke() { rm -r "$1" && echo "rm -r\"\$*\" \"./$1\"" >> "$HOME/bin/clean_junk"; }
 
 
 # fixes/improvements

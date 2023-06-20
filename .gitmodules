@@ -16,3 +16,6 @@
 [submodule ".config/awesome/py32awe"]
 	path = .config/awesome/py32awe
 	url = https://github.com/spiderforrest/py32awe
+[submodule ".config/gajim/theme"]
+	path = .config/gajim/theme
+	url = https://github.com/dracula/gajim.git

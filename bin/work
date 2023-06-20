@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 
 script=""
+scriptfile="$HOME/work/scripts"
+
+# check if should output to standard out
+if [[ "$1" == "stdio" ]] ; then
+    stdio=true
+    shift
+else
+    stdio=false
+fi
 
 case "$1" in
     autoclick | watch) # their slackbot doesn't update
@@ -13,7 +22,8 @@ case "$1" in
             echo click number "$i"
             i=$((i+1))
         done
-            ;;
+        ;;
+
     remind)
         interval=${2:-120}
         while true; do
@@ -22,47 +32,59 @@ case "$1" in
             notify-send -u critical "It's been $interval seconds, check the q"
         done
         ;;
+
     clip | script) # the quicker i get past the boilerplate stuff the quicker i can actually help
         case "$2" in
-            start | greet | intro)
-                script=$(sed -n "1 p" "$HOME/work/scripts")
-                ;;
-            quick)
-                script=$(sed -n "28 p" "$HOME/work/scripts")
-                ;;
+
+            start | hi) script=$(sed -n "1 p" "$scriptfile") ;;
+
+            quick) script=$(sed -n "28 p" "$scriptfile") ;;
+
             repo)
                 studentName=${3:-$(xclip -o)} # copy their name, run this, and you get the repo msg
                 script="It's nice to meet you, $studentName! May I have a link to your Github repository to look over?"
                 shift
                 ;;
-            thank | wait | think) # generic thanks for sending gimme time
-                script=$(sed -n "13 p" "$HOME/work/scripts")
+
+            thank | wait | think) script=$(sed -n "13 p" "$scriptfile") ;; # thanks, lemme look
+
+            check | ask) script=$(sed -n "17 p" "$scriptfile") ;; # do u get? or need more helb
+
+            off* ) script=$(sed -n "21 p" "$scriptfile") ;; # go open another ticket pls
+
+            end | done | and) script=$(sed -n "5, 9 p" "$scriptfile") ;; # thanks! bye
+
+            vanish | unresponsive)
+                # screw u if i wanna triple nest case statements in my own scripts i will
+                case "$3" in
+
+                    hi | back) script=$(sed -n "38, 40 p" "$scriptfile") ;; # hi again
+
+                    fail | end | bye) script=$(sed -n "44 p" "$scriptfile") ;; # begone with ye
+
+                    *) script=$(sed -n "32, 34 p" "$scriptfile") ;; # r u there
+
+                esac
                 ;;
-            check | ask) # do u get? or need more helb
-                script=$(sed -n "17 p" "$HOME/work/scripts")
-                ;;
-            off* ) # go open another ticket pls
-                script=$(sed -n "21 p" "$HOME/work/scripts")
-                ;;
-            end | done | and) # thanks! bye
-                script=$(sed -n "5, 9 p" "$HOME/work/scripts")
-                ;;
+
             *) echo 'ya done goofed' ; exit ;;
 
         esac
-            if [[ $3 == "stdio" ]] ; then
+            if $stdio ; then
                 echo "$script"
             else
                 echo "$script" | xclip -i -selection 'clipboard'
-                notify-send "loaded $2"
+                notify-send "loaded $2 $studentName"
             fi
         ;;
+
     seed | mysql)
         # reset my testing db
         mysql -u root -p"password" -e "DROP DATABASE IF EXISTS testing_db; CREATE DATABASE testing_db;"
         cat "$HOME/work/mysql_dotenv" >> .env # overrule their keys with mine
         npm run seed
         ;;
+
     *) echo 'ya done goofed' ;;
 esac
 
