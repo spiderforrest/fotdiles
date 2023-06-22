@@ -1,14 +1,4 @@
 
--- {{{ theme
--- options are light, dark, and null
-set.background='dark'
--- options are gelatin, cookie, cocoa, and chocolate
-g.everforest_background = 'gelatin'
-g.airline_theme = 'everforest'
-
--- }}}
-
-
 -- {{{ just settings :)
 set.tabstop=4
 set.softtabstop=4
