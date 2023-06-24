@@ -9,7 +9,7 @@ return {
         -- options are light, dark, and null
         set.background = ''
         -- options are gelatin, cookie, cocoa, and chocolate
-        g.everforest_background = 'cocoa'
+        g.everforest_background = 'cookie'
         -- apply theme and do color corrections
         vs [[
         colorscheme everforest
