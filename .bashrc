@@ -27,13 +27,6 @@ complete -cf man
 complete -cf which
 complete -cf progflip
 
-# sourcing
-if [[ -f "$HOME/.config/herbstluftwm/share/herbstclient-completion.bash" ]] ; then
-    source "$HOME/.config/herbstluftwm/share/herbstclient-completion.bash"
-fi
-if [[ -f "$HOME/project/git/qmk_firmware/util/qmk_tab_complete.sh" ]] ; then
-    source "$HOME/project/git/qmk_firmware/util/qmk_tab_complete.sh"
-fi
 
 
 ### functions ###
@@ -203,7 +196,6 @@ extract() {
     esac
 }
 
-
 ### aliasi ###
 
 # shorthands
@@ -229,23 +221,6 @@ alias cold="notify-send 'Numen dormant' && numen $HOME/.config/numen/off.phrases
 # shellcheck disable=SC2139
 alias nile="$HOME/project/git/nile/bin/nile"
 nuke() { rm -r "$1" && echo "rm -r\"\$*\" \"./$1\"" >> "$HOME/bin/clean_junk"; }
-sval() {
-    cd "$HOME/project/svalboard/esp-idf/" || return
-    source "$HOME/project/svalboard/esp-idf/export.sh"
-    echo "dev(*), build(b*)?"
-    read -r io
-    case "$io" in
-        b*)
-            cd "$HOME/project/svalboard/esp-qmk-clone/components/qmk/qmk/keyboards/handwired/lalboard" || return
-            rm -r ./keymaps/spiderforrest
-            cp "$HOME/project/git/lalboard-qmk-clone/keyboards/handwired/lalboard/keymaps/spiderforrest" ./keymaps/
-            ;;
-        *)
-            cd "$HOME/project/git/lalboard-qmk-clone/keyboards/handwired/lalboard/keymaps/spiderforrest" || return
-            ;;
-    esac
-}
-
 
 # fixes/improvements
 alias sl='sl -la'

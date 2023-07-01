@@ -1,0 +1,64 @@
+#!/usr/bin/bash
+
+
+esp_idf_dir="$HOME/project/svalboard/esp-idf/"
+build_dir="$HOME/project/svalboard/esp-qmk-clone/"
+keymap="spiderforrest" # this is just for cd lol
+
+custom_config_dir="$HOME/project/svalboard/lalboard-qmk-clone/keyboards/handwired/lalboard/"
+build_config_dir="$build_dir/components/qmk/qmk/keyboards/handwired/lalboard/"
+
+
+# if [[ -z "$1" ]] ; then
+#     echo "dev(*), build(b*)?"
+#     read -r mode
+# else
+#     mode="$1"
+# fi
+
+build() {
+        echo "Searching for device! Press reset+boot to flash $1 hand..."
+        # find device
+        while [[ ! -e /dev/ttyACM0 ]] ; do
+            sleep 0.5
+        done
+
+        echo "yeah i haven't wrote udev rules yet give me your password"
+        sudo chmod 666 /dev/ttyACM0
+
+        echo "Flashing $1!"
+        SIDE="$1" idf.py -p /dev/ttyACM0 flash
+}
+
+
+case "$1" in
+    b*)
+        # load the build venv if not loaded
+        if [[ ! $ESP_ENV_ACTIVE ]] ; then
+            source "$esp_idf_dir/export.sh"
+            export ESP_ENV_ACTIVE=true
+        fi
+        # copy over the custom configs
+        cd "$build_dir" || return
+        rm -r "$build_config_dir"
+        cp -r "$custom_config_dir" "$build_config_dir"
+
+        # flash a specific hand
+        if [[ -n "$2" ]] ; then
+            build "$2"
+            exit
+        fi
+
+        # otherwise do them in order
+        build left
+        echo "Press enter to do right"
+        read -r
+        build left
+
+        ;;
+    *)
+        cd "$custom_config_dir/keymaps/$keymap" || exit
+        bash # i do not see it i do not see it i do not see it
+        ;;
+esac
+

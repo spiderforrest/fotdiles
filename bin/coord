@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+color="${1:-"orangered"}"
+gap="${2:-"38"}"
+
+# well i literally want paremeter expansion shellcheck
+# shellcheck disable=SC2046
+xdotool mousemove $(coord.py --color "$color" --gap "$gap"); xdotool click 1
+

@@ -3,7 +3,7 @@
 map('v', '<Enter>',     '<cmd>EasyAlign<cr>', bindopt)
 map('n', '<leader>f',   '<cmd>CHADopen<cr>', bindopt)
 map('n', '<leader>u',   '<cmd>UndotreeToggle<cr>', bindopt)
-map('n', '<leader>rs',  'IncRename ', bindopt)
+map('n', '<leader>rs',  ':IncRename ', bindopt)
 lmap('n', '<leader>tf', function() telescope.find_files() end, bindopt)
 lmap('n', '<leader>tg', function() telescope.live_grep() end, bindopt)
 lmap('n', '<leader>tb', function() telescope.buffers() end, bindopt)
@@ -20,6 +20,8 @@ lmap('n', '<leader>n', function() set.opfunc = 'v:lua.STSSwapCurrentNodePrevNorm
 --Jump to next node matching list defined in defines.lua
 lmap('n', 'go', function() jumpNode(true) end, bindopt)
 lmap('n', 'gn', function() jumpNode(false) end, bindopt)
+-- jump into visual around a node
+-- map("n", "ge", '<cmd>STSSelectCurrentNode<cr>', bindopt)
 -- Hold a node and swap it
 map('n', 'gh', '<cmd>STSSwapOrHold<cr>', bindopt)
 map('v', 'gh', '<cmd>STSSwapOrHoldVisual<cr>', bindopt)
