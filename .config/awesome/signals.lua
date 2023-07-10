@@ -18,7 +18,7 @@ client.connect_signal("manage", function (c)
     -- containment blurb
     if c.class == 'zoom' then
         -- in rules i have them all float, this unfloats the main class window
-        if c.name == 'Zoom Meeting' then
+        if c.name == 'Zoom Meeting' or c.name == 'Zoom - Licensed Account' then
             c:move_to_tag(tags[14])
             c.floating = false
             return
@@ -29,7 +29,7 @@ client.connect_signal("manage", function (c)
         awful.spawn.easy_async_with_shell("xprop _NET_WM_NAME -id " .. id, function(stdio)
         -- nuke it
             if tostring(stdio) == '_NET_WM_NAME(UTF8_STRING) = "zoom"\n' then
-                naughty.notify{ title="zoom supressed", text="you're welcome." }
+                naughty.notify{ title="zoom suppressed", text="you're welcome." }
                 c.minimized = true
                 return
             end

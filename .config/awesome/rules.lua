@@ -51,7 +51,7 @@ awful.rules.rules = {
 
     -- music
     { rule_any =
-        { class = "Spotify" },
+        { class = { "spotify", "Spotify" } },
         properties = { tag = tags[12] }
     },
 

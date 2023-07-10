@@ -221,6 +221,7 @@ alias cold="notify-send 'Numen dormant' && numen $HOME/.config/numen/off.phrases
 # shellcheck disable=SC2139
 alias nile="$HOME/project/git/nile/bin/nile"
 nuke() { rm -r "$1" && echo "rm -r\"\$*\" \"./$1\"" >> "$HOME/bin/clean_junk"; }
+alias prosody="TERM=xterm ssh -J spood.org:773 admin@xmpp.spood.org -i .aws/spider.pem"
 
 # fixes/improvements
 alias sl='sl -la'
