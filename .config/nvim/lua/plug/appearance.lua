@@ -49,5 +49,8 @@ return {
     { 'junegunn/limelight.vim', cmd = 'Limelight' }, -- highlight current block brighter
     -- ui revamp
     { 'kyazdani42/nvim-web-devicons', event = 'VeryLazy' }, -- icons and emojis n shit: 🗿
-    { 'eandrju/cellular-automaton.nvim', event = 'VeryLazy' }, -- no comment.
+    { 'eandrju/cellular-automaton.nvim', event = 'VeryLazy',
+        -- fuck you you're gonna have a silly easter egg you should actually implement it
+        --config = function () vs[[ autocmd UserGettingBored CellularAutomaton ]] end
+    }, -- no comment.
 }

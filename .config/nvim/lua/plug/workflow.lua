@@ -35,6 +35,34 @@ return {
             size = 80, -- by default he teeny!!
         } end
     },
+    { 'willothy/flatten.nvim', -- anti nesting
+        opts = {
+            window = {
+                open = "alternate"
+            },
+            callbacks = {
+                should_block = function(argv)
+                    -- block if -b
+                    return vim.tbl_contains(argv, "-b")
+                end,
+                post_open = function(bufnr, winnr, ft, is_blocking)
+                    if is_blocking then
+                        -- Hide the terminal while it's blocking
+                        require("toggleterm").toggle(0)
+                    else
+                        -- If it's a normal file, just switch to its window
+                        vim.api.nvim_set_current_win(winnr)
+                    end
+                end,
+                block_end = function()
+                    -- respawn term
+                    require("toggleterm").toggle(0)
+                end
+            }
+        },
+        -- Ensure that it runs first to minimize delay when opening file from terminal
+        lazy = false, priority = 1001,
+    },
     { "smjonas/inc-rename.nvim", config = true, event = 'VeryLazy' }, -- rename based off tree sitter
     { 'nvim-telescope/telescope.nvim', tag = '0.1.1', event = 'VeryLazy', config = true, -- big fuzzy finder
         dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
@@ -58,11 +86,11 @@ return {
             auto_install = false,
             ignore_install = {},
             highlight = { enable = true, additional_vim_regex_highlighting = false },
-           rainbow = { -- the nvim-ts-rainbow2 module
-               enable = true,
-               -- Which query to use for finding delimiters
-               query = 'rainbow-parens',
-           },
+            rainbow = { -- the nvim-ts-rainbow2 module
+                enable = true,
+                -- Which query to use for finding delimiters
+                query = 'rainbow-parens',
+            },
         } end,
         dependencies = { 'HiPhish/nvim-ts-rainbow2' } -- this one's a module so it has to be loaded first
     },

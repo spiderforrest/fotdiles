@@ -161,16 +161,20 @@ end
 
 -- {{{ lazy config
 lazyConf = {
-  -- defaults = { lazy = true },
+  defaults = { lazy = true },
   dev = {
     path = "~/project/git/",
-    patterns = { "spiderforrest"},
+    patterns = { "spiderforrest" },
     fallback = true,
   },
-  checker = {
-    enabled = true,
-    concurrency = 1,
-    notify = false,
+  -- wow that got old so fast
+  -- checker = {
+  --   enabled = true,
+  --   concurrency = 5,
+  --   notify = true,
+  -- },
+  change_detection = {
+    enabled = false,
   },
   install = {
     colorscheme = { "everforest", "habamax" }

@@ -52,7 +52,7 @@ case "$1" in
             notify-send "It's been $interval seconds, check the q"
             # save the volume and set it to a constant
             vol=$(allume get)
-            allume set 45%
+            # allume set 45%
             aplay "$HOME/misc/bedroom communithree.wav" # HERE IT IS AGAIN
             allume set "$vol" # A HEART OF EXCITEMENT
             echo beep "#$i"
