@@ -1,0 +1,40 @@
+#!/usr/bin/bash
+
+# consolidates ls,cat,mkdir,vim,touch,cd,vim again
+# check second arg for edit/enter flag for editing existing files or moving directories-saves me like four keypresses to just 
+# append 'v' or 'e' when uh-ing aroud to edit
+if [[ -n "$2" ]] ; then
+    if [[  "$2" = "v" || "$2" = "e" ]] ; then
+        nvim "$1"
+    else
+        # run arbitrary command on $1
+        shift 1
+        "$*" "$1"
+    fi
+    return
+fi
+# bootleg case statement operating on what the target is
+# ls PWD if no input
+if [[ -z "$1" ]] ; then
+    ls -ZlAhcbGNp --color=always --group-directories-first --time-style=+%y/%m/%d\.%H%M --hyperlink=auto | tac
+    # ls target if existing dir
+elif [[ -d "$1" ]] ; then
+    ls -ZlAhcbGNp --color=always --group-directories-first --time-style=+%y/%m/%d\.%H%M --hyperlink=auto "$1" | tac
+    # cat target if textfile
+elif [[ -f "$1" ]] ; then
+    cat "$1"
+    # the shellcheck warning annoys me a lot more than it should
+        # but not enough to google how to disable it once, dude? really?
+    # shellcheck disable=SC2012
+    printf "/// %s ///\n" "$(ls -abhHiluZ --color=always --group-directories-first --time-style=+%y/%m/%d\.%H%M --hyperlink=auto "$1" | tac)"
+    # make directory or make/edit file
+elif [[ ! -e "$1" ]] ; then
+    printf "/// does not exist! create \"%s\" as a directory open a new file ///\n  for editor(assumed): *\n  for mkdir: d(irectory),m(kdir)\\n  for touch: t(ouch)\\n  cancel: n(o),c(ancel)\n" "$1"
+    read -r i
+    case "$i" in
+        n* | c*)	return								;;
+        d* | m*)	mkdir -p "$1" && cd "$1" || return	;;
+        t*)         touch "$1"                          ;;
+        *)			nvim "$1"							;;
+    esac
+fi

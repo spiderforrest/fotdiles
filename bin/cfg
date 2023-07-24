@@ -1,0 +1,41 @@
+#!/usr/bin/bash
+
+# touch grass or something
+if [[ -z "$1" ]] ; then return; fi
+dir="$HOME/.config"
+case "$1" in
+    bash* | sh*)        nvim "$HOME/.bashrc"                    ;;
+    term* | wez*)       nvim "$dir/wezterm/wezterm.lua"         ;;
+    red* | ow)          nvim "$dir/redshift/redshift.conf"      ;;
+    i3)                 nvim "$dir/i3/config"                   ;;
+    picom)              nvim "$dir/picom/picom.conf"            ;;
+    bar)                nvim "$dir/py3status/config"            ;;
+    bin | script*)      nvim "$HOME/bin/$2"                     ;;
+    wm | awesome)
+        if [[ -z "$2" ]] ; then
+                        nvim "$dir/awesome/rc.lua"
+        else
+                        nvim "$dir/awesome/$2.lua"
+        fi                                                      ;;
+    # idk it's probably vim
+    v* | nvim | *)
+        if [[ -e "$dir/nvim/$1.lua" ]] ; then
+                        nvim "$dir/nvim/nvim.lua"
+        else
+            if [[ -n "$2" ]] ; then # if called with a prefix, strip it out
+                shift 1
+            fi
+            if [[ "$2" == "list" ]] ; then
+                echo /// configs: ///
+                ls -B "$dir/nvim"
+                echo /// plugins: ///
+                ls -B "$dir/nvim/lua/plug"
+            fi
+            # check real quick if it's a top level file otherwise assume plugins
+            if [[ -e "$dir/nvim/$1.lua" ]] ; then
+                        nvim "$dir/nvim/$1.lua"
+            else
+                        nvim "$dir/nvim/lua/plug/$1.lua"
+            fi
+        fi                                                      ;;
+esac

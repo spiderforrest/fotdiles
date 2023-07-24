@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+if [[ -n "$1" ]] ; then
+    cat -n "$HOME/.bash_history" | grep -a "$1" | tail -n 40
+else
+    history | tail -n 40
+fi
