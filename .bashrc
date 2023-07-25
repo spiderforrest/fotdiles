@@ -15,7 +15,12 @@ export pref_term="wezterm"
 
 # ignore the rest if not interactive
 [[ $- != *i* ]] && return
-if [[ "$HOSTNAME" == "spiderlegsix" ]] ; then
+
+# this redirects to hilbish when interactive, on legsix, and when the parent process is NOT hilbish
+# so if you type bash in hilbish you get bash
+# can you breathe shellcheck
+# shellcheck disable=SC2009,SC2143
+if [[ "$HOSTNAME" == "spiderlegsix" ]] && ! ps $PPID | grep -q hilbish ; then
   exec hilbish -S -l
 fi
 

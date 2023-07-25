@@ -4,7 +4,8 @@
 if [[ -z "$1" ]] ; then return; fi
 dir="$HOME/.config"
 case "$1" in
-    bash* | sh*)        nvim "$HOME/.bashrc"                    ;;
+    bash*)              nvim "$HOME/.bashrc"                    ;;
+    sh* | hil*)         nvim "$dir/hilbish/init.lua"            ;;
     term* | wez*)       nvim "$dir/wezterm/wezterm.lua"         ;;
     red* | ow)          nvim "$dir/redshift/redshift.conf"      ;;
     i3)                 nvim "$dir/i3/config"                   ;;
