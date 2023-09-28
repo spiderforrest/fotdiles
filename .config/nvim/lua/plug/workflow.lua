@@ -37,9 +37,8 @@ return {
     },
     { 'willothy/flatten.nvim', -- anti nesting
         opts = {
-            window = {
-                open = "alternate"
-            },
+            window = { open = "alternate" },
+            one_per = { wezterm = false }, -- cool plugin but breaking changes ;_; i thought it was my waputer
             callbacks = {
                 should_block = function(argv)
                     -- block if -b
@@ -80,19 +79,13 @@ return {
             ensure_installed = {
                 "sql", "json", "json5", "javascript", "typescript", "css", "html", -- webdev
                 "bash", "rust", "lua", "c", "cpp", "make", "vim",
-                "markdown", "markdown_inline", "awk", "diff", "help", "passwd", "regex"
+                "markdown", "markdown_inline", "awk", "diff", "passwd", "regex", --"help"
             },
             sync_install = false,
             auto_install = false,
             ignore_install = {},
             highlight = { enable = true, additional_vim_regex_highlighting = false },
-            rainbow = { -- the nvim-ts-rainbow2 module
-                enable = true,
-                -- Which query to use for finding delimiters
-                query = 'rainbow-parens',
-            },
         } end,
-        dependencies = { 'HiPhish/nvim-ts-rainbow2' } -- this one's a module so it has to be loaded first
     },
     { 'ziontee113/syntax-tree-surfer', event = 'VeryLazy', config = true } -- nav and modify based on the treesitter tree
 }

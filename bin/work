@@ -2,6 +2,7 @@
 
 script=""
 scriptfile="$HOME/work/scripts"
+default_interval=180
 
 # check if should output to standard out
 if [[ "$1" == "stdio" ]] ; then
@@ -13,7 +14,7 @@ fi
 
 case "$1" in
     autoclick | watch) # their slackbot doesn't update
-        interval=${2:-120}
+        interval=${2:-$default_interval}
         echo clicking at "$interval"
         i=1
         while true; do
@@ -25,7 +26,7 @@ case "$1" in
         ;;
 
     remind)
-        interval=${2:-120}
+        interval=${2:-$default_interval}
         echo reminding at "$interval"
         i=1
         while true; do
@@ -112,6 +113,17 @@ case "$1" in
         npm run seed
         ;;
 
+    setup)
+        # start dbs
+        sudo mongod --config /etc/mongodb.conf &
+        cd '/usr' ; sudo mariadbd-safe --datadir='/var/lib/mysql' &
+
+        # fuck it, launch everything else too
+        firefox -P work &
+        slack &
+        zoom &
+
+        ;;
     *) echo 'ya done goofed' ;;
 esac
 

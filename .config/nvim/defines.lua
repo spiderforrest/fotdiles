@@ -36,7 +36,7 @@ end
 function jumpNode(direction)
   require('syntax-tree-surfer').filtered_jump({
 		"function",
-        "if_statement",
+      "if_statement",
 		"else_clause",
 		"else_statement",
 		"elseif_statement",
@@ -79,6 +79,7 @@ inWritingMode = false
 function writing() -- lua function to toggle the writing mode
   if not inWritingMode then
     vs [[
+      set textwidth=0
       set nonumber
       set norelativenumber
       set wrap
@@ -103,6 +104,7 @@ function writing() -- lua function to toggle the writing mode
   else
     vs [[
       set number
+      set textwidth=135
       set relativenumber
       set nowrap
       set nospell
@@ -181,5 +183,9 @@ lazyConf = {
   },
 }
 
+-- python fucking sucks
+g.python3_host_prog="/usr/bin/python3"
+
 
 -- vim:foldmethod=marker
+

@@ -65,12 +65,10 @@ mine="__GL_THREADED_OPTIMIZATIONS=0 multimc -l 'the final gay'",
 sl='sl -la',
 rm='rm -rI',
 btop='btop --utf-force',
--- sudo !!
-['!']='sudo /bin/bash -c "$(history -p !!)"',
 -- allow aliasi to apply after sudo
 sudo="/bin/sudo ",
 -- some files start with a bit of garbo bytes, grep misbehaves to protect output but i ain't a pussy
-grep='grep color=auto -a',
+grep='grep --color=auto -a',
 
 -- bedrock
 stvoidm='strat -r void-musl',

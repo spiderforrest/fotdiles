@@ -78,9 +78,9 @@ theme.fg_focus   = theme.fg1
 theme.fg_urgent  = theme.lightorange
 
 --  Borders
-theme.useless_gap       = dpi(8)
+theme.useless_gap       = dpi(4)
 theme.gap_single_client = true
-theme.border_width      = dpi(4)
+theme.border_width      = dpi(2)
 theme.border_normal     = "#00000000"
 theme.border_focus      = theme.darker_highlight
 theme.border_marked     = theme.lightpurple
@@ -103,18 +103,19 @@ theme.taglist_bg_occupied = theme.darker_highlight
 theme.taglist_bg_volatile = theme.lightpurple
 theme.taglist_bg_empty    = theme.lighter_highlight
 theme.taglist_bg_hover    = theme.bg2
-theme.taglist_font        = "Product Sans 14"
+theme.taglist_font        = "Product Sans 12"
+theme.taglist_shape_border_width     = dpi(1)
 
 -- Menu
 theme.menu_height       = dpi(16)
-theme.menu_width        = dpi(140)
+theme.menu_width        = dpi(120)
 theme.menu_border_width = dpi(3)
 theme.menu_fg_normal    = theme.fg1
 theme.menu_bg_focus     = theme.bg2
 theme.menu_border_color = theme.bg0_h
 
 -- Menu of clients
-theme.clientsmenu_width        = dpi(640)
+theme.clientsmenu_width        = dpi(420)
 theme.clientsmenu_border_color = theme.bg4
 
 -- hotkeys popup
@@ -127,14 +128,14 @@ theme.menubar_border_width = theme.border_width
 theme.notification_opacity = 0.75
 
 -- Custom sizes
-theme.small_gap        = dpi(2)
-theme.gap              = dpi(4)
-theme.big_gap          = dpi(14)
-theme.negative_gap     = dpi(-6)
-theme.big_negative_gap = dpi(-10)
-theme.wibar_height     = dpi(22)
+theme.small_gap        = dpi(1)
+theme.gap              = dpi(2)
+theme.big_gap          = dpi(7)
+theme.negative_gap     = dpi(-3)
+theme.big_negative_gap = dpi(-5)
+theme.wibar_height     = dpi(18)
 -- theme.wibar_width     = dpi(800)
-theme.titlebar_height  = dpi(20)
+theme.titlebar_height  = dpi(10)
 
 -- Systray
 theme.systray_icon_spacing = theme.gap
@@ -143,7 +144,7 @@ theme.systray_icon_spacing = theme.gap
 theme.widget_markup = "<span weight='heavy' color=%q>%s</span>"
 
 -- Playback Status Widget
-theme.playback_width     = dpi(200)
+theme.playback_width     = dpi(100)
 theme.playback_bg_normal = theme.bg1
 theme.playback_bg_hover  = theme.bg2
 theme.playback_bg_press  = theme.bg3

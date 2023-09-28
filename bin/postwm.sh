@@ -34,6 +34,10 @@ ensureOn(){
     $* & # no, shellcheck, i don't think i will
 }
 
+# we're gonna do audio here y not
+pipewire &
+
+
 # background shit
 ensureOn picom
 ensureOn redshift

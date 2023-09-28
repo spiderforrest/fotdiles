@@ -12,7 +12,7 @@
 (("in"              @keyword) (#set! conceal "i"))
 (("local"           @keyword) (#set! conceal "~"))
 (("if"              @conditional) (#set! conceal "?"))
-(("comment_start"   @comment) (#set! conceal ""))
+; (("comment_start"   @comment) (#set! conceal ""))
 
 ; ;; Function names
 ((function_call name: (identifier) @TSNote (#eq? @TSNote "require")) (#set! conceal ""))

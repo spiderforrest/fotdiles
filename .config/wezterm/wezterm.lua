@@ -11,7 +11,7 @@ return {
     },
     -- freetype_load_flags = 'NO_HINTING', -- no font hint
     harfbuzz_features = { 'calt=0', 'clig=1', 'liga=0' }, -- font features, see: https://docs.microsoft.com/en-us/typography/opentype/spec/
-    font_size = 10.4,
+    font_size = 10.8,
     -- }}}
 
 -- {{{ visuals

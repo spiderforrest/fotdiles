@@ -32,9 +32,9 @@ quick_bind{
     { desc="take a screenshot", mod={}, key="Print",
     sh="flameshot gui -r | xclip -selection clipboard -t image/png && pkill flameshot" },
     { desc="mirror screens", key="]",
-    sh="xrandr --output DVI-D-0 --pos 0x0" },
+    sh="xrandr --output DP-1 --mode 2560x1440 --rate 144.00 --output HDMI-1 --scale 1.33x1.33 --same-as DP-1" },
     { desc="seperate screens", key="[",
-    sh="xrandr --output DVI-D-0 --pos 1920x0 && awesome-client 'awesome.restart()'" },
+    sh="xrandr --output DP-1 --pos 0x0" },
     { desc="disable screensaver", key="]", mod={meta, ctrl},
     sh="xset -dpms && xset s off" },
 

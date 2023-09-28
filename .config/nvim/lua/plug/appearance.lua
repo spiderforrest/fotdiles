@@ -42,7 +42,8 @@ return {
             conceal.setup({})
         end
     },
-    { 'HiPhish/nvim-ts-rainbow2', event = 'VeryLazy', dependencies = "nvim-treesitter/nvim-treesitter" },
+    -- i swear to god if i have to migrate these again
+    { 'HiPhish/rainbow-delimiters.nvim', event = 'VeryLazy', dependencies = "nvim-treesitter/nvim-treesitter" },
     -- indentation
     -- flat window & focus
     { 'junegunn/goyo.vim', cmd = 'Goyo' }, -- make that lil window in the middle that i like

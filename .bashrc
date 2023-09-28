@@ -25,7 +25,7 @@ if [[ "$HOSTNAME" == "spiderlegsix" ]] && ! ps $PPID | grep -q hilbish ; then
 fi
 
 # history configs
-export HISTCONTROL=ignoreboth
+export HISTCONTROL="ignoreboth"
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 HISTFILESIZE=-1
 
@@ -69,7 +69,7 @@ alias mine="__GL_THREADED_OPTIMIZATIONS=0 multimc -l 'the final gay'"
 
 # fixes/improvements
 alias sl='sl -la'
-alias rm='rm -rI'
+alias rr='rm -rI'
 alias grep='grep --color=auto'
 alias btop='btop --utf-force'
 # alias sudo !!
@@ -78,11 +78,19 @@ alias !='sudo /bin/bash -c "$(history -p !!)"'
 alias sudo="/bin/sudo "
 # some files start with a bit of garbo bytes, grep misbehaves to protect output but i ain't a pussy
 alias grep='grep -a'
+restore() {
+  if [[ "$1" -eq "sudo" ]] ; then
+  sudo cp "/mnt/legsix/$2" "$2"
+  else
+  cp "/mnt/legsix/$1" "$1"
+  fi
+}
 
 # bedrock aliasi
 if [[ -d /bedrock ]] ; then
     alias stvoidm='strat -r void-musl'
     alias stvoid='strat -r void'
+    alias stvoidg='strat -r void-glibc'
     alias starch='strat -r arch'
     alias stalp='strat -r alpine'
     alias stubu='strat -r ubuntu'
@@ -111,6 +119,13 @@ case "$HOSTNAME" in
         export QT_XCB_GL_INTEGRATION=none
         ;;
 
+    waputer)
+        PS1="\[\e[0;32m\]waputer \[\e[0m\]@ \[\e[0;36m\]\w \[\e[0m\]\$ \[\e[0m\]"
+        alias shutdown='sudo shutdown'
+        alias reboot='sudo reboot'
+        alias nmtui='sudo nmtui'
+        ;;
+    # rip will be rembered
     fizzbox | spiderlegsix)
         PS1="\[\e[0;32m\]spiderlegsix \[\e[0m\]@ \[\e[0;36m\]\w \[\e[0m\]\$ \[\e[0m\]"
         alias sound='spotify & disown && lyrics'
