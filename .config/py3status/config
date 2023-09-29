@@ -69,7 +69,7 @@ volume_status mic {
   format = "live"
   format_muted = "shh"
   channel = "Capture"
-  is_input = true
+  is_input = false
   button_down = None
   button_up = None
   button_mute = None

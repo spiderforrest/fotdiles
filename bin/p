@@ -134,7 +134,7 @@ case "$argA" in
     echo "// installing $* //"
     $pmInstall "$*"
     ;;
-    every)
+    every | all | each)
     shift 1
     echo "// installing $* on EVERY stratum //"
     $pmInstall "$*" --every

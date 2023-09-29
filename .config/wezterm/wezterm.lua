@@ -4,7 +4,7 @@ return {
     front_end = 'WebGpu', -- render on gpu with some new engine idk, it makes fonts look flat and hot
 
     font = wez.font_with_fallback { -- this does not remove default fallbacks. cool.
-        'Space Mono', -- my main font
+        {family="Space Mono", weight="Regular", stretch="Normal", style="Normal"},
         'Hurmit Nerd Font Mono', -- prettiest more compatibility font
         { family = 'Noto Color Emoji', assume_emoji_presentation = true },-- emoji font
         'Unifont', -- most complete fallback font: they have like 52k glyphts?? geebus
