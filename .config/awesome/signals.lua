@@ -24,8 +24,8 @@ client.connect_signal("manage", function (c)
             return
         end
         -- zoom you pompus wet rag
-        local id = c.window
         -- i don't wanna talk about it
+        local id = c.window
         awful.spawn.easy_async_with_shell("xprop _NET_WM_NAME -id " .. id, function(stdio)
         -- nuke it
             if tostring(stdio) == '_NET_WM_NAME(UTF8_STRING) = "zoom"\n' then
@@ -36,6 +36,7 @@ client.connect_signal("manage", function (c)
             if tostring(stdio) == '_NET_WM_NAME(UTF8_STRING) = "CrossCode Min v1.4.2-2"\n' then
                 naughty.notify{ title="crosscode size intercepted" }
                 c.fullscreen = true
+                c:raise()
                 return
             end
         end)

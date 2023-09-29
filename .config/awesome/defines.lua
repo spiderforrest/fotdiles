@@ -10,7 +10,6 @@ require("awful.autofocus")
 -- snap mouse to center of window
 -- require("awesomewm-micky")
 
--- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_dir("config") .. "/themes/green/theme.lua")
 
 -- i just like compaqt ok
@@ -24,7 +23,6 @@ browser  = os.getenv("BROWSER") or "qutebrowser"
 editor   = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor .. " "
 
-
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile.right,
@@ -34,8 +32,6 @@ awful.layout.layouts = {
     awful.layout.suit.max,
     awful.layout.suit.magnifier,
 }
-
-
 
 -- use drauthius/awesome-sharetags to share tags between monitors
 tags = sharedtags({
@@ -52,12 +48,12 @@ tags = sharedtags({
     { name = " ", layout = awful.layout.layouts[1], screen = 2, useless_gap = 50}, --11
     { name = "", layout = awful.layout.layouts[1], screen = 2}, --12
     { name = "", layout = awful.layout.layouts[1], screen = 2}, --13
-    { name = " ", layout = awful.layout.layouts[5], screen = 2}, --14
+    { name = "    | ", layout = awful.layout.layouts[2], screen = 1}, --14
     -- { name ="uhhhHH you shouldn't see this", screen = 99} -- hidden
 })
 
 -- helper function to compact binding keys while i wait for the git version to git its shit together
-function quick_bind(keybind_tbl)
+function quick_bind(keybind_tbl) -- {{{
     local localkeys = {}
     for _idx, t in ipairs(keybind_tbl) do
         -- combine the input with a template table
@@ -69,15 +65,16 @@ function quick_bind(keybind_tbl)
             prog = nil,
             lua = function () naughty.notify{title="undefined action"} end,
             desc = '',
-            grp = 'passthrough'
-            },
+            grp = '',
+            btn = false
+        },
             t
         )
 
         -- debug check
         if not tbl.key then
             naughty.notify{ title="undefined hotkey", text=tostring(tbl.desc)}
-        -- fuck you i love goto
+            -- fuck you i love goto
             goto continue
         end
 
@@ -88,25 +85,48 @@ function quick_bind(keybind_tbl)
             tbl.sh,
             function () tbl.cb() end
         ) end
-        -- just shell
+            -- just shell
         elseif tbl.sh then exe = function () awful.spawn.with_shell(tbl.sh) end
-        -- launcher
+            -- launcher
         elseif tbl.prog then exe = function () awful.spawn(tbl.prog, false) end
-        -- lua code
-        else exe = function () tbl.lua() end
+            -- lua code
+        else exe = function (a, ...)
+                if arg then -- don't actually know if this works, don't think it's used anyway
+                    tbl.lua(a, table.unpack(arg))
+                else
+                    tbl.lua(a)
+                end
+            end
         end
 
         -- create and return the actual keybind
-        localkeys = gears.table.join(
-            localkeys,
-            awful.key(
-                tbl.mod,
-                tbl.key,
-                exe,
-                {description = tbl.desc, group = tbl.grp}
+        if tbl.btn then
+            -- for mouse buttons
+            localkeys = gears.table.join(
+                localkeys,
+                awful.button(tbl.mod, tbl.key, exe)
             )
-        )
+        else
+            -- for keyboard keys
+            localkeys = gears.table.join(
+                localkeys,
+                awful.key(
+                    tbl.mod,
+                    tbl.key,
+                    exe,
+                    {description = tbl.desc, group = tbl.grp}
+                )
+            )
+        end
         ::continue::
     end
     return localkeys
+end -- }}}
+
+function quick_bind_button(tbl)
+    for _idx, t in ipairs(tbl) do
+        t.btn = true
+    end
+    return quick_bind(tbl)
 end
+-- vim: foldmethod=marker

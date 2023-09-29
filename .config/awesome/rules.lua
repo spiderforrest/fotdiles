@@ -20,14 +20,10 @@ awful.rules.rules = {
 
     -- Floating clients.
     { rule_any =
-        { class = {
-            "zoom",
-            "Arandr", },
-        name = {
-            "Event Tester",
-            "Media viewer", },
-        role = {
-            "pop-up", }
+        {
+            class = { "zoom", "Arandr", },
+            name = { "Event Tester", "Media viewer", },
+            role = { "pop-up", }
         },
         properties = { floating = true }
     },
@@ -42,10 +38,7 @@ awful.rules.rules = {
 
     -- console
     { rule_any =
-        { class = {
-            "local",
-            "serv"}
-        },
+        { class = { "local", "serv"} },
         properties = { tag = tags[11] }
     },
 
@@ -57,12 +50,7 @@ awful.rules.rules = {
 
     -- chat clients
     { rule_any =
-        { class = {
-            "discord",
-            "Telegram",
-            "Ripcord",
-            "Slack" }
-        },
+        { class = { "discord", "Telegram", "Ripcord", "Gajim"  } },
         properties = { tag = tags[13] }
     },
 
@@ -71,7 +59,12 @@ awful.rules.rules = {
     { rule_any =
         { name = "Zoom Meeting"},
         properties = { floating = false }
-    }
+    },
+
+    { rule_any =
+        { class = { "Slack", "Zoom Meeting" } },
+        properties = { tag = tags[14] }
+    },
 }
 -- }}}
 

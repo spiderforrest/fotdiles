@@ -216,37 +216,6 @@ require("py32awe").setup{container = statusline_container, bar_command = "script
     client.connect_signal("focus", title_insert)
     client.connect_signal("unfocus", title_remove)
 
-    -- Update Titlbar Buttons in Wibar on focus / unfocus
-    --------------------------------------------------------------------------------
-    local function buttons_create(c)
-      return wibox.widget {
-        wibox.container.margin(awful.titlebar.widget.maximizedbutton(c), beautiful.small_gap, beautiful.small_gap),
-        wibox.container.margin(awful.titlebar.widget.ontopbutton(c), beautiful.small_gap, beautiful.small_gap),
-        wibox.container.margin(awful.titlebar.widget.stickybutton(c), beautiful.small_gap, beautiful.small_gap),
-        layout = wibox.layout.fixed.horizontal
-      }
-    end
-
-    local function buttons_insert(c)
-      if not c.buttonsbox then
-        c.buttonsbox = buttons_create(c)
-      end
-      c.screen.title_client_buttons_container.widget = c.buttonsbox
-      c.container = c.screen.title_client_buttons_container
-    end
-
-    local function buttons_remove(c)
-      -- delay removal for smoother transitions
-      gears.timer.delayed_call(function(buttonsbox, container)
-        if buttonsbox and container and container.widget == buttonsbox then
-          container.widget = nil
-        end
-      end, c.buttonsbox, c.container)
-    end
-
-    client.connect_signal("focus", buttons_insert)
-    client.connect_signal("unfocus", buttons_remove)
-
     -- }}}
 
     -- vim: foldmethod=marker

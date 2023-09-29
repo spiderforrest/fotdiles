@@ -15,15 +15,17 @@ do
     end)
 end -- }}}
 
-dofile(awful.util.getdir("config") .. "/" .. "defines.lua")
+local pwd=awful.util.getdir("config") .. "/"
 
-dofile(awful.util.getdir("config") .. "/" .. "gui.lua")
+dofile(pwd .. "defines.lua")
 
-dofile(awful.util.getdir("config") .. "/" .. "binds.lua")
+dofile(pwd .. "gui.lua")
 
-dofile(awful.util.getdir("config") .. "/" .. "rules.lua")
+dofile(pwd .. "binds.lua")
 
-dofile(awful.util.getdir("config") .. "/" .. "signals.lua")
+dofile(pwd .. "rules.lua")
+
+dofile(pwd .. "signals.lua")
 
 -- on start
 awful.spawn.with_shell("~/bin/postwm.sh")
