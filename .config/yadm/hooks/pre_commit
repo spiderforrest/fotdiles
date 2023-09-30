@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo $YADM_HOOK_REPO
+echo $YADM_HOOK_WORK
+
