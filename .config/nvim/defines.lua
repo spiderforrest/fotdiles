@@ -36,7 +36,7 @@ end
 function jumpNode(direction)
   require('syntax-tree-surfer').filtered_jump({
 		"function",
-      "if_statement",
+    "if_statement",
 		"else_clause",
 		"else_statement",
 		"elseif_statement",

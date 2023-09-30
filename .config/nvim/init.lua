@@ -6,6 +6,8 @@
 -- as fun as that sounds to me :(
 -- currently it's at about 50ms i think which is neato
 
+-- turns out my computer was shit, new puter is at 20ms lesgoo
+
 dofile(vim.fn.stdpath("config") .. "/defines.lua")
 
 -- bootstrap lazy on blank installs
