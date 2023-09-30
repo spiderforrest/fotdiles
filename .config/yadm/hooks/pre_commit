@@ -1,5 +1,7 @@
 #!/bin/bash
 
-echo $YADM_HOOK_REPO
-echo $YADM_HOOK_WORK
+# save the current world just in casesies
+pmm-query -l > "$YADM_HOOK_WORK/world"
+git add "$YADM_HOOK_WORK/world"
+
 
