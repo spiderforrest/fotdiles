@@ -114,15 +114,19 @@ case "$1" in
         ;;
 
     setup)
+        # auth synchronously
+        sudo
         # start dbs
-        sudo mongod --config /etc/mongodb.conf &> /dev/null
-        cd '/usr' ; sudo mariadbd-safe --datadir='/var/lib/mysql' &> /dev/null
+        sudo mongod --config /etc/mongodb.conf > /dev/null &
+        cd '/usr'
+        sudo mariadbd-safe --datadir='/var/lib/mysql' > /dev/null &
+        cd -
 
         # fuck it, launch everything else too
-        firefox -P work &> /dev/null
-        slack &> /dev/null
-        zoom &> /dev/null
-        keepassxc &> /dev/null
+        firefox -P work > /dev/null &
+        slack > /dev/null &
+        zoom > /dev/null &
+        keepassxc > /dev/null &
 
         ;;
     *) echo 'ya done goofed' ;;

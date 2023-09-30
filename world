@@ -662,6 +662,7 @@ void:xbps	qtchooser
 void:xbps	qutebrowser
 void:xbps	rav1e
 void:xbps	re2
+void:xbps	redshift
 void:xbps	removed-packages
 void:xbps	rhash
 void:xbps	ripgrep
@@ -692,6 +693,7 @@ void:xbps	steam
 void:xbps	steam-udev-rules-1.0.0.61+20230830_1
 void:xbps	strace
 void:xbps	sudo-1.9.14p3_1
+void:xbps	syncthing
 void:xbps	taglib
 void:xbps	tar
 void:xbps	thin-provisioning-tools
@@ -1484,6 +1486,7 @@ void-glibc:xbps	qtchooser
 void-glibc:xbps	qutebrowser
 void-glibc:xbps	rav1e
 void-glibc:xbps	re2
+void-glibc:xbps	redshift
 void-glibc:xbps	removed-packages
 void-glibc:xbps	rhash
 void-glibc:xbps	ripgrep
@@ -1514,6 +1517,7 @@ void-glibc:xbps	steam
 void-glibc:xbps	steam-udev-rules-1.0.0.61+20230830_1
 void-glibc:xbps	strace
 void-glibc:xbps	sudo-1.9.14p3_1
+void-glibc:xbps	syncthing
 void-glibc:xbps	taglib
 void-glibc:xbps	tar
 void-glibc:xbps	thin-provisioning-tools
