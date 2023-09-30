@@ -23,9 +23,12 @@ Hi there! Here are my dotfiles, not much to say there. Software:
 - [Numen](https://git.sr.ht/~geb/numen)-a voice input tool to simulate inputs, dictate, or run scripts.
 - [Picom](https://github.com/yshui/picom)-honestly I'm currently just using this for transparent borders.
 - [Xfce4 Mime Settings](https://docs.xfce.org/xfce/xfce4-settings/4.14/mime)-big thanks to xfce for having so many useful modular components. I just use this to set [mime](https://specifications.freedesktop.org/mime-apps-spec/mime-apps-spec-latest.html) and don't touch it.
-- [Quantum Mechanical Keyboards](https://github.com/qmk_firmware/qmk_firmware)-I use a [Svalboard](https://svalboard,org) and my fork of the [Lalboard](https://github.com/JesusFreke/lalboard/) _QMK fork_ is [here](https://github.com/spiderforrest/lalboard-qmk-clone),
 
-I have unused former configs for:
+Unused former configs:
 - [i3wm](https://i3wm.org)-over time got more and more annoyed at restrictions. I realize how far off the deep end I am.
 - [Alacritty](https://alacritty.org)-term.
-- [My fork of QMK], I still sometimes use the [Lily58](https://github.com/kata0510/Lily58).
+
+My keyboards get an honorable mention
+- [Quantum Mechanical Keyboards](https://github.com/qmk_firmware/qmk_firmware)-I use a [Svalboard](https://svalboard,org) and my fork of the [Lalboard](https://github.com/JesusFreke/lalboard/) QMK fork is [here](https://github.com/spiderforrest/lalboard-qmk-clone).
+- Above is actually old devkit stuff, I currently do configs via [vial](https://get.vial.today) and use a layout I generated with (configs in [my fork](https://github.com/spiderforrest/keyboard_layout_optimizer) of) [keyboard_layout_optimizer](https://github.com/dariogoetz/keyboard_layout_optimizer).
+- [My fork of QMK](https://github.com/spiderforrest/qmk_firmware), I still sometimes use the [Lily58](https://github.com/kata0510/Lily58).

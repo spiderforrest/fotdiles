@@ -36,6 +36,7 @@ void:xbps	c-ares
 void:xbps	ca-certificates-20230311+3.92_1
 void:xbps	cairo
 void:xbps	cairomm
+void:xbps	cargo
 void:xbps	celt
 void:xbps	chromaprint
 void:xbps	chromium
@@ -309,6 +310,7 @@ void:xbps	libgcc-32bit
 void:xbps	libgcc-devel
 void:xbps	libgcrypt
 void:xbps	libgirepository
+void:xbps	libgit2
 void:xbps	libglapi
 void:xbps	libglapi-32bit
 void:xbps	libglvnd
@@ -667,6 +669,8 @@ void:xbps	rofi
 void:xbps	run-parts
 void:xbps	runit
 void:xbps	runit-void
+void:xbps	rust
+void:xbps	rust-std
 void:xbps	sbc
 void:xbps	sed
 void:xbps	sessreg
@@ -854,6 +858,7 @@ void-glibc:xbps	c-ares
 void-glibc:xbps	ca-certificates-20230311+3.92_1
 void-glibc:xbps	cairo
 void-glibc:xbps	cairomm
+void-glibc:xbps	cargo
 void-glibc:xbps	celt
 void-glibc:xbps	chromaprint
 void-glibc:xbps	chromium
@@ -1127,6 +1132,7 @@ void-glibc:xbps	libgcc-32bit
 void-glibc:xbps	libgcc-devel
 void-glibc:xbps	libgcrypt
 void-glibc:xbps	libgirepository
+void-glibc:xbps	libgit2
 void-glibc:xbps	libglapi
 void-glibc:xbps	libglapi-32bit
 void-glibc:xbps	libglvnd
@@ -1485,6 +1491,8 @@ void-glibc:xbps	rofi
 void-glibc:xbps	run-parts
 void-glibc:xbps	runit
 void-glibc:xbps	runit-void
+void-glibc:xbps	rust
+void-glibc:xbps	rust-std
 void-glibc:xbps	sbc
 void-glibc:xbps	sed
 void-glibc:xbps	sessreg
