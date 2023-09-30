@@ -1,40 +1,33 @@
 #!/usr/bin/bash
 # git gud
 # check if i'm just in my home dir and use yadm
+git="git"
+sufx="-A"
 if [[ "$PWD" == "$HOME" ]] ; then
-    yadm pull --no-recurse-submodules
-    yadm add -u
-    yadm status
-    if [[ "$1" ]] ; then
-        echo '/// fr? ///'
-        read -r
-        yadm commit -m "$*"
-        yadm push
-        return
-    fi
-    echo "/// add a commit message ///"
-    read -r message
-    yadm commit -m "$message"
-    yadm push
-    return
+  git="yadm"
+  sufx="-u"
 fi
-git pull --no-recurse-submodules
-git add -A
-git status
+
+# setup and show what's up
+$git pull --no-recurse-submodules
+$git add $sufx
+$git status
+
+# yell at he
+if [[ $($git status | grep -q main) && $git == "git" ]] ; then
+  echo '/// and you'\''re on main you nincompoop ///'
+fi
+
+# set commit message
 if [[ "$1" ]] ; then
-    echo '/// continue? ///'
-    if git status | grep -q main ; then
-        echo '/// and you'\''re on main you nincompoop ///'
-    fi
-    read -r
-    git commit -m "$*"
-    git push
-    return
-fi
-echo '/// so help me god if you put something lazy ///'
-if git status | grep -q main ; then
-    echo '/// and you'\''re on main you nincompoop ///'
-fi
-read -r message
-git commit -m "$message"
-git push
+  echo "/// continue with message from args?: |$*| ///"
+  read -r
+  message="$*"
+else
+  echo '/// so help me god if you put something lazy ///'
+  read -r message
+  fi
+
+# complete transaction
+$git commit -m "$message"
+$git push
