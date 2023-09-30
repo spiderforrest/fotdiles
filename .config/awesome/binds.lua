@@ -12,13 +12,13 @@ root.buttons(quick_bind_button{
       if not s.selected_tag then return end
       if #s.tags == s.selected_tag.index then return end
       awful.tag.viewnext(s)
-    end},
+    end },
     { key=4, mod={}, lua=function()
       local s = awful.screen.focused()
       if not s.selected_tag then return end
       if 1 == s.selected_tag.index then return end
       awful.tag.viewprev(s)
-    end}
+    end }
   })
   -- }}}
 
@@ -58,12 +58,12 @@ globalkeys = gears.table.join(
   quick_bind{
     -- utility ig?
     { key="s", lua=function() clientmenu{focusable = true} end },
-    { key="/", lua=function()
-      awful.screen.focused().systray.visible = not awful.screen.focused().systray.visible
-    end },
     { key="r", mod={meta, alt}, lua=awesome.restart },
     { key="r", mod={meta, alt, ctrl, shft}, lua=awesome.quit},
     { key="[", mod={meta, alt}, prog="betterlockscreen -l dim"},
+    { key="/", lua=function()
+      awful.screen.focused().systray.visible = not awful.screen.focused().systray.visible
+    end },
 
     -- jumpy
     { key=" ", lua=function()
@@ -71,7 +71,7 @@ globalkeys = gears.table.join(
       if client.focus then
         client.focus:raise()
       end
-    end},
+    end },
     { key="x", lua=function() awful.client.urgent.jumpto() end },
 
     -- neio
@@ -99,8 +99,8 @@ globalkeys = gears.table.join(
     end },
 
     -- layout
-    { key="j", lua=function() awful.layout.inc(1) end},
-    { key="h", lua=function() awful.layout.inc(-1) end},
+    { key="j", lua=function() awful.layout.inc(1) end },
+    { key="h", lua=function() awful.layout.inc(-1) end },
 
     -- pulls clients back
     { key="u", lua=function ()
@@ -128,11 +128,11 @@ clientkeys = gears.table.join(
 
     { key="BackSpace", lua=function (c) c:kill() end },
     { key="f", mod={meta, shft}, lua=awful.client.floating.toggle }, -- c.floating isn't a thing??
-    { key="Tab", lua=function (c) c:swap(awful.client.getmaster()) end},
-    { key="m", mod={meta, shft}, lua=function (c) c:move_to_screen() end},
+    { key="Tab", lua=function (c) c:swap(awful.client.getmaster()) end },
+    { key="m", mod={meta, shft}, lua=function (c) c:move_to_screen() end },
     { key="t", lua=function (c) c.ontop = not c.ontop end },
     { key="p", lua=function (c) c.sticky = not c.sticky end },
-    { key="d", function (c) c.minimized = true end }
+    { key="d", lua=function (c) c.minimized = true end }
   }
 )
 
@@ -176,16 +176,14 @@ local function bind_keys_to_tag(id, key)
         if tag then
           sharedtags.jumpto(tag)
         end
-      end
-      },
+      end },
       -- toggle tag
       { key=key, mod={meta, alt}, lua=function ()
         local tag = tags[id]
         if tag then
           sharedtags.viewtoggle(tag, awful.screen.focused())
         end
-      end
-      },
+      end },
       -- move client to tag
       { key=key, mod={ meta, shft }, lua=function ()
         if client.focus then
@@ -194,8 +192,7 @@ local function bind_keys_to_tag(id, key)
             client.focus:move_to_tag(tag)
           end
         end
-      end
-      },
+      end },
       -- toggle tag for focused client
       { key=key, mod={meta, alt, shft}, lua=function ()
         if client.focus then
@@ -204,8 +201,7 @@ local function bind_keys_to_tag(id, key)
             client.focus:toggle_tag(tag)
           end
         end
-      end
-      }
+      end }
     }
   )
 end
