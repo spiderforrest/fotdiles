@@ -115,13 +115,14 @@ case "$1" in
 
     setup)
         # start dbs
-        sudo mongod --config /etc/mongodb.conf &
-        cd '/usr' ; sudo mariadbd-safe --datadir='/var/lib/mysql' &
+        sudo mongod --config /etc/mongodb.conf &> /dev/null
+        cd '/usr' ; sudo mariadbd-safe --datadir='/var/lib/mysql' &> /dev/null
 
         # fuck it, launch everything else too
-        firefox -P work &
-        slack &
-        zoom &
+        firefox -P work &> /dev/null
+        slack &> /dev/null
+        zoom &> /dev/null
+        keepassxc &> /dev/null
 
         ;;
     *) echo 'ya done goofed' ;;
