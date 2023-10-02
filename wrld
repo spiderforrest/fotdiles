@@ -110,6 +110,7 @@ void:xbps	font-bitstream-type1
 void:xbps	font-cursor-misc
 void:xbps	font-daewoo-misc
 void:xbps	font-dec-misc
+void:xbps	font-emoji-one-color
 void:xbps	font-ibm-type1
 void:xbps	font-isas-misc
 void:xbps	font-jis-misc
@@ -813,6 +814,7 @@ void:xbps	xvinfo
 void:xbps	xwd
 void:xbps	xwininfo
 void:xbps	xwud
+void:xbps	xxd
 void:xbps	xz
 void:xbps	yadm
 void:xbps	yajl
@@ -934,6 +936,7 @@ void-glibc:xbps	font-bitstream-type1
 void-glibc:xbps	font-cursor-misc
 void-glibc:xbps	font-daewoo-misc
 void-glibc:xbps	font-dec-misc
+void-glibc:xbps	font-emoji-one-color
 void-glibc:xbps	font-ibm-type1
 void-glibc:xbps	font-isas-misc
 void-glibc:xbps	font-jis-misc
@@ -1637,6 +1640,7 @@ void-glibc:xbps	xvinfo
 void-glibc:xbps	xwd
 void-glibc:xbps	xwininfo
 void-glibc:xbps	xwud
+void-glibc:xbps	xxd
 void-glibc:xbps	xz
 void-glibc:xbps	yadm
 void-glibc:xbps	yajl
@@ -1671,6 +1675,7 @@ arch:yay	bison
 arch:yay	brotli
 arch:yay	btop
 arch:yay	bzip2
+arch:yay	c-ares
 arch:yay	ca-certificates
 arch:yay	ca-certificates-mozilla
 arch:yay	ca-certificates-utils
@@ -1863,6 +1868,7 @@ arch:yay	libunwind
 arch:yay	liburing
 arch:yay	libusb
 arch:yay	libutempter
+arch:yay	libuv
 arch:yay	libverto
 arch:yay	libvorbis
 arch:yay	libx11
@@ -1922,7 +1928,12 @@ arch:yay	neofetch
 arch:yay	neovim-nightly-bin
 arch:yay	neovim-nvim-treesitter
 arch:yay	nettle
+arch:yay	node-gyp
+arch:yay	nodejs
+arch:yay	nodejs-live-server
+arch:yay	nodejs-nopt
 arch:yay	noto-fonts-emoji
+arch:yay	npm
 arch:yay	npth
 arch:yay	nspr
 arch:yay	nss
@@ -1955,8 +1966,10 @@ arch:yay	python-greenlet
 arch:yay	python-msgpack
 arch:yay	python-pynvim
 arch:yay	readline
+arch:yay	reflector
 arch:yay	rofimoji
 arch:yay	sed
+arch:yay	semver
 arch:yay	sequoia-sqv
 arch:yay	shadow
 arch:yay	shared-mime-info
@@ -1987,6 +2000,7 @@ arch:yay	xorg-xlsfonts
 arch:yay	xorg-xprop
 arch:yay	xorg-xset
 arch:yay	xorgproto
+arch:yay	xp-pen-tablet
 arch:yay	xz
 arch:yay	yay-bin
 arch:yay	zenity
