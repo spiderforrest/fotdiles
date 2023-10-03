@@ -7,7 +7,7 @@ return {
     priority = 1000,
     config = function()
         -- options are light, dark, and null
-        set.background = ''
+        set.background = 'light'
         -- options are gelatin, cookie, cocoa, and chocolate
         g.everforest_background = 'cookie'
         -- apply theme and do color corrections
