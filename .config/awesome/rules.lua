@@ -42,9 +42,9 @@ awful.rules.rules = {
         properties = { tag = tags[11] }
     },
 
-    -- music
+    -- work shit now
     { rule_any =
-        { class = { "spotify", "Spotify" } },
+        { class = { "Slack" } },
         properties = { tag = tags[12] }
     },
 
@@ -62,7 +62,7 @@ awful.rules.rules = {
     },
 
     { rule_any =
-        { class = { "Slack", "Zoom Meeting" } },
+        { class = { "Zoom Meeting" } },
         properties = { tag = tags[14] }
     },
 }

@@ -1,7 +1,6 @@
 local gears = require("gears")
 local awful = require("awful")
 local sharedtags   = require("sharedtags")
-local hotkeys_popup = require("awful.hotkeys_popup")
 
 -- local naughty = require("naughty")
 
