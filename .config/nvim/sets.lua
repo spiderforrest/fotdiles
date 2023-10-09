@@ -40,6 +40,9 @@ set.syntax = 'on'
 
 -- }}}
 
+-- {{{ plugins
+g.chadtree_settings = { ["ignore.path_glob"] = { "*srcpkgs*", "*node_modules*" } }
+-- }}}
 
 -- {{{ neovide
 
