@@ -125,7 +125,7 @@ function quick_bind(keybind_tbl) -- {{{
 end -- }}}
 
 function quick_bind_button(tbl)
-    for _idx, t in ipairs(tbl) do
+    for _, t in ipairs(tbl) do
         t.btn = true
     end
     return quick_bind(tbl)

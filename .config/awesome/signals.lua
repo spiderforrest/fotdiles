@@ -52,7 +52,19 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+client.connect_signal("unfocus", function(c)
+    if c.ontop then
+        c.border_color = beautiful.border_ontop
+    elseif c.sticky then
+        c.border_color = beautiful.border_sticky
+    else
+        c.border_color = beautiful.border_normal
+    end
+end)
+
+-- client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+--
 -- sometime implement not needing picom to have invisible borders
 -- client.connect_signal("focus", function(c)
 --     -- gap single client is a bool. i don't think there's a way to put a gap around a single client?

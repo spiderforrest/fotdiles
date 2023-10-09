@@ -84,6 +84,8 @@ theme.border_width      = dpi(2)
 theme.border_normal     = "#00000000"
 theme.border_focus      = theme.darker_highlight
 theme.border_marked     = theme.lightpurple
+theme.border_ontop      = theme.lightpurple
+theme.border_sticky     = theme.yellow
 
 -- Titlebars
 theme.titlebar_bg_focus  = theme.bg0_s

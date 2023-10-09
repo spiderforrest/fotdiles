@@ -166,8 +166,8 @@ local function bind_keys_to_tag(id, key)
       { key=key, lua=function ()
         local tag = tags[id]
         local s = awful.screen.focused()
-        -- if currently focused on the tag or in multitagging mode(& on same screen), toggle
-        if gears.table.hasitem(s.selected_tags, tag) or (#s.selected_tags > 1 and gears.table.hasitem(s.tags, tag)) then
+        -- if in multitagging mode(& on same screen), toggle
+        if #s.selected_tags > 1 and gears.table.hasitem(s.tags, tag) then
           sharedtags.viewtoggle(tag, s)
           return
         end
@@ -176,7 +176,7 @@ local function bind_keys_to_tag(id, key)
           sharedtags.jumpto(tag)
         end
       end },
-      -- toggle tag
+      -- toggle tag override, to enter multitagging/nil tag mode
       { key=key, mod={meta, alt}, lua=function ()
         local tag = tags[id]
         if tag then
@@ -184,7 +184,7 @@ local function bind_keys_to_tag(id, key)
         end
       end },
       -- move client to tag
-      { key=key, mod={ meta, shft }, lua=function ()
+      { key=key, mod={meta, shft}, lua=function ()
         if client.focus then
           local tag = tags[id]
           if tag then

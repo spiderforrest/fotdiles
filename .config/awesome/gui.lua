@@ -94,14 +94,14 @@ local layoutbox_buttons = gears.table.join(
 local no_widget_tagscrolling = gears.table.join(
   awful.button({ }, 5, function(t)
     local s = awful.screen.focused()
-    if #mouse.current_widgets > 1 then return end -- cancel if over actual widgets
+    if not mouse.current_widgets or #mouse.current_widgets > 1 then return end -- cancel if over actual widgets
     if not s.selected_tag then return end
     if #s.tags == s.selected_tag.index then return end
     awful.tag.viewnext(t.screen)
   end),
   awful.button({ }, 4, function(t)
     local s = awful.screen.focused()
-    if #mouse.current_widgets > 1 then return end
+    if not mouse.current_widgets or #mouse.current_widgets > 1 then return end
     if not s.selected_tag then return end
     if 1 == s.selected_tag.index then return end
     awful.tag.viewprev(t.screen)
