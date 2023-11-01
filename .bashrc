@@ -66,6 +66,7 @@ alias nile="$HOME/project/git/nile/bin/nile"
 nuke() { rm -r "$1" && echo "rm -r\"\$*\" \"./$1\"" >> "$HOME/bin/clean_junk"; }
 alias prosody="TERM=xterm ssh -J spood.org:773 admin@xmpp.spood.org -i .aws/spider.pem"
 alias mine="__GL_THREADED_OPTIMIZATIONS=0 multimc -l 'the final gay'"
+alias vpn="mullvad status && mullvad account get | grep -v account && mullvad auto-connect get && mullvad lan get && mullvad lockdown-mode get"
 
 # fixes/improvements
 alias sl='sl -la'
@@ -79,12 +80,14 @@ alias sudo="/bin/sudo "
 # some files start with a bit of garbo bytes, grep misbehaves to protect output but i ain't a pussy
 alias grep='grep -a'
 restore() {
-  if [[ "$1" -eq "sudo" ]] ; then
+  if [[ "$1" == "sudo" ]] ; then
   sudo cp "/mnt/legsix/$2" "$2"
   else
   cp "/mnt/legsix/$1" "$1"
   fi
 }
+alias dfix='export $(dbus-launch) &&'
+alias reflector_i_barely_know_er="sudo reflector --save /etc/pacman.d/mirrorlist --country 'United States' --protocol https --latest 10"
 
 # bedrock aliasi
 if [[ -d /bedrock ]] ; then

@@ -43,6 +43,8 @@ ensureOn picom
 ensureOn redshift
 ensureOn syncthing --no-browser
 
+# i do not commit crimes but if i did i would be a good girl and seed my torrents
+# ensureOn qbittorrent
 # forground shit
 # alacritty --title="todo" --class=serv,serv -e bash -c "$HOME/.cargo/bin/chore ; ssh -p 773 spider@192.168.0.61" &
 # alacritty --hold --title="$(tac /var/log/pacman.log | grep -m1 '\-S \-y \-u')" --class=local,local -e bash -i -c "neofetch && python bin/archnews.py | sed -n '1,18 p' && $HOME/bin/p u; bash" &

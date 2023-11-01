@@ -114,6 +114,7 @@ settings:
     https://ww5.0123movie.net: false
     https://www.netflix.com: false
     https://www.reddit.com: false
+    https://www.royalroad.com: true
     https://www.wcostream.com: false
   content.notifications.presenter:
     global: auto
