@@ -783,6 +783,7 @@ void:xbps	soundtouch
 void:xbps	spandsp
 void:xbps	spdx-licenses-list
 void:xbps	speech-dispatcher
+void:xbps	speedtest-cli
 void:xbps	speexdsp
 void:xbps	sqlite
 void:xbps	sratom
@@ -1710,6 +1711,7 @@ void-glibc:xbps	soundtouch
 void-glibc:xbps	spandsp
 void-glibc:xbps	spdx-licenses-list
 void-glibc:xbps	speech-dispatcher
+void-glibc:xbps	speedtest-cli
 void-glibc:xbps	speexdsp
 void-glibc:xbps	sqlite
 void-glibc:xbps	sratom
