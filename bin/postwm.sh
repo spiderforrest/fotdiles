@@ -48,7 +48,7 @@ ensureOn syncthing --no-browser
 # forground shit
 # alacritty --title="todo" --class=serv,serv -e bash -c "$HOME/.cargo/bin/chore ; ssh -p 773 spider@192.168.0.61" &
 # alacritty --hold --title="$(tac /var/log/pacman.log | grep -m1 '\-S \-y \-u')" --class=local,local -e bash -i -c "neofetch && python bin/archnews.py | sed -n '1,18 p' && $HOME/bin/p u; bash" &
-wezterm start --class=serv bash -c "$HOME/.cargo/bin/chore ; ssh -p 773 spider@192.168.0.61" &
+wezterm start --class=serv bash -c "cd ~/project/git/dote && ./dote.lua ; ssh -p 773 spider@192.168.0.61" &
 wezterm start --class=local bash -i -c "neofetch && python bin/archnews.py | sed -n '1,14 p' && $HOME/bin/p u; bash" &
 # bin/archnews.py | sed -n '1,18 p' && $HOME/bin/p u; bash" &
 # ensureOn keepassxc

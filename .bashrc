@@ -67,6 +67,9 @@ nuke() { rm -r "$1" && echo "rm -r\"\$*\" \"./$1\"" >> "$HOME/bin/clean_junk"; }
 alias prosody="TERM=xterm ssh -J spood.org:773 admin@xmpp.spood.org -i .aws/spider.pem"
 alias mine="__GL_THREADED_OPTIMIZATIONS=0 multimc -l 'the final gay'"
 alias vpn="mullvad status && mullvad account get | grep -v account && mullvad auto-connect get && mullvad lan get && mullvad lockdown-mode get"
+alias greper="grep --exclude-dir=node_modules -Rnw . -e"
+# shellcheck disable=SC2048,2086,2164 # lol
+dote() { cd ~/project/git/dote && ./dote.lua $* && cd - > /dev/null; }
 
 # fixes/improvements
 alias sl='sl -la'
