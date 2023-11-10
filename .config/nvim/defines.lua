@@ -19,7 +19,7 @@ set.rtp:prepend(lazypath)
 -- }}}
 
 -- {{{ functions and whatnot
--- {{{ lualine  zo
+-- {{{ lualine
 function line_sym_1()
     return '🕷'
 end
@@ -75,56 +75,38 @@ vs [[function! ToggleMouse()
 endfunc ]]
 
 -- {{{ writing mode!
-inWritingMode = false
+local inWritingMode = false
 function writing() -- lua function to toggle the writing mode
   if not inWritingMode then
     vs [[
-      set textwidth=0
-      set nonumber
-      set norelativenumber
-      set wrap
-      set spell
-      set scrolloff=5
-      set noshowmode
-      set noshowcmd
-      set fo-=t
       noh
-      " toggle plugins
       Limelight
-      Goyo
-      " hide the ~
-      set fillchars=eob:\ ,fold:\ ,vert:\│
-      " copy pasted for letting :q quit
-      let b:quitting = 0
-      let b:quitting_bang = 0
-      autocmd QuitPre <buffer> let b:quitting = 1
-      cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+      ZenMode
     ]]
+    set.textwidth=0
+    set.number = false
+    set.relativenumber = false
+    set.wrap = true
+    set.spell = true
+    set.scrolloff=5
+    set.formatoptions:remove('t')
+    set.fillchars = { eob = " " }
     inWritingMode = true
   else
     vs [[
-      set number
-      set textwidth=135
-      set relativenumber
-      set nowrap
-      set nospell
-      set showmode
-      set showcmd
-      set fo+=t
-      set scrolloff=3
+      noh
       Limelight!
-      Goyo
-      set fillchars="~":\ ,fold:\ ,vert:\│
-      " Quit Vim if this is the only remaining buffer
-      if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-        if b:quitting_bang
-          qa!
-        else
-          qa
-        endif
-      endif
+      ZenMode
     ]]
-  inWritingMode = false
+    set.textwidth=135
+    set.number = true
+    set.relativenumber = true
+    set.wrap = false
+    set.spell = false
+    set.scrolloff=2
+    set.formatoptions:append('t')
+    set.fillchars = { eob = "~" }
+    inWritingMode = false
   end
 end
 

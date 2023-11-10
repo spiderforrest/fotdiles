@@ -46,7 +46,7 @@ return {
     { 'HiPhish/rainbow-delimiters.nvim', event = 'VeryLazy', dependencies = "nvim-treesitter/nvim-treesitter" },
     -- indentation
     -- flat window & focus
-    { 'junegunn/goyo.vim', cmd = 'Goyo' }, -- make that lil window in the middle that i like
+    { 'folke/zen-mode.nvim', cmd = 'ZenMode', opts = { window = { height = 0.85 } } }, -- make that lil window in the middle that i like, honestly feel bad ditching goyo ;_;
     { 'junegunn/limelight.vim', cmd = 'Limelight' }, -- highlight current block brighter
     -- ui revamp
     { 'kyazdani42/nvim-web-devicons', event = 'VeryLazy' }, -- icons and emojis n shit: 🗿
