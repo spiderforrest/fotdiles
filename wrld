@@ -619,6 +619,7 @@ void:xbps	pangomm
 void:xbps	pavucontrol-qt
 void:xbps	pcaudiolib
 void:xbps	pciutils
+void:xbps	pdf.js
 void:xbps	perl
 void:xbps	perl-Authen-SASL
 void:xbps	perl-Convert-BinHex
@@ -1514,6 +1515,7 @@ void-glibc:xbps	pangomm
 void-glibc:xbps	pavucontrol-qt
 void-glibc:xbps	pcaudiolib
 void-glibc:xbps	pciutils
+void-glibc:xbps	pdf.js
 void-glibc:xbps	perl
 void-glibc:xbps	perl-Authen-SASL
 void-glibc:xbps	perl-Convert-BinHex

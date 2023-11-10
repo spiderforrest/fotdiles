@@ -75,41 +75,44 @@ vs [[function! ToggleMouse()
 endfunc ]]
 
 -- {{{ writing mode!
-local inWritingMode = false
-function writing() -- lua function to toggle the writing mode
-  if not inWritingMode then
+function writing_enter() -- lua function to toggle the writing mode
     vs [[
       noh
       Limelight
-      ZenMode
+      GitGutterBufferDisable
     ]]
+    ---@diagnostic disable-next-line: undefined-global
+    MiniTrailspace.unhighlight()
+
     set.textwidth=0
     set.number = false
     set.relativenumber = false
     set.wrap = true
     set.spell = true
     set.scrolloff=5
+    set.colorcolumn:remove('100')
     set.formatoptions:remove('t')
     set.fillchars = { eob = " " }
-    inWritingMode = true
-  else
+end
+function writing_leave()
     vs [[
       noh
       Limelight!
-      ZenMode
+      GitGutterBufferEnable
     ]]
+    ---@diagnostic disable-next-line: undefined-global
+    MiniTrailspace.highlight()
+
     set.textwidth=135
     set.number = true
     set.relativenumber = true
     set.wrap = false
     set.spell = false
     set.scrolloff=2
+    set.colorcolumn:append('100')
     set.formatoptions:append('t')
     set.fillchars = { eob = "~" }
-    inWritingMode = false
-  end
 end
-
 -- }}}
 
 -- set several keybinds to emulate a new visual mode, for navigating/editing ts nodes

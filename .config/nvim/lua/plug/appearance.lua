@@ -38,7 +38,7 @@ return {
     },
     { "Jxstxs/conceal.nvim", dependencies = {"nvim-treesitter/nvim-treesitter"}, event = 'VeryLazy', -- fancy treesitter rerendering!
         config = function()
-            conceal = require('conceal')
+            local conceal = require('conceal')
             conceal.setup({})
         end
     },
@@ -46,7 +46,11 @@ return {
     { 'HiPhish/rainbow-delimiters.nvim', event = 'VeryLazy', dependencies = "nvim-treesitter/nvim-treesitter" },
     -- indentation
     -- flat window & focus
-    { 'folke/zen-mode.nvim', cmd = 'ZenMode', opts = { window = { height = 0.85 } } }, -- make that lil window in the middle that i like, honestly feel bad ditching goyo ;_;
+    { 'folke/zen-mode.nvim', cmd = 'ZenMode', opts = {
+        window = { height = 0.75 },
+        on_open = writing_enter,
+        on_close = writing_leave }
+    }, -- make that lil window in the middle that i like, honestly feel bad ditching goyo ;_;
     { 'junegunn/limelight.vim', cmd = 'Limelight' }, -- highlight current block brighter
     -- ui revamp
     { 'kyazdani42/nvim-web-devicons', event = 'VeryLazy' }, -- icons and emojis n shit: 🗿

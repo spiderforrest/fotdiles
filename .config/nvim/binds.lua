@@ -3,6 +3,7 @@
 map('v', '<Enter>',     '<cmd>EasyAlign<cr>', bindopt)
 map('n', '<leader>f',   '<cmd>CHADopen<cr>', bindopt)
 map('n', '<leader>u',   '<cmd>UndotreeToggle<cr>', bindopt)
+map('n', '<leader>g',   '<cmd>ZenMode<cr>', bindopt)
 map('n', '<leader>rs',  ':IncRename ', bindopt)
 -- lmap('n', '<leader>tf', function() telescope.find_files() end, bindopt)
 -- lmap('n', '<leader>tg', function() telescope.live_grep() end, bindopt)
@@ -31,9 +32,6 @@ map('v', 'gh', '<cmd>STSSwapOrHoldVisual<cr>', bindopt)
 -- toggle lsp overlay
 lmap("n", "<leader>l", function() require("lsp_lines").toggle() end, bindopt)
 -- }}}
-
--- writing mode!
-lmap('n', '<leader>g', function() writing() end, bindopt)
 
 -- nav buffers
 map('n', '<leader>bn',  '<cmd>bn<cr>', bindopt)
