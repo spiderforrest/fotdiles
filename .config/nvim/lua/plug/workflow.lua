@@ -17,13 +17,14 @@ return {
         require('mini.cursorword').setup{ delay = 0 } -- highlight word
         require('mini.map').setup() -- chart on the right that i never fucking use
         require('mini.trailspace').setup() -- trailing whitespace
-        require('mini.comment').setup{ mappings = { comment = '<leader>\\', comment_line = '<leader>\\' } } -- comment/uncomment
+        require('mini.comment').setup{ mappings = { comment = '<leader>\\', comment_line = '<leader>\\', comment_visual = '<leader>\\'} } -- comment/uncomment
         require('mini.align').setup() -- align columns
         require('mini.surround').setup() -- edit wrappers like <li></li> and {}
         require('mini.jump2d').setup{ mappings = { start_jumping = '<leader> ' } } -- hinting
         -- require('mini.pairs').setup() -- auto adds the second bracket. usually annoying.
         -- require('mini.bracketed').setup() -- jump various scopes via square bracket keys
-        require('mini.fuzzy').setup() -- fuzzy finding
+        -- require('mini.fuzzy').setup() -- fuzzy finding
+        require('mini.starter').setup()
     end
     },
     {'akinsho/toggleterm.nvim', version = "*", event = 'VeryLazy', -- terminal handling

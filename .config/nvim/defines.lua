@@ -1,12 +1,12 @@
 
+-- remember to add new globabls to .luarc.json
+
 -- {{{ var defines
 -- shorthands
 fn = vim.fn
 vs = vim.cmd
 set = vim.opt
 g = vim.g
-vs = vim.cmd
-fn = vim.fn
 map = vim.api.nvim_set_keymap
 lmap = vim.keymap.set
 bindopt = { noremap = true, silent = true }
@@ -19,7 +19,7 @@ set.rtp:prepend(lazypath)
 -- }}}
 
 -- {{{ functions and whatnot
--- {{{ lualine
+-- {{{ lualine  zo
 function line_sym_1()
     return '🕷'
 end

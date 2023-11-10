@@ -72,6 +72,8 @@ settings:
     '*://betterdiscord.net/*': no-3rdparty
     global: no-unknown-3rdparty
     https://www.easybib.com/project/style/mla?id=9f40e0be-4206-48d2-8750-5fcacb327a45: no-3rdparty
+  content.desktop_capture:
+    https://discord.com: true
   content.fullscreen.window:
     global: true
   content.geolocation:
@@ -91,6 +93,7 @@ settings:
     global: true
   content.media.audio_capture:
     https://diagnostics.simplepractice.com: true
+    https://discord.com: true
     https://meet.google.com: true
     https://video.simplepractice.com: true
     https://webrtc.github.io: true

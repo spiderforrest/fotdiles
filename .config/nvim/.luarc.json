@@ -1,0 +1,6 @@
+{
+  "diagnostics.disable": ["undefined-field"],
+  "diagnostics.globals":
+  [ "fn", "vs", "set", "g", "map", "lmap", "bindopt", "expopt", "lazypath", "line_sym_1", "line_sym_2", "line_wc", "jumpNode", "writing", "visualNode", "lazyConf"],
+  "workspace.ignoreDir": ["undodir"],
+}
