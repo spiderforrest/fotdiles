@@ -24,7 +24,7 @@ return {
         -- require('mini.pairs').setup() -- auto adds the second bracket. usually annoying.
         -- require('mini.bracketed').setup() -- jump various scopes via square bracket keys
         -- require('mini.fuzzy').setup() -- fuzzy finding
-        require('mini.starter').setup()
+        -- require('mini.starter').setup()
     end
     },
     {'akinsho/toggleterm.nvim', version = "*", event = 'VeryLazy', -- terminal handling
