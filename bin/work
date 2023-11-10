@@ -115,12 +115,15 @@ case "$1" in
 
     setup)
         # auth synchronously
-        sudo
+        sudo -v
         # start dbs
         sudo mongod --config /etc/mongodb.conf > /dev/null &
-        cd '/usr'
+        cd '/usr' || exit
         sudo mariadbd-safe --datadir='/var/lib/mysql' > /dev/null &
-        cd -
+        cd - || exit
+
+        # clean up
+        rm -fr "$HOME/work/student git/*"
 
         # fuck it, launch everything else too
         firefox -P work > /dev/null &
