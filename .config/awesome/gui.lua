@@ -22,9 +22,9 @@ function clientmenu()
   -- pretty it
   table.sort(items, function(a, b) return a[1] < b[1] end) -- alphabetize
   items.theme = {
-      width        = beautiful.clientsmenu_width,
-      border_color = beautiful.clientsmenu_border_color
-    }
+    width        = beautiful.clientsmenu_width,
+    border_color = beautiful.clientsmenu_border_color
+  }
 
   -- rendering
   local menu, geom = awful.menu(items), awful.screen.focused().geometry

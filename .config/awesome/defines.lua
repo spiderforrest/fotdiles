@@ -82,22 +82,13 @@ function quick_bind(keybind_tbl) -- {{{
         -- form handler functions
         local exe = function() end
         -- shell with callback
-        if tbl.sh and tbl.cb then exe = function () awful.spawn.easy_aysnc_with_shell(
-            tbl.sh,
-            function () tbl.cb() end
-        ) end
+        if tbl.sh and tbl.cb then exe = function () awful.spawn.easy_aysnc_with_shell(tbl.sh, tbl.cb) end
             -- just shell
         elseif tbl.sh then exe = function () awful.spawn.with_shell(tbl.sh) end
             -- launcher
         elseif tbl.prog then exe = function () awful.spawn(tbl.prog, false) end
             -- lua code
-        else exe = function (a, ...)
-                if arg then -- don't actually know if this works, don't think it's used anyway
-                    tbl.lua(a, ...)
-                else
-                    tbl.lua(a)
-                end
-            end
+        else exe = tbl.lua
         end
 
         -- create and return the actual keybind
@@ -106,7 +97,7 @@ function quick_bind(keybind_tbl) -- {{{
             localkeys = gears.table.join(
                 localkeys,
                 awful.button(tbl.mod, tbl.key, exe)
-            )
+                )
         else
             -- for keyboard keys
             localkeys = gears.table.join(
@@ -125,7 +116,7 @@ function quick_bind(keybind_tbl) -- {{{
 end -- }}}
 
 function quick_bind_button(tbl)
-    for _, t in ipairs(tbl) do
+for _, t in ipairs(tbl) do
         t.btn = true
     end
     return quick_bind(tbl)

@@ -9,8 +9,8 @@ client.connect_signal("manage", function (c)
     if not awesome.startup then awful.client.setslave(c) end
 
     if awesome.startup
-      and not c.size_hints.user_position
-      and not c.size_hints.program_position then
+        and not c.size_hints.user_position
+        and not c.size_hints.program_position then
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
@@ -27,7 +27,7 @@ client.connect_signal("manage", function (c)
         -- i don't wanna talk about it
         local id = c.window
         awful.spawn.easy_async_with_shell("xprop _NET_WM_NAME -id " .. id, function(stdio)
-        -- nuke it
+            -- nuke it
             if tostring(stdio) == '_NET_WM_NAME(UTF8_STRING) = "zoom"\n' then
                 naughty.notify{ title="zoom suppressed", text="you're welcome." }
                 c.minimized = true

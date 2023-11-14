@@ -6,20 +6,20 @@ local sharedtags   = require("sharedtags")
 
 -- {{{ Mouse bindings
 root.buttons(quick_bind_button{
-    { key=5, mod={}, lua=function()
-      local s = awful.screen.focused()
-      if not s.selected_tag then return end
-      if #s.tags == s.selected_tag.index then return end
-      awful.tag.viewnext(s)
-    end },
-    { key=4, mod={}, lua=function()
-      local s = awful.screen.focused()
-      if not s.selected_tag then return end
-      if 1 == s.selected_tag.index then return end
-      awful.tag.viewprev(s)
-    end }
-  })
-  -- }}}
+  { key=5, mod={}, lua=function()
+    local s = awful.screen.focused()
+    if not s.selected_tag then return end
+    if #s.tags == s.selected_tag.index then return end
+    awful.tag.viewnext(s)
+  end },
+  { key=4, mod={}, lua=function()
+    local s = awful.screen.focused()
+    if not s.selected_tag then return end
+    if 1 == s.selected_tag.index then return end
+    awful.tag.viewprev(s)
+  end }
+})
+-- }}}
 
 -- {{{ passthrough bindings
 
@@ -56,7 +56,7 @@ globalkeys = gears.table.join(
   globalkeys,
   quick_bind{
     -- utility ig?
-    { key="s", lua=function() clientmenu{focusable = true} end },
+    { key="s", lua=clientmenu },
     { key="r", mod={meta, alt}, lua=awesome.restart },
     { key="r", mod={meta, alt, ctrl, shft}, lua=awesome.quit},
     { key="[", mod={meta, alt}, prog="betterlockscreen -l dim"},
@@ -71,7 +71,7 @@ globalkeys = gears.table.join(
         client.focus:raise()
       end
     end },
-    { key="x", lua=function() awful.client.urgent.jumpto() end },
+    { key="x", lua=awful.client.urgent.jumpto },
 
     -- neio
     { key="e", lua=function() awful.client.focus.byidx(1) end },
