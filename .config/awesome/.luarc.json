@@ -1,0 +1,7 @@
+{
+  "diagnostics.disable": ["undefined-field"],
+  "diagnostics.globals":
+  [ "awesome", "screen", "client", "mouse", "root", "globalkeys",
+    "meta", "alt", "ctrl", "shft", "terminal", "browser", "editor", "editor_cmd", "tags", "quick_bind", "quick_bind_button", "clientmenu"],
+  "workspace.ignoreDir": ["freedesktop", "awesomewm-micky", "py32awe", "sharedtags", "utils", "widgets", "xrandr", ],
+}

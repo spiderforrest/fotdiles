@@ -11,7 +11,7 @@ function clientmenu(filter, selected_tags_only)
       width        = beautiful.clientsmenu_width,
       border_color = beautiful.clientsmenu_border_color
     }
-  }
+  }, nil
 
   if selected_tags_only then
     clients = gears.table.join(unpack(gears.table.map(function(t) return t:clients() end, scr.selected_tags)))
@@ -52,24 +52,24 @@ end
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock("%a, %b. %d | %H:%M.%S", 1, "-07:00")
+local mytextclock = wibox.widget.textclock("%a, %b. %d | %H:%M.%S", 1, "-07:00")
 -- gpu status
-nvidia = awful.widget.watch(gears.filesystem.get_dir('config') .. "../../bin/bar.sh network", 10)
+local nvidia = awful.widget.watch(gears.filesystem.get_dir('config') .. "../../bin/bar.sh network", 10)
 -- net
-networkmanager = awful.widget.watch(gears.filesystem.get_dir('config') .. "../../bin/bar.sh nvidia", 10)
+local networkmanager = awful.widget.watch(gears.filesystem.get_dir('config') .. "../../bin/bar.sh nvidia", 10)
 -- audio
-sink_bar, sink_timer = awful.widget.watch(gears.filesystem.get_dir('config') .. "../../bin/bar.sh sink", 10)
-source = awful.widget.watch(gears.filesystem.get_dir('config') .. "../../bin/bar.sh source", 10)
+local sink_bar = awful.widget.watch(gears.filesystem.get_dir('config') .. "../../bin/bar.sh sink", 10)
+local source = awful.widget.watch(gears.filesystem.get_dir('config') .. "../../bin/bar.sh source", 10)
 
 local taglist_buttons = gears.table.join(
 awful.button({ }, 1, function(t) t:view_only() end),
-awful.button({ modkey }, 1, function(t)
+awful.button({ meta }, 1, function(t)
   if client.focus then
     client.focus:move_to_tag(t)
   end
 end),
 awful.button({ }, 3, awful.tag.viewtoggle),
-awful.button({ modkey }, 3, function(t)
+awful.button({ meta }, 3, function(t)
   if client.focus then
     client.focus:toggle_tag(t)
   end

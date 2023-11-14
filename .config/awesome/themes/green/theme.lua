@@ -19,7 +19,8 @@ theme.icon_theme = "gruvbox-dark-icons-gtk"
 -- theme.wallpaper = theme_path .. "../wallpapers/Ø!.png"
 -- theme.wallpaper = theme_path .. "../wallpapers/dark Ø!.png"
 -- theme.wallpaper = theme_path .. "../wallpapers/dark gas Ø!.png"
-theme.wallpaper = theme_path .. "../wallpapers/dark gas snake Ø!.png"
+-- theme.wallpaper = theme_path .. "../wallpapers/dark gas snake Ø!.png"
+theme.wallpaper = theme_path .. "../wallpapers/a little bit upbeat these days.png"
 -- control if it's per screen or both
 theme.wallpaper_global = true
 -- theme.wallpaper_global = false

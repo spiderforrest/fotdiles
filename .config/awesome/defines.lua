@@ -56,7 +56,7 @@ tags = sharedtags({
 -- helper function to compact binding keys while i wait for the git version to git its shit together
 function quick_bind(keybind_tbl) -- {{{
     local localkeys = {}
-    for _idx, t in ipairs(keybind_tbl) do
+    for _, t in ipairs(keybind_tbl) do
         -- combine the input with a template table
         local tbl = gears.table.crush({
             mod = { meta },
@@ -82,7 +82,7 @@ function quick_bind(keybind_tbl) -- {{{
         -- form handler functions
         local exe = function() end
         -- shell with callback
-        if tbl.sh and cb then exe = function () awful.spawn.easy_aysnc_with_shell(
+        if tbl.sh and tbl.cb then exe = function () awful.spawn.easy_aysnc_with_shell(
             tbl.sh,
             function () tbl.cb() end
         ) end
@@ -93,7 +93,7 @@ function quick_bind(keybind_tbl) -- {{{
             -- lua code
         else exe = function (a, ...)
                 if arg then -- don't actually know if this works, don't think it's used anyway
-                    tbl.lua(a, table.unpack(arg))
+                    tbl.lua(a, ...)
                 else
                     tbl.lua(a)
                 end

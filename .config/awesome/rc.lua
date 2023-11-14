@@ -28,7 +28,7 @@ dofile(pwd .. "rules.lua")
 dofile(pwd .. "signals.lua")
 
 -- on start
-awful.spawn.with_shell("~/bin/postwm.sh")
+awful.spawn.once("bash /home/spider/bin/postwm.sh")
 -- ....
 awful.spawn.with_shell("~/bin/thursday_my_dudes")
 sharedtags.jumpto(tags[11]) --show terms

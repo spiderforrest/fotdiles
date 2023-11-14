@@ -62,7 +62,7 @@ alias xmpp="profanity -a spider@spood.org -t boothj5_slack"
 # shellcheck disable=SC2139
 alias cold="notify-send 'Numen dormant' && numen $HOME/.config/numen/off.phrases"
 # shellcheck disable=SC2139
-alias nile="$HOME/project/git/nile/bin/nile"
+alias nile="cd $HOME/project/git/nile && starch ./bin/nile"
 nuke() { rm -r "$1" && echo "rm -r\"\$*\" \"./$1\"" >> "$HOME/bin/clean_junk"; }
 alias prosody="TERM=xterm ssh -J spood.org:773 admin@xmpp.spood.org -i .aws/spider.pem"
 alias mine="__GL_THREADED_OPTIMIZATIONS=0 multimc -l 'the final gay'"
