@@ -1,5 +1,6 @@
 local awful = require("awful")
 local sharedtags = require("sharedtags")
+local gears = require("gears")
 
 -- {{{ Handle runtime errors
 local naughty = require("naughty")
@@ -28,7 +29,7 @@ dofile(pwd .. "rules.lua")
 dofile(pwd .. "signals.lua")
 
 -- on start
-awful.spawn.once("bash /home/spider/bin/postwm.sh")
+awful.spawn.once("bash /home/spider/bin/postwm.sh", {}, function()end, "postwm")
 -- ....
 awful.spawn.with_shell("~/bin/thursday_my_dudes")
 sharedtags.jumpto(tags[11]) --show terms

@@ -36,23 +36,6 @@ function clientmenu()
   }
 end
 
-local function set_wallpaper(s)
-  -- Wallpaper
-  if beautiful.wallpaper then
-    local wallpaper = beautiful.wallpaper
-    -- check the theme for if it should be per screen or global
-    if beautiful.wallpaper_global then
-      gears.wallpaper.maximized(wallpaper)
-    else
-      -- If wallpaper is a function, call it with the screen
-      if type(wallpaper) == "function" then
-        wallpaper = wallpaper(s)
-      end
-      gears.wallpaper.maximized(wallpaper, s, true)
-    end
-  end
-end
-
 local scroll_tag_buttons = gears.table.join(
   awful.button({ }, 5, function(t)
     local s = awful.screen.focused()
@@ -117,7 +100,6 @@ local spacer = wibox.widget.textbox("   |  ")
 
 -- generate everything per screen
 awful.screen.connect_for_each_screen(function(s)
-  set_wallpaper(s) -- wallpaper
 
   -- the layout icon/scroller
   s.layout_box = awful.widget.layoutbox(s)

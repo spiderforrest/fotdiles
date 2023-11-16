@@ -31,7 +31,9 @@ xrdb ~/.Xresources &
 # feh --bg-fill "$HOME/.config/i3/$(find ~/.config/i3/ -name './*png' | shuf -n 1)"
 # feh --bg-tile ~/Pictures/Wallpapers/Ø!.png --class "feh-background"
 # feh --bg-tile ~/Pictures/Wallpapers/river_paintpractice.png
-feh --bg-tile ~/Pictures/eat a pic/void-linux-2001.png
+# feh --bg-tile ~/Pictures/eat a pic/void-linux-2001.png
+
+
 # this is the one time where i'm doing the wrong thing but not just using 'sleep'
 ensureOn(){
     if pgrep -x "$1" > /dev/null; then return; fi
@@ -41,6 +43,8 @@ ensureOn(){
 # we're gonna do audio here y not
 pipewire &
 
+# we real fancy now
+ensureOn walp.bin
 
 # background shit
 ensureOn picom
