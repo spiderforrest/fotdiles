@@ -4,4 +4,7 @@
 pmm-query -l > "$YADM_HOOK_WORK/wrld"
 git add "$YADM_HOOK_WORK/wrld"
 
+# backup etc
+yadm_etc.sh save
+yadm add "$HOME/.local/share/yadm/ext/"
 
