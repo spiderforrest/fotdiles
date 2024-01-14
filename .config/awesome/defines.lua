@@ -31,15 +31,16 @@ awful.layout.layouts = {
     awful.layout.suit.spiral,
     awful.layout.suit.max,
     awful.layout.suit.magnifier,
+    require("milk")
 }
 
 -- use drauthius/awesome-sharetags to share tags between monitors
 tags = sharedtags({
-    { name = 1, layout = awful.layout.layouts[2], screen = 1},
-    { name = 2, layout = awful.layout.layouts[2], screen = 1},
-    { name = 3, layout = awful.layout.layouts[2], screen = 1},
-    { name = 4, layout = awful.layout.layouts[2], screen = 1},
-    { name = 5, layout = awful.layout.layouts[2], screen = 1},
+    { name = 1, layout = awful.layout.layouts[7], screen = 1},
+    { name = 2, layout = awful.layout.layouts[7], screen = 1},
+    { name = 3, layout = awful.layout.layouts[7], screen = 1},
+    { name = 4, layout = awful.layout.layouts[7], screen = 1},
+    { name = 5, layout = awful.layout.layouts[7], screen = 1},
     { name = 6, layout = awful.layout.layouts[1], screen = 2},
     { name = 7, layout = awful.layout.layouts[1], screen = 2},
     { name = 8, layout = awful.layout.layouts[1], screen = 2},

@@ -1,0 +1,10 @@
+[keybindings]
+"Ctrl+q" = "quit"
+"q" = "back"
+
+"Space" = "toggleplay"
+
+"n" = "move left 1"
+"e" = "move down 1"
+"i" = "move up 1"
+"o" = "move right 1"

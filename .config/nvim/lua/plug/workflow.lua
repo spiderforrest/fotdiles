@@ -78,7 +78,7 @@ return {
                 enable = true
             },
             ensure_installed = {
-                "sql", "json", "json5", "javascript", "typescript", "css", "html", -- webdev
+                "sql", "javascript", "typescript", "css", "html", -- "json5", "json", -- webdev
                 "bash", "rust", "lua", "c", "cpp", "make", "vim",
                 "markdown", "markdown_inline", "awk", "diff", "passwd", "regex", --"help"
             },

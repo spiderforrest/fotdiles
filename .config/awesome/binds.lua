@@ -1,6 +1,7 @@
 local gears = require("gears")
 local awful = require("awful")
 local sharedtags   = require("sharedtags")
+local milk_layout = require("milk")
 
 -- local naughty = require("naughty")
 
@@ -29,8 +30,10 @@ globalkeys = gears.table.join(
   quick_bind{
     -- misc
     { mod={}, key="Print", sh="flameshot gui -r | xclip -selection clipboard -t image/png && pkill flameshot" },
-    { key="]", sh="xrandr --output DisplayPort-0 --mode 2560x1440 --rate 144.00 --output HDMI-A-0 --scale 1.33x1.33 --same-as DisplayPort-0" },
-    { key="[", sh="xrandr --output DisplayPort-0 --primary --mode 2560x1440 --rate 144.00 --pos 0x0 --rotate normal --scale 1x1 --output HDMI-A-0 --mode 1920x1080 --pos 2560x180 --rotate normal --scale 1x1 && awesome-client 'awesome.restart()'" },
+    -- { key="]", sh="xrandr --output DisplayPort-0 --mode 2560x1440 --rate 144.00 --output HDMI-A-0 --scale 1.33x1.33 --same-as DisplayPort-0" },
+    -- { key="[", sh="xrandr --output DisplayPort-0 --primary --mode 2560x1440 --rate 144.00 --pos 0x0 --rotate normal --scale 1x1 --output HDMI-A-0 --mode 1920x1080 --pos 2560x180 --rotate normal --scale 1x1 && awesome-client 'awesome.restart()'" },
+    { key="]", sh="xrandr --output DisplayPort-0 --mode 2560x1440 --rate 144.00 --output DisplayPort-1 --scale 1.33x1.33 --same-as DisplayPort-0" },
+    { key="[", sh="xrandr --output DisplayPort-0 --primary --mode 2560x1440 --rate 144.00 --pos 0x0 --rotate normal --scale 1x1 --output DisplayPort-1 --mode 1920x1080 --pos 2560x180 --rotate normal --scale 1x1 && awesome-client 'awesome.restart()'" },
     { key="]", mod={meta, ctrl}, sh="xset -dpms && xset s off" },
     -- volume
     { mod={}, key="XF86AudioRaiseVolume", sh="~/bin/allume set +5%" },
@@ -87,12 +90,24 @@ globalkeys = gears.table.join(
     { key="m", lua=function() awful.screen.focus_relative(1) end },
     { key="m", mod={meta, alt}, lua=function()
       -- move tag to new monitor and focus it
-      local target_tag = awful.screen.focused().selected_tag
+      local from_screen = awful.screen.focused()
+      local target_tag = from_screen.selected_tag
       sharedtags.movetag(
         target_tag,
         awful.screen.focus_relative(1))
+
+      local to_screen = awful.screen.focused()
+
+      -- it don't work like that idk yet
+
+      -- the 'milk' layout only works on the big screen
+      -- always remove it and then readd it if the other screen
+      --   to_screen.remove_default_layout(milk_layout)
+      -- if to_screen.geometry.width == 2560 then
+      --   to_screen.layout.add_default_layout(milk_layout)
+      -- end
       -- check if the new screen is multitagging already
-      if #awful.screen.focused().selected_tags > 2 then return end
+      if #to_screen.selected_tags > 2 then return end
       -- if not focus only the target tag
       sharedtags.jumpto(target_tag)
     end },

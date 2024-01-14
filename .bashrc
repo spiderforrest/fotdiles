@@ -63,13 +63,15 @@ alias xmpp="profanity -a spider@spood.org -t boothj5_slack"
 alias cold="notify-send 'Numen dormant' && numen $HOME/.config/numen/off.phrases"
 # shellcheck disable=SC2139
 alias nile="cd $HOME/project/git/nile && starch ./bin/nile"
-nuke() { rm -r "$1" && echo "rm -r\"\$*\" \"./$1\"" >> "$HOME/bin/clean_junk"; }
+nuke() { rm -r "$1" ; echo "rm -r\"\$*\" \"./$1\"" >> "$HOME/bin/clean_junk"; }
 alias prosody="TERM=xterm ssh -J spood.org:773 admin@xmpp.spood.org -i .aws/spider.pem"
 alias mine="__GL_THREADED_OPTIMIZATIONS=0 multimc -l 'the final gay'"
 alias vpn="mullvad status && mullvad account get | grep -v account && mullvad auto-connect get && mullvad lan get && mullvad lockdown-mode get"
 alias greper="grep --exclude-dir=node_modules -Rnw . -e"
 # shellcheck disable=SC2048,2086,2164 # lol
 dote() { cd ~/project/git/dote && ./dote.lua $* && cd - > /dev/null; }
+alias voidpkg="xpkg |  fzf --preview 'xbps-query -S {}' --layout=reverse --bind 'enter:execute(xbps-query -S {} | less)'"
+alias archpkg="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 
 # fixes/improvements
 alias sl='sl -la'

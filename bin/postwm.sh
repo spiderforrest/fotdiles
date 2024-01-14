@@ -17,7 +17,8 @@
 xrandr --dpi 94
 xrandr --dpi 94
 
-xrandr --output DisplayPort-0 --primary --mode 2560x1440 --rate 144.00 --pos 0x0 --rotate normal --scale 1x1 --output HDMI-A-0 --mode 1920x1080 --pos 2560x180 --rotate normal --scale 1x1
+xrandr --output DisplayPort-0 --primary --mode 2560x1440 --rate 144.00 --pos 0x0 --rotate normal --scale 1x1 --output DisplayPort-1 --mode 1920x1080 --pos 2560x180 --rotate normal --scale 1x1
+# xrandr --output DisplayPort-0 --primary --mode 2560x1440 --rate 144.00 --pos 0x0 --rotate normal --scale 1x1 --output HDMI-A-0 --mode 1920x1080 --pos 2560x180 --rotate normal --scale 1x1
 # for unicode input
 ibus-daemon -drxR
 # currently just for my cursor

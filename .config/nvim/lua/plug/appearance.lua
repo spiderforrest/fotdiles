@@ -58,5 +58,5 @@ return {
         -- fuck you you're gonna have a silly easter egg you should actually implement it
         --config = function () vs[[ autocmd UserGettingBored CellularAutomaton ]] end
     }, -- no comment.
-    { "spiderforrest/minintro.nvim", config = true, lazy = false },  -- startup screen
+    -- { "spiderforrest/minintro.nvim", config = true, lazy = false },  -- startup screen
 }

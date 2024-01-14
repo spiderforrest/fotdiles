@@ -123,7 +123,8 @@ case "$1" in
         cd - || exit
 
         # clean up
-        rm -fr "$HOME/work/student git/*"
+        rm -fr "$HOME/work/student git/"
+        mkdir "$HOME/work/student git/"
 
         # fuck it, launch everything else too
         firefox -P work > /dev/null &
