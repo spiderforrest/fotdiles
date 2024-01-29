@@ -27,12 +27,6 @@ xrdb ~/.Xresources &
 
 # general binds
 #sxhkd &
-# wallpaper :)
-# feh --bg-fill Downloads/Broken_Landscape_V.jpg
-# feh --bg-fill "$HOME/.config/i3/$(find ~/.config/i3/ -name './*png' | shuf -n 1)"
-# feh --bg-tile ~/Pictures/Wallpapers/Ø!.png --class "feh-background"
-# feh --bg-tile ~/Pictures/Wallpapers/river_paintpractice.png
-# feh --bg-tile ~/Pictures/eat a pic/void-linux-2001.png
 
 
 # this is the one time where i'm doing the wrong thing but not just using 'sleep'

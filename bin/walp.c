@@ -63,10 +63,10 @@ int main(int argc, char *argv[]) {
   fprintf(stdout, "Loading images");
 #endif
   Imlib_Image images[] = {
-      imlib_load_image("/home/spider/Pictures/Wallpapers/full_open.bmp"),
-      imlib_load_image("/home/spider/Pictures/Wallpapers/full_half.bmp"),
-      imlib_load_image("/home/spider/Pictures/Wallpapers/full_close.bmp"),
-      imlib_load_image("/home/spider/Pictures/Wallpapers/full_half.bmp"),
+      imlib_load_image("/home/spider/media/pictures/wallpapers/full_open.bmp"),
+      imlib_load_image("/home/spider/media/pictures/wallpapers/full_half.bmp"),
+      imlib_load_image("/home/spider/media/pictures/wallpapers/full_close.bmp"),
+      imlib_load_image("/home/spider/media/pictures/wallpapers/full_half.bmp"),
   };
   int images_count = 4;
 

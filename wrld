@@ -27,9 +27,11 @@ void:xbps	atk
 void:xbps	atk-32bit
 void:xbps	atkmm
 void:xbps	attr
+void:xbps	audacity
 void:xbps	avahi-compat-libs
 void:xbps	avahi-libs
 void:xbps	avahi-libs-32bit
+void:xbps	avidemux
 void:xbps	awesome
 void:xbps	babl
 void:xbps	base-container
@@ -41,6 +43,7 @@ void:xbps	bc
 void:xbps	bibata-cursor-theme
 void:xbps	binutils
 void:xbps	binutils-doc
+void:xbps	binutils-libs
 void:xbps	botan
 void:xbps	brltty
 void:xbps	brotli
@@ -211,6 +214,7 @@ void:xbps	grub-utils
 void:xbps	grub-x86_64-efi
 void:xbps	gsettings-desktop-schemas
 void:xbps	gsfonts
+void:xbps	gspell
 void:xbps	gst-plugins-bad1
 void:xbps	gst-plugins-base1
 void:xbps	gst-plugins-base1-32bit
@@ -499,10 +503,12 @@ void:xbps	libmodplug
 void:xbps	libmodplug-32bit
 void:xbps	libmount
 void:xbps	libmount-32bit
+void:xbps	libmp4v2
 void:xbps	libmpcdec
 void:xbps	libmpeg2
 void:xbps	libmpg123
 void:xbps	libmpg123-32bit
+void:xbps	libmspack-0.10.1alpha_1
 void:xbps	libmtp
 void:xbps	libmypaint
 void:xbps	libmysofa
@@ -641,6 +647,7 @@ void:xbps	libuuid-32bit
 void:xbps	libuv
 void:xbps	libva
 void:xbps	libva-32bit
+void:xbps	libvamp-plugin-sdk
 void:xbps	libvdpau
 void:xbps	libvdpau-32bit
 void:xbps	libvidstab
@@ -781,6 +788,7 @@ void:xbps	openssl-devel
 void:xbps	optipng
 void:xbps	opus
 void:xbps	opus-32bit
+void:xbps	opusfile
 void:xbps	orc
 void:xbps	orc-32bit
 void:xbps	os-prober
@@ -823,6 +831,8 @@ void:xbps	poppler
 void:xbps	poppler-data
 void:xbps	poppler-glib
 void:xbps	popt
+void:xbps	portaudio
+void:xbps	portmidi
 void:xbps	procps-ng
 void:xbps	protobuf
 void:xbps	protobuf-c
@@ -991,6 +1001,7 @@ void:xbps	steam
 void:xbps	steam-udev-rules-1.0.0.61+20230830_1
 void:xbps	strace
 void:xbps	sudo-1.9.15p4_1
+void:xbps	suil
 void:xbps	syncthing
 void:xbps	taglib
 void:xbps	talloc
@@ -1039,6 +1050,8 @@ void:xbps	wifi-firmware
 void:xbps	wireplumber
 void:xbps	wpa_supplicant
 void:xbps	wpebackend-fdo
+void:xbps	wxWidgets-common
+void:xbps	wxWidgets-gtk3
 void:xbps	x11perf
 void:xbps	x264
 void:xbps	x264-32bit
@@ -1170,9 +1183,11 @@ void-glibc:xbps	atk
 void-glibc:xbps	atk-32bit
 void-glibc:xbps	atkmm
 void-glibc:xbps	attr
+void-glibc:xbps	audacity
 void-glibc:xbps	avahi-compat-libs
 void-glibc:xbps	avahi-libs
 void-glibc:xbps	avahi-libs-32bit
+void-glibc:xbps	avidemux
 void-glibc:xbps	awesome
 void-glibc:xbps	babl
 void-glibc:xbps	base-container
@@ -1184,6 +1199,7 @@ void-glibc:xbps	bc
 void-glibc:xbps	bibata-cursor-theme
 void-glibc:xbps	binutils
 void-glibc:xbps	binutils-doc
+void-glibc:xbps	binutils-libs
 void-glibc:xbps	botan
 void-glibc:xbps	brltty
 void-glibc:xbps	brotli
@@ -1354,6 +1370,7 @@ void-glibc:xbps	grub-utils
 void-glibc:xbps	grub-x86_64-efi
 void-glibc:xbps	gsettings-desktop-schemas
 void-glibc:xbps	gsfonts
+void-glibc:xbps	gspell
 void-glibc:xbps	gst-plugins-bad1
 void-glibc:xbps	gst-plugins-base1
 void-glibc:xbps	gst-plugins-base1-32bit
@@ -1642,10 +1659,12 @@ void-glibc:xbps	libmodplug
 void-glibc:xbps	libmodplug-32bit
 void-glibc:xbps	libmount
 void-glibc:xbps	libmount-32bit
+void-glibc:xbps	libmp4v2
 void-glibc:xbps	libmpcdec
 void-glibc:xbps	libmpeg2
 void-glibc:xbps	libmpg123
 void-glibc:xbps	libmpg123-32bit
+void-glibc:xbps	libmspack-0.10.1alpha_1
 void-glibc:xbps	libmtp
 void-glibc:xbps	libmypaint
 void-glibc:xbps	libmysofa
@@ -1784,6 +1803,7 @@ void-glibc:xbps	libuuid-32bit
 void-glibc:xbps	libuv
 void-glibc:xbps	libva
 void-glibc:xbps	libva-32bit
+void-glibc:xbps	libvamp-plugin-sdk
 void-glibc:xbps	libvdpau
 void-glibc:xbps	libvdpau-32bit
 void-glibc:xbps	libvidstab
@@ -1924,6 +1944,7 @@ void-glibc:xbps	openssl-devel
 void-glibc:xbps	optipng
 void-glibc:xbps	opus
 void-glibc:xbps	opus-32bit
+void-glibc:xbps	opusfile
 void-glibc:xbps	orc
 void-glibc:xbps	orc-32bit
 void-glibc:xbps	os-prober
@@ -1966,6 +1987,8 @@ void-glibc:xbps	poppler
 void-glibc:xbps	poppler-data
 void-glibc:xbps	poppler-glib
 void-glibc:xbps	popt
+void-glibc:xbps	portaudio
+void-glibc:xbps	portmidi
 void-glibc:xbps	procps-ng
 void-glibc:xbps	protobuf
 void-glibc:xbps	protobuf-c
@@ -2134,6 +2157,7 @@ void-glibc:xbps	steam
 void-glibc:xbps	steam-udev-rules-1.0.0.61+20230830_1
 void-glibc:xbps	strace
 void-glibc:xbps	sudo-1.9.15p4_1
+void-glibc:xbps	suil
 void-glibc:xbps	syncthing
 void-glibc:xbps	taglib
 void-glibc:xbps	talloc
@@ -2182,6 +2206,8 @@ void-glibc:xbps	wifi-firmware
 void-glibc:xbps	wireplumber
 void-glibc:xbps	wpa_supplicant
 void-glibc:xbps	wpebackend-fdo
+void-glibc:xbps	wxWidgets-common
+void-glibc:xbps	wxWidgets-gtk3
 void-glibc:xbps	x11perf
 void-glibc:xbps	x264
 void-glibc:xbps	x264-32bit
@@ -2338,6 +2364,7 @@ arch:yay	dav1d
 arch:yay	db
 arch:yay	db5.3
 arch:yay	dbus
+arch:yay	dbus-daemon-units
 arch:yay	dconf
 arch:yay	debugedit
 arch:yay	default-cursors
@@ -2358,6 +2385,7 @@ arch:yay	fakeroot
 arch:yay	faudio
 arch:yay	ffmpeg
 arch:yay	fftw
+arch:yay	figlet
 arch:yay	file
 arch:yay	filesystem
 arch:yay	findutils
@@ -2446,6 +2474,7 @@ arch:yay	jre8-openjdk
 arch:yay	jre8-openjdk-headless
 arch:yay	json-c
 arch:yay	json-glib
+arch:yay	jsoncpp
 arch:yay	kbd
 arch:yay	keyutils
 arch:yay	kmod
@@ -2569,6 +2598,8 @@ arch:yay	libcamera
 arch:yay	libcamera-ipa
 arch:yay	libcap
 arch:yay	libcap-ng
+arch:yay	libcdio
+arch:yay	libcdio-paranoia
 arch:yay	libcloudproviders
 arch:yay	libcolord
 arch:yay	libcups
@@ -2582,6 +2613,8 @@ arch:yay	libdecor
 arch:yay	libdeflate
 arch:yay	libdovi
 arch:yay	libdrm
+arch:yay	libdvdnav
+arch:yay	libdvdread
 arch:yay	libedit
 arch:yay	libelf
 arch:yay	libepoxy
@@ -2622,6 +2655,8 @@ arch:yay	libnetfilter_conntrack
 arch:yay	libnfnetlink
 arch:yay	libnftnl
 arch:yay	libnghttp2
+arch:yay	libnghttp3
+arch:yay	libngtcp2
 arch:yay	libnice
 arch:yay	libnl
 arch:yay	libnotify
@@ -2647,6 +2682,7 @@ arch:yay	libsamplerate
 arch:yay	libsasl
 arch:yay	libseccomp
 arch:yay	libsecret
+arch:yay	libsixel
 arch:yay	libsm
 arch:yay	libsndfile
 arch:yay	libsoup
@@ -2673,6 +2709,7 @@ arch:yay	libva
 arch:yay	libvdpau
 arch:yay	libverto
 arch:yay	libvorbis
+arch:yay	libvpl
 arch:yay	libvpx
 arch:yay	libwacom
 arch:yay	libwebp
@@ -2699,6 +2736,7 @@ arch:yay	libxkbfile
 arch:yay	libxml2
 arch:yay	libxmlb
 arch:yay	libxmu
+arch:yay	libxpresent
 arch:yay	libxrandr
 arch:yay	libxrender
 arch:yay	libxshmfence
@@ -2723,6 +2761,7 @@ arch:yay	lua
 arch:yay	lua-inspect
 arch:yay	lua-lunacolors
 arch:yay	lua-succulent
+arch:yay	luajit
 arch:yay	lv2
 arch:yay	lz4
 arch:yay	lzo
@@ -2744,7 +2783,9 @@ arch:yay	mongodb-compass
 arch:yay	mongosh-bin
 arch:yay	mpfr
 arch:yay	mpg123
+arch:yay	mpv
 arch:yay	mtdev
+arch:yay	mujs
 arch:yay	ncspot
 arch:yay	ncurses
 arch:yay	neofetch
@@ -2766,7 +2807,6 @@ arch:yay	nvtop
 arch:yay	ocl-icd
 arch:yay	oculus-udev
 arch:yay	onetbb
-arch:yay	onevpl
 arch:yay	openal
 arch:yay	opencore-amr
 arch:yay	opencv
@@ -2900,9 +2940,11 @@ arch:yay	tracker3
 arch:yay	tslib
 arch:yay	ttf-unifont
 arch:yay	tzdata
+arch:yay	uchardet
 arch:yay	util-linux
 arch:yay	util-linux-libs
 arch:yay	v4l-utils
+arch:yay	vapoursynth
 arch:yay	verdict
 arch:yay	vial-appimage
 arch:yay	vid.stab
@@ -2931,6 +2973,7 @@ arch:yay	xcb-util-renderutil
 arch:yay	xcb-util-wm
 arch:yay	xdg-dbus-proxy
 arch:yay	xdg-desktop-portal
+arch:yay	xdg-user-dirs
 arch:yay	xdg-utils
 arch:yay	xf86-video-amdgpu
 arch:yay	xfconf
