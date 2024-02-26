@@ -24,15 +24,6 @@ editor   = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor .. " "
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
-    awful.layout.suit.tile.right,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.max,
-    awful.layout.suit.magnifier,
-    require("milk")
-}
 local layouts_milkless = {
     awful.layout.suit.tile.right,
     awful.layout.suit.tile.left,
@@ -41,6 +32,10 @@ local layouts_milkless = {
     awful.layout.suit.max,
     awful.layout.suit.magnifier,
 }
+-- the table is like this so we can have a version with and without the milk layout
+-- so extra screens don't have it
+awful.layout.layouts = layouts_milkless
+table.insert(awful.layout.layouts, require("milk"))
 
 -- use drauthius/awesome-sharetags to share tags between monitors
 tags = sharedtags({
