@@ -1,7 +1,6 @@
 local gears = require("gears")
 local awful = require("awful")
 local sharedtags   = require("sharedtags")
-local milk_layout = require("milk")
 
 -- local naughty = require("naughty")
 
@@ -89,23 +88,17 @@ globalkeys = gears.table.join(
     -- tag jumpy
     { key="m", lua=function() awful.screen.focus_relative(1) end },
     { key="m", mod={meta, alt}, lua=function()
-      -- move tag to new monitor and focus it
       local from_screen = awful.screen.focused()
       local target_tag = from_screen.selected_tag
-      sharedtags.movetag(
-        target_tag,
-        awful.screen.focus_relative(1))
+
+      -- change the layout if it's the milk tag
+      if awful.layout.getname() == "milk" then awful.layout.inc(1) end
+
+      -- move tag to new monitor and focus it
+      sharedtags.movetag(target_tag, awful.screen.focus_relative(1))
 
       local to_screen = awful.screen.focused()
 
-      -- it don't work like that idk yet
-
-      -- the 'milk' layout only works on the big screen
-      -- always remove it and then readd it if the other screen
-      --   to_screen.remove_default_layout(milk_layout)
-      -- if to_screen.geometry.width == 2560 then
-      --   to_screen.layout.add_default_layout(milk_layout)
-      -- end
       -- check if the new screen is multitagging already
       if #to_screen.selected_tags > 2 then return end
       -- if not focus only the target tag
@@ -113,8 +106,8 @@ globalkeys = gears.table.join(
     end },
 
     -- layout
-    { key="j", lua=function() awful.layout.inc(1) end },
-    { key="h", lua=function() awful.layout.inc(-1) end },
+    { key="j", lua=function() safe_layout_inc(1) end },
+    { key="h", lua=function() safe_layout_inc(-1) end },
 
     -- pulls clients back
     { key="u", lua=function ()
@@ -146,7 +139,11 @@ clientkeys = gears.table.join(
     { key="m", mod={meta, shft}, lua=function (c) c:move_to_screen() end },
     { key="t", lua=function (c) c.ontop = not c.ontop end },
     { key="p", lua=function (c) c.sticky = not c.sticky end },
-    { key="d", lua=function (c) c.minimized = true end }
+    { key="d", lua=function (c) c.minimized = true end },
+
+    -- jank for. making a minecraft panorama. yipee.
+    { key="g", mod={meta, shft}, lua=function (c) c.height=1024 c.width=1024 end },
+
   }
 )
 

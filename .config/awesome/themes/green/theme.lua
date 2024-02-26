@@ -170,6 +170,7 @@ theme.layout_cornerne   = theme_path .. "layouts/cornerne.svg"
 theme.layout_cornersw   = theme_path .. "layouts/cornersw.svg"
 theme.layout_cornerse   = theme_path .. "layouts/cornerse.svg"
 theme.layout_centerwork = theme_path .. "layouts/centerwork.svg"
+theme.layout_milk       = theme_path .. "layouts/milk.svg"
 
 -- Titlebar
 theme.titlebar_ontop_button_focus_active    = theme_path .. "titlebar/ontop_select.svg"

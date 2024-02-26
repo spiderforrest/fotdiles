@@ -33,6 +33,14 @@ awful.layout.layouts = {
     awful.layout.suit.magnifier,
     require("milk")
 }
+local layouts_milkless = {
+    awful.layout.suit.tile.right,
+    awful.layout.suit.tile.left,
+    awful.layout.suit.fair.horizontal,
+    awful.layout.suit.spiral,
+    awful.layout.suit.max,
+    awful.layout.suit.magnifier,
+}
 
 -- use drauthius/awesome-sharetags to share tags between monitors
 tags = sharedtags({
@@ -48,11 +56,22 @@ tags = sharedtags({
     { name = 0, layout = awful.layout.layouts[1], screen = 2}, --10
     { name = " ", layout = awful.layout.layouts[1], screen = 2, useless_gap = 50}, --11
     -- { name = "", layout = awful.layout.layouts[1], screen = 2}, --12
-    { name = "", layout = awful.layout.layouts[1], screen = 2}, --12
+    { name = " 𝅘𝅥𝅮   ", layout = awful.layout.layouts[1], screen = 2, useless_gap = 50}, --12
     { name = "", layout = awful.layout.layouts[1], screen = 2}, --13
     { name = " ", layout = awful.layout.layouts[2], screen = 1}, --14
     -- { name ="uhhhHH you shouldn't see this", screen = 99} -- hidden
 })
+
+-- avoid setting the milk layout on the other monitor
+-- modifying the layout list doesn't seem to work?
+function safe_layout_inc(inc)
+    -- if not on the primary monitor, pass a modified layouts table in
+    if awful.screen.focused().index > 1 then
+        awful.layout.inc(inc, awful.screen.focused(), layouts_milkless)
+    else
+        awful.layout.inc(inc)
+    end
+end
 
 -- helper function to compact binding keys while i wait for the git version to git its shit together
 function quick_bind(keybind_tbl) -- {{{
