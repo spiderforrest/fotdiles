@@ -78,6 +78,8 @@ if [[ $loop == 1 ]] ; then
 
             # hourly resync
             if [[ $sexent -eq 5555 ]]; then
+              # check if the day changed
+              prepend="$(date +"%a, %m/%d, ")"
                 break
             fi
 

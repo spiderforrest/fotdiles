@@ -1,5 +1,5 @@
 [Added Associations]
-image/png=gimp.desktop;feh.desktop;userapp-cat-EX4WZ0.desktop;
+image/png=userapp-nsxiv-8MY5X2.desktop;gimp.desktop;feh.desktop;userapp-cat-EX4WZ0.desktop;
 text/plain=nvim.desktop;termite.desktop;vim.desktop;userapp-cat-EX4WZ0.desktop;
 text/markdown=neovide.desktop;termite.desktop;vim.desktop;
 application/x-compressed-tar=termite.desktop;
@@ -14,7 +14,7 @@ application/ld+json=firefox.desktop;org.qutebrowser.qutebrowser.desktop;
 application/x-ipynb+json=firefox.desktop;org.qutebrowser.qutebrowser.desktop;
 image/jpeg=gimp.desktop;feh.desktop;
 application/gpx+xml=tuxguitar.desktop;
-application/pdf=firefox.desktop;
+application/pdf=firefox.desktop;libreoffice-draw.desktop;
 application/x-desktop=nvim.desktop;
 x-scheme-handler/tg=userapp-Telegram Desktop-J1KOG1.desktop;userapp-Telegram Desktop-VZV7V1.desktop;org.telegram.desktop.desktop;
 image/gif=feh.desktop;gimp.desktop;
@@ -30,7 +30,9 @@ application/x-extension-shtml=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
 x-scheme-handler/trash=xfce4-file-manager.desktop;
-inode/directory=nvim.desktop;userapp-wezterm-4LVKC2.desktop;
+inode/directory=xfce4-file-manager.desktop;
+application/vnd.openxmlformats-officedocument.presentationml.presentation=libreoffice-startcenter.desktop;
+x-scheme-handler/tonsite=org.telegram.desktop.desktop;
 
 [Default Applications]
 x-scheme-handler/discord-610508934456934412=discord-610508934456934412.desktop
@@ -64,6 +66,9 @@ application/x-extension-shtml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
 x-scheme-handler/trash=xfce4-file-manager.desktop
-inode/directory=userapp-wezterm-4LVKC2.desktop
+inode/directory=xfce4-file-manager.desktop
 x-scheme-handler/ror2mm=r2modman.desktop
-
+x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop
+application/pdf=libreoffice-draw.desktop
+application/vnd.openxmlformats-officedocument.presentationml.presentation=libreoffice-startcenter.desktop
+x-scheme-handler/tonsite=org.telegram.desktop.desktop

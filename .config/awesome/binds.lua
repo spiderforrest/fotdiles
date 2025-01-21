@@ -2,7 +2,7 @@ local gears = require("gears")
 local awful = require("awful")
 local sharedtags   = require("sharedtags")
 
--- local naughty = require("naughty")
+local naughty = require("naughty")
 
 -- {{{ Mouse bindings
 root.buttons(quick_bind_button{
@@ -29,10 +29,8 @@ globalkeys = gears.table.join(
   quick_bind{
     -- misc
     { mod={}, key="Print", sh="flameshot gui -r | xclip -selection clipboard -t image/png && pkill flameshot" },
-    -- { key="]", sh="xrandr --output DisplayPort-0 --mode 2560x1440 --rate 144.00 --output HDMI-A-0 --scale 1.33x1.33 --same-as DisplayPort-0" },
-    -- { key="[", sh="xrandr --output DisplayPort-0 --primary --mode 2560x1440 --rate 144.00 --pos 0x0 --rotate normal --scale 1x1 --output HDMI-A-0 --mode 1920x1080 --pos 2560x180 --rotate normal --scale 1x1 && awesome-client 'awesome.restart()'" },
-    { key="]", sh="xrandr --output DisplayPort-0 --mode 2560x1440 --rate 144.00 --output DisplayPort-1 --scale 1.33x1.33 --same-as DisplayPort-0" },
-    { key="[", sh="xrandr --output DisplayPort-0 --primary --mode 2560x1440 --rate 144.00 --pos 0x0 --rotate normal --scale 1x1 --output DisplayPort-1 --mode 1920x1080 --pos 2560x180 --rotate normal --scale 1x1 && awesome-client 'awesome.restart()'" },
+    { key="[", sh=xrandr_cmd .. " && awesome-client 'awesome.restart()'" },
+    { key="]", sh=xrandr_mirror_cmd },
     { key="]", mod={meta, ctrl}, sh="xset -dpms && xset s off" },
     -- volume
     { mod={}, key="XF86AudioRaiseVolume", sh="~/bin/allume set +5%" },

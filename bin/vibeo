@@ -1,12 +1,20 @@
 #!/bin/bash
 set -eou pipefail
 
-time=$(date +%Y-%m-%d_%H-%M-%S)
-filename="${time::-1}*.mkv"
-obs --startrecording
+# record, and grep snag out the filename
+filename=$(obs --startrecording | grep "info: \[ffmpeg muxer: 'simple_file_output'\] Output of file" | grep -Po '/mnt/storage/recordings(.*).mkv')
+
 # mmm race condition
 sleep 0.2
-echo 'y' | ffmpeg -i /mnt/storage/recordings/"${filename}" /mnt/storage/tmp.mp4
-rm /mnt/storage/recordings/"${filename}" &
-echo '/mnt/storage/tmp.mp4' | xsel -ib
-tg
+
+# uncompressed
+# echo 'y' | ffmpeg -i "$filename" /mnt/storage/tmp.mp4
+# crumchy
+echo 'y' | ffmpeg -i -vcodec libx265 -crf 28 -s 720x480 "$filename" /mnt/storage/tmp.mp4
+# echo 'y' | ffmpeg -i "$filename" ~/output.mp4
+
+rm "$filename" &
+
+# put it in the clipboard
+# echo '/mnt/storage/tmp.mp4' | xsel -ib
+echo 'file:///mnt/storage/tmp.mp4' | xclip -i -selection clipboard -t text/uri-list

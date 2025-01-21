@@ -2,6 +2,7 @@
   "diagnostics.disable": ["undefined-field"],
   "diagnostics.globals":
   [ "awesome", "screen", "client", "tag", "mouse", "root", "globalkeys", "clientkeys", "clientbuttons",
-    "meta", "alt", "ctrl", "shft", "terminal", "browser", "editor", "editor_cmd", "tags", "safe_layout_inc", "quick_bind", "quick_bind_button", "clientmenu"],
+    "meta", "alt", "ctrl", "shft", "terminal", "browser", "editor", "editor_cmd", "xrandr_cmd", "xrandr_mirror_cmd",
+    "tags", "safe_layout_inc", "quick_bind", "quick_bind_button", "clientmenu"],
   "workspace.ignoreDir": ["freedesktop", "awesomewm-micky", "py32awe", "sharedtags", "utils", "widgets", "xrandr", ],
 }

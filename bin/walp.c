@@ -4,7 +4,7 @@
 
 
 #define _POSIX_C_SOURCE 199309L
-/* #define DEBUG */
+/* #define DEBUG true */
 
 #include <Imlib2.h>
 #include <X11/Xatom.h>
@@ -139,8 +139,8 @@ int main(int argc, char *argv[]) {
     for (int monitor = 0; monitor < screen_count; ++monitor) {
       Monitor *c_monitor = &monitors[monitor];
       imlib_context_push(c_monitor->render_context);
-      imlib_context_set_dither(1);
-      imlib_context_set_blend(1);
+      imlib_context_set_dither(0);
+      imlib_context_set_blend(0);
       imlib_context_set_image(current);
 
       imlib_render_image_on_drawable(0, 0);
@@ -154,7 +154,8 @@ int main(int argc, char *argv[]) {
       XSync(display, False);
       imlib_context_pop();
     }
-    if (cycle % images_count == 0) {
+    // wait longer between blinks, blink again immediately 1/36 times
+    if (cycle % images_count == 0 && (rand() % 36) != 0) {
       nanosleep(&delay, NULL);
       // randomize the blink delay each time between 2-20 seconds
       delay.tv_sec = (rand() % 18) + 2;

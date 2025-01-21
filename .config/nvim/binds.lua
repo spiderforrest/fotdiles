@@ -4,6 +4,7 @@ map('v', '<Enter>',     '<cmd>EasyAlign<cr>', bindopt)
 map('n', '<leader>f',   '<cmd>CHADopen<cr>', bindopt)
 map('n', '<leader>u',   '<cmd>UndotreeToggle<cr>', bindopt)
 map('n', '<leader>g',   '<cmd>ZenMode<cr>', bindopt)
+map('n', 'gG',  '<cmd>vert Git<cr>', bindopt) -- fugative
 map('n', '<leader>rs',  ':IncRename ', bindopt)
 -- lmap('n', '<leader>tf', function() telescope.find_files() end, bindopt)
 -- lmap('n', '<leader>tg', function() telescope.live_grep() end, bindopt)
@@ -13,6 +14,7 @@ map('n', '<leader>rs',  ':IncRename ', bindopt)
 lmap({'n','v'}, 't',    function() MiniJump2d.start(MiniJump2d.builtin_opts.single_character) end, bindopt)
 lmap('n', '<leader>w',  function() MiniMap.toggle() end, bindopt)
 lmap('n', '<leader>h',  function() conceal.toggle_conceal() end, bindopt)
+lmap('n', '<leader>ws', function() MiniTrailspace.trim() end, bindopt)
 lmap('n', '<leader>ws', function() MiniTrailspace.trim() end, bindopt)
 ---@diagnostic enable: undefined-global
 
@@ -68,8 +70,7 @@ map('n', '<F5>',        '<cmd>set linebreak<cr>', bindopt)
 map('n', '<F6>',        '<cmd>set nolinebreak<cr>', bindopt)
 -- please see ToggleMouse() in defines for an explaination, my shame is immeasurable
 map('n', '<leader>m',   '<cmd>call ToggleMouse()<cr>', bindopt)
--- toss open live-server in a new term
-map('n', '<leader>js',  '<cmd>silent !alacritty -e "live-server" &<cr><cmd>redraw!<cr>', bindopt)
-map('n', '<leader>jn',  '<cmd>silent !alacritty -e "npm start" &<cr><cmd>redraw!<cr>', bindopt)
+-- fix json, requires external dep jq
+map('n', '<leader>js',  '<cmd>silent %!jq .<cr>', bindopt)
 
 -- vim:foldmethod=marker

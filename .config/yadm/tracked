@@ -1,0 +1,6 @@
+/etc/ly/config.ini%SEP%755%SEP%root
+/bedrock/etc/bedrock.conf%SEP%644%SEP%root
+/etc/udev/rules.d/99-vial.rules%SEP%644%SEP%root
+/etc/xdg/user-dirs.defaults%SEP%644%SEP%root
+/etc/mullvad-vpn/settings.json%SEP%644%SEP%root
+/etc/X11/xorg.conf.d/20-amdgpu.conf%SEP%644%SEP%root

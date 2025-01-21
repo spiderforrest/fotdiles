@@ -23,26 +23,29 @@ settings:
   bindings.commands:
     global:
       normal:
-        <Ctrl+Shift+c>: yank selection
+        <Ctrl+Shift+c>": yank selection
+        F: hint -r all tab-bg
         ah: config-cycle statusbar.show always never
         td: config-cycle colors.webpage.darkmode.enabled true false ;; restart
         ttc: config-cycle content.javascript.can_access_clipboard true false
+        ttf: mind links spawn mpv {hint-url}
         tth: config-cycle tabs.show multiple never
         ttl: config-cycle tabs.position left bottom
         ttn: open -t
+        tty: spawn mpv {url}
         ys: yank selection
         z: zoom-in 1
   bindings.key_mappings:
     global:
-      <Ctrl-6>: <Ctrl-^>
-      <Ctrl-Enter>: <Ctrl-Return>
-      <Ctrl-I>: <Tab>
-      <Ctrl-J>: <Return>
-      <Ctrl-M>: <Return>
-      <Ctrl-[>: <Escape>
+      <Ctrl+6>: <Ctrl+^>
+      <Ctrl+Enter>: <Ctrl+Return>
+      <Ctrl+[>: <Escape>
+      <Ctrl+i>: <Tab>
+      <Ctrl+j>: <Return>
+      <Ctrl+m>: <Return>
       <Enter>: <Return>
-      <Shift-Enter>: <Return>
-      <Shift-Return>: <Return>
+      <Shift+Enter>: <Return>
+      <Shift+Return>: <Return>
   changelog_after_upgrade:
     global: minor
   colors.webpage.darkmode.enabled:
@@ -69,9 +72,7 @@ settings:
   content.blocking.method:
     global: both
   content.cookies.accept:
-    '*://betterdiscord.net/*': no-3rdparty
     global: no-unknown-3rdparty
-    https://www.easybib.com/project/style/mla?id=9f40e0be-4206-48d2-8750-5fcacb327a45: no-3rdparty
   content.desktop_capture:
     http://localhost:3000: true
     https://discord.com: true
@@ -101,6 +102,7 @@ settings:
     https://meet.google.com: true
     https://p2p.mirotalk.com: true
     https://video.simplepractice.com: true
+    https://web.whatsapp.com: true
     https://webrtc.github.io: true
   content.media.audio_video_capture:
     http://localhost:3000: true
@@ -122,6 +124,7 @@ settings:
     https://calendar.protonmail.com: true
     https://frameboxxindore.com: false
     https://ibb.co: false
+    https://mail.proton.me: true
     https://mail.protonmail.com: true
     https://meet.google.com: true
     https://ww5.0123movie.net: false
@@ -146,7 +149,7 @@ settings:
     global: -1
   editor.command:
     global:
-    - alacritty
+    - wezterm
     - -e
     - nvim
     - '{file}'
@@ -154,7 +157,7 @@ settings:
     global: utf-8
   fileselect.folder.command:
     global:
-    - alacritty
+    - wezterm
     - -e
     - ranger
     - --choosedir={}
@@ -162,13 +165,13 @@ settings:
     global: default
   fileselect.multiple_files.command:
     global:
-    - alacritty
+    - wezterm
     - -e
     - ranger
     - --choosefiles={}
   fileselect.single_file.command:
     global:
-    - alacritty
+    - wezterm
     - -e
     - ranger
     - --choosefile={}
@@ -191,7 +194,7 @@ settings:
   fonts.keyhint:
     global: default_size SFMono
   fonts.web.family.fixed:
-    global: 12 SFMono
+    global: SFMono
   hints.auto_follow:
     global: always
   hints.auto_follow_timeout:
@@ -222,7 +225,7 @@ settings:
     - \b[<←≪]\b
     - \b(<<|«)\b
   hints.radius:
-    global: 0
+    global: 3
   hints.scatter:
     global: false
   hints.uppercase:
@@ -231,8 +234,16 @@ settings:
     global: 30
   input.escape_quits_reporter:
     global: true
+  input.forward_unbound_keys:
+    global: none
+  input.insert_mode.auto_leave:
+    global: false
   input.insert_mode.auto_load:
     global: true
+  input.insert_mode.plugins:
+    global: false
+  input.mode_override:
+    global: insert
   input.mouse.rocker_gestures:
     global: false
   input.spatial_navigation:
@@ -245,6 +256,12 @@ settings:
     global: 5000
   prompt.radius:
     global: 8
+  qt.highdpi:
+    global: false
+  qt.workarounds.disable_accelerated_2d_canvas:
+    global: never
+  scrolling.bar:
+    global: overlay
   scrolling.smooth:
     global: true
   search.wrap:
@@ -257,21 +274,30 @@ settings:
     global: always
   statusbar.widgets:
     global:
-    - progress
     - keypress
+    - progress
+    - search_match
     - url
     - scroll
     - history
+  tabs.favicons.show:
+    global: always
+  tabs.indicator.padding:
+    global:
+      bottom: 2
+      left: 4
+      right: 4
+      top: 2
   tabs.last_close:
     global: close
   tabs.new_position.related:
     global: next
   tabs.padding:
     global:
-      bottom: 0
+      bottom: 6
       left: 0
       right: 0
-      top: 0
+      top: 6
   tabs.pinned.shrink:
     global: true
   tabs.position:
@@ -281,9 +307,13 @@ settings:
   tabs.show:
     global: multiple
   tabs.title.alignment:
-    global: center
+    global: left
   tabs.title.format:
-    global: '{audio}{index}/{current_title}'
+    global: '{audio}{relative_index}: {current_title}'
+  tabs.title.format_pinned:
+    global: null
+  tabs.tooltips:
+    global: true
   tabs.width:
     global: 20%
   tabs.wrap:
@@ -305,3 +335,5 @@ settings:
     - utm_campaign
     - utm_term
     - utm_content
+  window.title_format:
+    global: '{current_title} @ {host} '

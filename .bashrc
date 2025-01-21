@@ -7,8 +7,10 @@
 # i want these to be available in non-interactive enviorments
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+# export PATH="$HOME/.luarocks/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.nimble/bin:$PATH"
+# export PATH="$HOME/.luarocks/bin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export EDITOR=nvim
 export pref_term="wezterm"
@@ -69,9 +71,10 @@ alias mine="__GL_THREADED_OPTIMIZATIONS=0 multimc -l 'the final gay'"
 alias vpn="mullvad status && mullvad account get | grep -v account && mullvad auto-connect get && mullvad lan get && mullvad lockdown-mode get"
 alias greper="grep --exclude-dir=node_modules -Rnw . -e"
 # shellcheck disable=SC2048,2086,2164 # lol
-dote() { cd ~/project/git/dote && ./dote.lua $* && cd - > /dev/null; }
 alias voidpkg="xpkg |  fzf --preview 'xbps-query -S {}' --layout=reverse --bind 'enter:execute(xbps-query -S {} | less)'"
 alias archpkg="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
+not_again_dude() { vlc "/mnt/storage/eva/Neon Genesis Evangelion/Evangelion.$1.mkv" --play-and-exit --audio-language Japanese --video-on-top --sub-file "/mnt/storage/eva/Neon Genesis Evangelion/$1.ass" >/dev/null 2>/dev/null; }
+alias now="date +%s"
 
 # fixes/improvements
 alias sl='sl -la'
@@ -92,7 +95,7 @@ restore() {
   fi
 }
 alias dfix='export $(dbus-launch) &&'
-alias reflector_i_barely_know_er="sudo reflector --save /etc/pacman.d/mirrorlist --country 'United States' --protocol https --latest 10"
+alias reflector_i_barely_know_er="sudo strat -r arch reflector --save /etc/pacman.d/mirrorlist --country 'United States' --protocol https --latest 10"
 
 # bedrock aliasi
 if [[ -d /bedrock ]] ; then

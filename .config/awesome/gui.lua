@@ -149,7 +149,7 @@ awful.screen.connect_for_each_screen(function(s)
 end) -- }}}
 
 -- i'm soooo fancy
-require("py32awe").setup{container = statusline_container, bar_command = "script -qfec 'py3status' -O '/dev/null'" }
+require("py32awe").setup{container = statusline_container, bar_command = "script -qfec 'pkill py3status ; py3status -b' -O '/dev/null'" }
 
 -- {{{ global titlebar
 local function title_create(c)

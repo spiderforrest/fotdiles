@@ -1,5 +1,5 @@
 {
-  "diagnostics.disable": ["undefined-field"],
+  "diagnostics.disable": ["undefined-field", "coq-user-snippets"],
   "diagnostics.globals":
   [ "fn", "vs", "set", "g", "map", "lmap", "bindopt", "expopt", "lazypath", "line_sym_1", "line_sym_2", "line_wc", "jumpNode", "writing_enter", "writing_leave", "visualNode", "lazyConf"],
   "workspace.ignoreDir": ["undodir"],

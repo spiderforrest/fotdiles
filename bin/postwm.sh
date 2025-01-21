@@ -17,8 +17,9 @@
 xrandr --dpi 94
 xrandr --dpi 94
 
-xrandr --output DisplayPort-0 --primary --mode 2560x1440 --rate 144.00 --pos 0x0 --rotate normal --scale 1x1 --output DisplayPort-1 --mode 1920x1080 --pos 2560x180 --rotate normal --scale 1x1
-# xrandr --output DisplayPort-0 --primary --mode 2560x1440 --rate 144.00 --pos 0x0 --rotate normal --scale 1x1 --output HDMI-A-0 --mode 1920x1080 --pos 2560x180 --rotate normal --scale 1x1
+# NO LONGER MANAGED HERE, look in awesomerc
+# xrandr --output DisplayPort-0 --primary --mode 2560x1440 --rate 144.00 --pos 0x0 --rotate normal --scale 1x1 --output DisplayPort-1 --mode 1920x1080 --pos 2560x180 --rotate normal --scale 1x1
+# xrandr --output DisplayPort-0 --primary --mode 2560x1440 --rate 144.00 --pos 0x0 --rotate normal --scale 1x1 --output HDMI-A-0 --mode 1920x1080 --pos 2560x0 --rotate normal --scale 1x1
 # for unicode input
 ibus-daemon -drxR
 # currently just for my cursor
@@ -38,8 +39,8 @@ ensureOn(){
 # we're gonna do audio here y not
 pipewire &
 
-# we real fancy now
-ensureOn walp.bin
+# we real fancy now, needs to restart on refreshes or it looks janky til she blinks
+pkill walp.bin ; walp.bin &
 
 # background shit
 ensureOn picom
@@ -51,11 +52,16 @@ ensureOn syncthing --no-browser
 # forground shit
 # alacritty --title="todo" --class=serv,serv -e bash -c "$HOME/.cargo/bin/chore ; ssh -p 773 spider@192.168.0.61" &
 # alacritty --hold --title="$(tac /var/log/pacman.log | grep -m1 '\-S \-y \-u')" --class=local,local -e bash -i -c "neofetch && python bin/archnews.py | sed -n '1,18 p' && $HOME/bin/p u; bash" &
-wezterm start --class=serv bash -c "cd ~/project/git/dote && ./dote.lua ; ssh -p 773 spider@192.168.0.61" &
-wezterm start --class=local bash -i -c "neofetch && python bin/archnews.py | sed -n '1,14 p' && $HOME/bin/p u; bash" &
+if ! pgrep wezterm-gui ; then
+  wezterm start --class=serv bash -c "dote ; ssh -p 773 spider@192.168.0.61" &
+  wezterm start --class=local bash -i -c "neofetch && python bin/archnews.py | sed -n '1,14 p' && $HOME/bin/p u; bash" &
+fi
 # bin/archnews.py | sed -n '1,18 p' && $HOME/bin/p u; bash" &
 # ensureOn keepassxc
 # ensureOn pavucontrol-qt
+
+# girlssss
+ensureOn tenny
 
 # this one is batshit
 export NUMEN_DMENU=j4-desktop-dmenu

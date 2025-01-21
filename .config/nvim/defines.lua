@@ -11,39 +11,41 @@ map = vim.api.nvim_set_keymap
 lmap = vim.keymap.set
 bindopt = { noremap = true, silent = true }
 expopt = { silent = true, noremap = true, expr = true }
+-- }}}
 
+-- {{{ assigning internal variables
 g.mapleader = ' ' -- setting leader before plugins initialize
 -- get the path for plugins and add it to vim's version of PATH
 lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
 set.rtp:prepend(lazypath)
--- }}}
+-- }}}}
 
 -- {{{ functions and whatnot
 -- {{{ lualine
 function line_sym_1()
-    return '🕷'
+  return '🕷'
 end
 function line_sym_2()
-    return '🕸️'
+  return '🕸️'
 end
 function line_wc()
-    -- print selectionwords or cursorpos/total
-    return tostring(fn.wordcount().visual_words or fn.wordcount().cursor_words) .. "/" .. tostring(fn.wordcount().words)
+  -- print selectionwords or cursorpos/total
+  return tostring(fn.wordcount().visual_words or fn.wordcount().cursor_words) .. "/" .. tostring(fn.wordcount().words)
 end
 -- }}}
 
 -- tree surfur jump matcher, true jumps forward false jumps back
 function jumpNode(direction)
   require('syntax-tree-surfer').filtered_jump({
-		"function",
+    "function",
     "if_statement",
-		"else_clause",
-		"else_statement",
-		"elseif_statement",
-		"for_statement",
-		"while_statement",
-		"switch_statement",
-	}, direction)
+    "else_clause",
+    "else_statement",
+    "elseif_statement",
+    "for_statement",
+    "while_statement",
+    "switch_statement",
+    }, direction)
 end
 
 -- highlght colmn 80
@@ -55,8 +57,8 @@ endif ]]
 -- turn off fancy colors cos its orang on my phone lol
 -- good lord i use vim regularly on my phone
 if (fn.system('echo $TERM'):find('xterm')) then
-    vs [[au VimEnter * set notermguicolors]]
-  end
+  vs [[au VimEnter * set notermguicolors]]
+end
 
 -- When editing a file, always jump to the last known cursor position.
 vs [[ au BufReadPost *
@@ -76,42 +78,42 @@ endfunc ]]
 
 -- {{{ writing mode!
 function writing_enter() -- lua function to toggle the writing mode
-    vs [[
+  vs [[
       noh
       Limelight
       GitGutterBufferDisable
     ]]
-    ---@diagnostic disable-next-line: undefined-global
-    MiniTrailspace.unhighlight()
+  ---@diagnostic disable-next-line: undefined-global
+  MiniTrailspace.unhighlight()
 
-    set.textwidth=0
-    set.number = false
-    set.relativenumber = false
-    set.wrap = true
-    set.spell = true
-    set.scrolloff=5
-    set.colorcolumn:remove('100')
-    set.formatoptions:remove('t')
-    set.fillchars = { eob = " " }
+  set.textwidth=0
+  set.number = false
+  set.relativenumber = false
+  set.wrap = true
+  set.spell = true
+  set.scrolloff=5
+  set.colorcolumn:remove('100')
+  set.formatoptions:remove('t')
+  set.fillchars = { eob = " " }
 end
 function writing_leave()
-    vs [[
+  vs [[
       noh
       Limelight!
       GitGutterBufferEnable
     ]]
-    ---@diagnostic disable-next-line: undefined-global
-    MiniTrailspace.highlight()
+  ---@diagnostic disable-next-line: undefined-global
+  MiniTrailspace.highlight()
 
-    set.textwidth=135
-    set.number = true
-    set.relativenumber = true
-    set.wrap = false
-    set.spell = false
-    set.scrolloff=2
-    set.colorcolumn:append('100')
-    set.formatoptions:append('t')
-    set.fillchars = { eob = "~" }
+  set.textwidth=135
+  set.number = true
+  set.relativenumber = true
+  set.wrap = false
+  set.spell = false
+  set.scrolloff=2
+  set.colorcolumn:append('100')
+  set.formatoptions:append('t')
+  set.fillchars = { eob = "~" }
 end
 -- }}}
 
@@ -131,16 +133,16 @@ function visualNode()
   -- cue the binds to be removed when visual mode is left
   -- i had an autocmd but binding esc literally makes more sense
   lmap({'n','i','x','o'}, '<ESC>', function ()
-      vim.keymap.del('x', 'n')
-      vim.keymap.del('x', 'o')
-      vim.keymap.del('x', 'e')
-      vim.keymap.del('x', 'i')
-      vim.keymap.del('x', 'N')
-      vim.keymap.del('x', 'O')
-      vim.keymap.del({'n','i','x','o'}, '<ESC>')
-      -- what the fuck
-      vs(vim.api.nvim_replace_termcodes('normal <ESC>', true, true, true))
-    end,
+    vim.keymap.del('x', 'n')
+    vim.keymap.del('x', 'o')
+    vim.keymap.del('x', 'e')
+    vim.keymap.del('x', 'i')
+    vim.keymap.del('x', 'N')
+    vim.keymap.del('x', 'O')
+    vim.keymap.del({'n','i','x','o'}, '<ESC>')
+    -- what the fuck
+    vs(vim.api.nvim_replace_termcodes('normal <ESC>', true, true, true))
+  end,
     bindopt)
 end
 
@@ -167,6 +169,9 @@ lazyConf = {
     colorscheme = { "everforest", "habamax" }
   },
 }
+
+-- when you update plugins, also update treesitter
+vs[[ autocmd User LazyUpdate TSUpdate ]]
 
 -- python fucking sucks
 g.python3_host_prog="/usr/bin/python3"

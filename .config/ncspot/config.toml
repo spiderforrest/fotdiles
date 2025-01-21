@@ -1,3 +1,13 @@
+# gen
+"library_tabs" = [ "playlists" ]
+
+statusbar_format = "%title / %artists"
+[track_format]
+left = "%title / %album"
+center = "%artists"
+right = "%duration"
+
+
 [keybindings]
 "Ctrl+q" = "quit"
 "q" = "back"
@@ -8,3 +18,22 @@
 "e" = "move down 1"
 "i" = "move up 1"
 "o" = "move right 1"
+
+[theme]
+background = "#282C34"
+primary = "#ABB2BF"
+secondary = "#5C6370"
+title = "#98C379"
+playing = "#61AFF0"
+playing_selected = "#61AFF0"
+playing_bg = "#282C34"
+highlight = "#98C379"
+highlight_bg = "#5C6370"
+error = "#282C34"
+error_bg = "#E06C75"
+statusbar = "#282C34"
+statusbar_progress = "#98C379"
+statusbar_bg = "#98C379"
+cmdline = "#282C34"
+cmdline_bg = "#E5C07B"
+search_match = "#E06C75"

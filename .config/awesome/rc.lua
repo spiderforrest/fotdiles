@@ -29,6 +29,7 @@ dofile(pwd .. "rules.lua")
 dofile(pwd .. "signals.lua")
 
 -- on start
+awful.spawn.with_shell(xrandr_cmd) -- set x settings
 awful.spawn.once("bash /home/spider/bin/postwm.sh", {}, function()end, "postwm")
 -- ....
 awful.spawn.with_shell("~/bin/thursday_my_dudes")

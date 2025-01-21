@@ -23,6 +23,18 @@ browser  = os.getenv("BROWSER") or "qutebrowser"
 editor   = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor .. " "
 
+
+-- xrandr display config
+local framerate, primary, secondary, secondary_pos = "165.00", "DisplayPort-0", "HDMI-A-0", "2560x0"
+-- local framerate, primary, secondary, secondary_pos = "144.00", "DisplayPort-0", "HDMI-A-0", "2560x180"
+
+-- normal usage cmd
+xrandr_cmd = "xrandr --output " .. primary .. " --primary --mode 2560x1440 --pos 0x0 --rate " .. framerate ..
+    " --output " .. secondary .. " --mode 1920x1080 --pos " .. secondary_pos .. " --rotate normal --scale 1x1"
+-- mirroring
+xrandr_mirror_cmd = "xrandr --output " .. primary .. " --mode 2560x1440 --rate " .. framerate ..
+    " --output HDMI-A-0 --scale 1.33x1.33 --same-as " .. primary
+
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile.right,
@@ -98,7 +110,7 @@ function quick_bind(keybind_tbl) -- {{{
         -- debug check
         if not tbl.key then
             naughty.notify{ title="undefined hotkey", text=tostring(tbl.desc)}
-            -- fuck you i love goto
+            -- fuck you i love goto (legitimate explaination: there's no continue in lua)
             goto continue
         end
 

@@ -35,10 +35,10 @@
   distro="..uh, not sure. sorry"
   if [[ -d /bedrock ]] ; then
     distro="bedrock"
-  else if $(grep -q void /etc/os-release) ; then
+  elif grep -q void /etc/os-release ; then
     distro="void"
   fi
-  fi
+
   case "$distro" in
     bedrock)
       pmInstall="sudo pmm-install"
@@ -55,14 +55,13 @@
           pmm-query -R "$*"
         else
           echo "// not found local, trying remote //"
-          # no idea how pmm works but it gets garbage in my outputs so sanitize by putting it in a vat
-          # var before grepping
+          # no idea how pmm works but it gets garbage in my outputs so sanitize by putting it in a var before grepping
           remoteResults="$(pmm-query -R "$1")"
           if [[ -n "$remoteResults" ]] ; then
             echo "$remoteResults"
           else
             echo "// not found explicitly, searching... //"
-            echo "$(pmm-query -Rs "$*" | tac)"
+            pmm-query -Rs "$*" | tac
           fi
         fi
       }
@@ -93,14 +92,12 @@
           xbps-query -R "$*"
         else
           echo "// not found local, trying remote //"
-          # no idea how xbps works but it gets garbage in my outputs so sanitize by putting it in a vat
-          # var before grepping
           remoteResults="$(xbps-query -R "$1")"
           if [[ -n "$remoteResults" ]] ; then
             echo "$remoteResults"
           else
             echo "// not found explicitly, searching... //"
-            echo "$(xbps-query -Rs "$*" | tac)"
+            xbps-query -Rs "$*" | tac
           fi
         fi
       }

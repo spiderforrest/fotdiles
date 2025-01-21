@@ -11,6 +11,7 @@ case "$1" in
     i3)                 nvim "$dir/i3/config"                   ;;
     picom)              nvim "$dir/picom/picom.conf"            ;;
     bar)                nvim "$dir/py3status/config"            ;;
+    dote)               nvim "$dir/dote/config.lua"             ;; # immeasurably smug
     bin | script*)      nvim "$HOME/bin/$2"                     ;;
     wm | awesome)
         if [[ -z "$2" ]] ; then

@@ -1,82 +1,123 @@
 {
-  "allow_lan": true,
-  "auto_connect": true,
-  "block_when_disconnected": false,
-  "bridge_settings": {
-    "normal": {
-      "location": "any",
-      "ownership": "any",
-      "providers": "any"
-    }
-  },
-  "bridge_state": "auto",
-  "obfuscation_settings": {
-    "selected_obfuscation": "off",
-    "udp2tcp": {
-      "port": "any"
-    }
-  },
   "relay_settings": {
     "normal": {
       "location": {
         "only": {
           "location": {
-            "city": [
+            "hostname": [
               "us",
-              "sea"
+              "sea",
+              "us-sea-wg-103"
             ]
           }
         }
       },
-      "openvpn_constraints": {
-        "port": "any"
-      },
-      "ownership": "any",
       "providers": "any",
+      "ownership": "any",
       "tunnel_protocol": {
         "only": "wireguard"
       },
       "wireguard_constraints": {
+        "port": "any",
+        "ip_version": "any",
+        "use_multihop": false,
         "entry_location": {
           "only": {
             "location": {
               "country": "se"
             }
           }
-        },
-        "ip_version": "any",
-        "port": "any",
-        "use_multihop": false
+        }
+      },
+      "openvpn_constraints": {
+        "port": "any"
       }
     }
   },
-  "settings_version": 7,
-  "show_beta_releases": false,
+  "bridge_settings": {
+    "bridge_type": "normal",
+    "normal": {
+      "location": "any",
+      "providers": "any",
+      "ownership": "any"
+    },
+    "custom": null
+  },
+  "obfuscation_settings": {
+    "selected_obfuscation": "auto",
+    "udp2tcp": {
+      "port": "any"
+    },
+    "shadowsocks": {
+      "port": "any"
+    }
+  },
+  "bridge_state": "auto",
+  "custom_lists": {
+    "custom_lists": []
+  },
+  "api_access_methods": {
+    "direct": {
+      "id": "635202ae-5840-4e49-a10e-e8f5d8e987d1",
+      "name": "Direct",
+      "enabled": true,
+      "access_method": {
+        "built_in": "direct"
+      }
+    },
+    "mullvad_bridges": {
+      "id": "b8381d34-03f1-4dcb-bfff-ea03c6b35eb6",
+      "name": "Mullvad Bridges",
+      "enabled": true,
+      "access_method": {
+        "built_in": "bridge"
+      }
+    },
+    "encrypted_dns_proxy": {
+      "id": "615dbcaf-21f0-4254-8e91-804087571a24",
+      "name": "Encrypted DNS proxy",
+      "enabled": true,
+      "access_method": {
+        "built_in": "encrypted_dns_proxy"
+      }
+    },
+    "custom": []
+  },
+  "allow_lan": true,
+  "block_when_disconnected": true,
+  "auto_connect": true,
   "tunnel_options": {
-    "dns_options": {
-      "custom_options": {
-        "addresses": []
-      },
-      "default_options": {
-        "block_ads": true,
-        "block_adult_content": false,
-        "block_gambling": true,
-        "block_malware": true,
-        "block_trackers": true
-      },
-      "state": "default"
-    },
-    "generic": {
-      "enable_ipv6": false
-    },
     "openvpn": {
       "mssfix": null
     },
     "wireguard": {
       "mtu": null,
       "quantum_resistant": "auto",
+      "daita": {
+        "enabled": false,
+        "use_multihop_if_necessary": true
+      },
       "rotation_interval": null
+    },
+    "generic": {
+      "enable_ipv6": false
+    },
+    "dns_options": {
+      "state": "default",
+      "default_options": {
+        "block_ads": true,
+        "block_trackers": true,
+        "block_malware": true,
+        "block_adult_content": false,
+        "block_gambling": true,
+        "block_social_media": false
+      },
+      "custom_options": {
+        "addresses": []
+      }
     }
   },
-  "wg_migration_rand_num": 0.59802884
+  "relay_overrides": [],
+  "show_beta_releases": false,
+  "settings_version": 9
 }

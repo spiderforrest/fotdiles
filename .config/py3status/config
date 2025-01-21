@@ -20,11 +20,12 @@ py3status {
 #	nagbar_font = 'pango:DejaVu Sans Mono 10'
 }
 
-order += "spotify"
+# order += "spotify"
 #order += "arch_updates"
 order += "nvidia_smi"
 #order += "ipv6"
-order += "vpn_status"
+# order += "vpn_status"
+order += "group vpn"
 order += "ethernet _first_"
 order += "volume_status mic"
 order += "volume_status master"
@@ -128,8 +129,13 @@ spotify {
 	format_stopped = "/"
 }
 
-async_script {
-	script_path = "/home/spider/bin/sextime -l -x '.' -z '&'"
+
+group vpn {
+  external_script vpn_status {
+    cache_timeout = 20
+    button_show_notification = true
+    script_path = "/home/spider/bin/vpn"
+  }
 }
 
 group clock {
@@ -141,7 +147,4 @@ group clock {
 			format = "%Y-%m-%d, %H:%M:%S"
 	}
 
-    clock est {
-        format = "wrk: {America/New_York}"
-        format_time = "%H:%M:%S"
 }
