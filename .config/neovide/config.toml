@@ -1,0 +1,23 @@
+[font]
+size = 14
+hinting = "full"
+edging = "antialias"
+
+[[font.normal]]
+family = "Space Mono"
+style = "Normal"
+[[font.bold]]
+family = "Space Mono"
+style = "Bold"
+
+# fallbacks
+[[font.normal]]
+family = "Noto Color Emoji"
+[[font.normal]]
+family = "Hurmit Nerd Font Mono"
+[[font.normal]]
+family = "Unifont"
+
+# features
+[font.features]
+"Space Mono" = ["-calt","+clig","-liga"]

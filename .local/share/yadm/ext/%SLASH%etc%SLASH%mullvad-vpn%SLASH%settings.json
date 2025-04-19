@@ -84,7 +84,7 @@
     "custom": []
   },
   "allow_lan": true,
-  "block_when_disconnected": true,
+  "block_when_disconnected": false,
   "auto_connect": true,
   "tunnel_options": {
     "openvpn": {
