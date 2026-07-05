@@ -7,10 +7,9 @@
 # i want these to be available in non-interactive enviorments
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-# export PATH="$HOME/.luarocks/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.nimble/bin:$PATH"
-# export PATH="$HOME/.luarocks/bin:$PATH"
+export PATH="$HOME/.luarocks/bin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export EDITOR=nvim
 export pref_term="wezterm"
@@ -18,11 +17,12 @@ export pref_term="wezterm"
 # ignore the rest if not interactive
 [[ $- != *i* ]] && return
 
-# this redirects to hilbish when interactive, on legsix, and when the parent process is NOT hilbish
+# this redirects to hilbish when interactive, on waputer, and when the parent process is NOT hilbish
 # so if you type bash in hilbish you get bash
 # can you breathe shellcheck
 # shellcheck disable=SC2009,SC2143
-if [[ "$HOSTNAME" == "spiderlegsix" ]] && ! ps $PPID | grep -q hilbish ; then
+if [[ "$HOSTNAME" == "waputer" ]] && ! ps $PPID | grep -q hilbish ; then
+  true
   exec hilbish -S -l
 fi
 
@@ -44,7 +44,7 @@ complete -cf progflip
 ### aliasi ###
 
 # shorthands
-alias v='nvim'
+alias v='starch nvim'
 alias vw='nvim "+lua writing()"' # it feels real good changing that to a lua funtion call oooooooo
 alias ni='neovide --multigrid'
 alias suv='sudoedit'
@@ -56,7 +56,7 @@ alias godo='chore'
 alias gitfix='sed -i s/mindforrest/spiderforrest/ */.git/config'
 alias binfix='chmod +x ~/bin/*'
 alias fastread='fsrx'
-alias serv='ssh spider@spood.org -p 773'
+alias serv='ssh spider@spood.org -p 7373'
 alias fserv='sftp -P 773 spider@spood.org'
 alias why_would_you_do_this_dude_why='xclip -o | shuf'
 alias :q="exit" # ...
@@ -65,7 +65,7 @@ alias xmpp="profanity -a spider@spood.org -t boothj5_slack"
 alias cold="notify-send 'Numen dormant' && numen $HOME/.config/numen/off.phrases"
 # shellcheck disable=SC2139
 alias nile="cd $HOME/project/git/nile && starch ./bin/nile"
-nuke() { rm -r "$1" ; echo "rm -r\"\$*\" \"./$1\"" >> "$HOME/bin/clean_junk"; }
+nuke() { rm -r "$1" && echo "rm -r\"\$*\" \"./$1\"" >> "$HOME/bin/clean_junk"; }
 alias prosody="TERM=xterm ssh -J spood.org:773 admin@xmpp.spood.org -i .aws/spider.pem"
 alias mine="__GL_THREADED_OPTIMIZATIONS=0 multimc -l 'the final gay'"
 alias vpn="mullvad status && mullvad account get | grep -v account && mullvad auto-connect get && mullvad lan get && mullvad lockdown-mode get"
@@ -75,12 +75,12 @@ alias voidpkg="xpkg |  fzf --preview 'xbps-query -S {}' --layout=reverse --bind 
 alias archpkg="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 not_again_dude() { vlc "/mnt/storage/eva/Neon Genesis Evangelion/Evangelion.$1.mkv" --play-and-exit --audio-language Japanese --video-on-top --sub-file "/mnt/storage/eva/Neon Genesis Evangelion/$1.ass" >/dev/null 2>/dev/null; }
 alias now="date +%s"
+alias printer="sudo mount UUID=B0C0-BABA /mnt/other && cp /mnt/other/print_log.txt ~/printer/gcode/ ; sudo rm /mnt/other/* && sudo cp ~/printer/gcode/*.gcode /mnt/other && ls /mnt/other && sudo umount /mnt/other"
 
 # fixes/improvements
 alias sl='sl -la'
 alias rr='rm -rI'
 alias grep='grep --color=auto'
-alias btop='btop --utf-force'
 # alias sudo !!
 alias !='sudo /bin/bash -c "$(history -p !!)"'
 # allow aliasi to apply after sudo

@@ -120,7 +120,9 @@ awful.screen.connect_for_each_screen(function(s)
   s.title_client_buttons_container:buttons(scroll_tag_buttons)
   -- tray
   s.systray = wibox.widget.systray()
-  s.systray.visible = false -- hide by default tho, can't mix aesthetics
+  -- s.systray.visible = false -- hide by default tho, can't mix aesthetics
+  -- s.systray.visible = true -- actually i never have shit there anyway, i wanna know when stuff is open
+  s.systray.visible = false -- wait, no, do hide by default, some apps jank and break my mouse....?
 
   -- create the bar
   s.bar = awful.wibar{position = "top", screen = s}
@@ -149,7 +151,7 @@ awful.screen.connect_for_each_screen(function(s)
 end) -- }}}
 
 -- i'm soooo fancy
-require("py32awe").setup{container = statusline_container, bar_command = "script -qfec 'pkill py3status ; py3status -b' -O '/dev/null'" }
+require("py32awe").setup{container = statusline_container, bar_command = "script -qfec 'py3status -b' -O '/dev/null'", default_color = "khaki"}
 
 -- {{{ global titlebar
 local function title_create(c)

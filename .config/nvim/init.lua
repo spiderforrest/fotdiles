@@ -1,11 +1,11 @@
 -- Spider's vim configs! I use Lazy for plugins, coq for completion, treesitter for treesitter,
--- lsp-zero & mason for LSPs, Mini for random things, lualine for the bar, fork of everforest for theme
+-- mason for LSPs, Mini for random things, lualine for the bar, fork of everforest for theme
 -- I use a tonn more external plugins than that, check ./lua/plug/* for all of them and their configs
 -- 20ms start time on my new computer
 -- 500x faster than a certain internet browser masquerading as a text editor but no shade or anything
 
 package.path = package.path .. ";" .. vim.fn.stdpath("config") .. "/?.lua;" -- add this config dir for require
-require "defines" -- defines global variables (shh) for use in the other config files
+require "defines" -- defines global variables (shh) for use in the other config files/during runtime
 require "binds" -- creates key mappings
 require "sets" -- sets config options
 

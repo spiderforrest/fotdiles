@@ -54,14 +54,17 @@ ensureOn syncthing --no-browser
 # alacritty --hold --title="$(tac /var/log/pacman.log | grep -m1 '\-S \-y \-u')" --class=local,local -e bash -i -c "neofetch && python bin/archnews.py | sed -n '1,18 p' && $HOME/bin/p u; bash" &
 if ! pgrep wezterm-gui ; then
   wezterm start --class=serv bash -c "dote ; ssh -p 773 spider@192.168.0.61" &
-  wezterm start --class=local bash -i -c "neofetch && python bin/archnews.py | sed -n '1,14 p' && $HOME/bin/p u; bash" &
+  wezterm start --class=local bash -c "neofetch && python bin/archnews.py | sed -n '1,14 p' && $HOME/bin/p u; bash -i" &
 fi
 # bin/archnews.py | sed -n '1,18 p' && $HOME/bin/p u; bash" &
 # ensureOn keepassxc
 # ensureOn pavucontrol-qt
 
-# girlssss
+# the girlssss
 ensureOn tenny
+
+# less of a mess, please
+ensureOn ididntinviteallthesepeopletomymotherfuckinhouse
 
 # this one is batshit
 export NUMEN_DMENU=j4-desktop-dmenu

@@ -6,7 +6,7 @@
 // The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-// stvoid gcc -lX11 -lImlib2 ~/bin/loz.c -o ~/bin/loz.bin
+// stvoid gcc -lX11 -lImlib2 ~/bin/tenny.c -o ~/bin/tenny
 
 #define _POSIX_C_SOURCE 199309L
 
@@ -59,7 +59,7 @@ int main() {
   // spawn it
   Window window = XCreateWindow(
     display, root, // display, parent
-    0, 0, 800, 600, 0, // x,y,w,h,border_width
+    0, 0, 580, 590, 0, // x,y,w,h,border_width
     32, InputOutput, visual.visual, // depth, class, visual
     attr_mask, &attr // valuemask, attributes
   );
@@ -68,6 +68,24 @@ int main() {
   XMapWindow(display, window);
   XFlush(display);
 
+  //code is from [http://tonyobryan.com/index.php?article=9][1]
+  typedef struct Hints
+  {
+	  unsigned long   flags;
+	  unsigned long   functions;
+	  unsigned long   decorations;
+	  long            inputMode;
+	  unsigned long   status;
+  } Hints;
+
+  //code to remove decoration
+  Hints hints;
+  Atom property;
+  hints.flags = 2;
+  hints.decorations = 0;
+  property = XInternAtom(display, "_MOTIF_WM_HINTS", True);
+  XChangeProperty(display,window,property,property,32,PropModeReplace,(unsigned char *)&hints,5);
+  XMapWindow(display, window);
 
 
   // process multi-frame
@@ -95,7 +113,7 @@ int main() {
   }
 
   // insane. without this line somewhere it freezes???? help. help. hhelp
-  Imlib_Frame_Info whatthefuck_completely_unused_what = frames[1000].info;
+  // Imlib_Frame_Info whatthefuck_completely_unused_what = frames[1000].info;
 
   // default framerate to given by file
   frame_delay = frame_info.frame_delay MS_NS; // ns / ms
@@ -167,7 +185,7 @@ int main() {
     delay.tv_nsec = frame_delay + error; // create the delay, add error
     nanosleep(&delay, NULL); // aaand sleep
 
-    /* fprintf(stdout, "? says %d\n", error); */
+    fprintf(stdout, "last frame error: %d\n", error);
   }
 
 

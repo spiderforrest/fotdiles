@@ -7,7 +7,7 @@ return {
     priority = 1000,
     config = function()
       -- options are light, dark, and null
-      set.background = 'light'
+      set.background = 'dark'
       -- options are gelatin, cookie, cocoa, and chocolate
       g.everforest_background = 'cookie'
       -- apply theme and do color corrections
@@ -46,7 +46,7 @@ return {
   { 'HiPhish/rainbow-delimiters.nvim', event = 'VeryLazy', dependencies = "nvim-treesitter/nvim-treesitter" },
   -- flat window & focus
   { 'folke/zen-mode.nvim', cmd = 'ZenMode', opts = {
-    window = { height = 0.75 },
+    -- window = { height = 0.75 },
     on_open = writing_enter,
     on_close = writing_leave }
   }, -- make that lil window in the middle that i like, honestly feel bad ditching goyo ;_;

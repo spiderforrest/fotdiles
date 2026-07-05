@@ -2,7 +2,6 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 
--- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
     -- auto slave
@@ -34,14 +33,6 @@ client.connect_signal("manage", function (c)
                 naughty.notify{ title="zoom suppressed", text="you're welcome." }
                 c.minimized = true
                 return
-            elseif tostring(stdio) == '_NET_WM_NAME(UTF8_STRING) = "CrossCode Min v1.4.2-2"\n' then
-                naughty.notify{ title="crosscode size intercepted" }
-                c.fullscreen = true
-                c:raise()
-                return
-            elseif tostring(stdio) == '_NET_WM_NAME(UTF8_STRING) = "MiroTalk WebRTC Video call, Chat Room & Screen Sharing. — Mozilla Firefox" \n' then
-                c:move_to_tag(tags[13])
-                return
             end
         end)
         -- contain the rest
@@ -52,7 +43,9 @@ end)
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
-    c:emit_signal("request::activate", "mouse_enter", {raise = false})
+    if c.name ~= "walp" then
+        c:emit_signal("request::activate", "mouse_enter", {raise = false})
+    end
 end)
 
 client.connect_signal("focus", function(c)
@@ -67,6 +60,9 @@ client.connect_signal("unfocus", function(c)
     end
     if c.ontop then
         c.border_color = beautiful.border_ontop
+        if c.sticky and c.floating then
+            c.border_color = beautiful.border_omni
+        end
     elseif c.sticky then
         c.border_color = beautiful.border_sticky
     else
@@ -87,7 +83,6 @@ end)
 --     c.gap_single_client = beautiful.border_width + beautiful.useless_gap
 --     c.border_width = 0
 -- end)
--- }}}
 
 
 -- vim: foldmethod=marker

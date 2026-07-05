@@ -4,10 +4,9 @@
       "location": {
         "only": {
           "location": {
-            "hostname": [
+            "city": [
               "us",
-              "sea",
-              "us-sea-wg-103"
+              "sjc"
             ]
           }
         }

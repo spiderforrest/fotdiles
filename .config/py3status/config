@@ -61,9 +61,9 @@ load {
 }
 
 memory {
-        format = "%used of %available"
+        format = "%used of %total"
         threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
+        format_degraded = "MEMORY < %total"
 }
 
 volume_status mic {

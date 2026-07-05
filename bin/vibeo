@@ -10,7 +10,7 @@ sleep 0.2
 # uncompressed
 # echo 'y' | ffmpeg -i "$filename" /mnt/storage/tmp.mp4
 # crumchy
-echo 'y' | ffmpeg -i -vcodec libx265 -crf 28 -s 720x480 "$filename" /mnt/storage/tmp.mp4
+echo 'y' | ffmpeg -i "$filename" -vcodec libx265 -crf 28 -s 720x480 /mnt/storage/tmp.mp4
 # echo 'y' | ffmpeg -i "$filename" ~/output.mp4
 
 rm "$filename" &

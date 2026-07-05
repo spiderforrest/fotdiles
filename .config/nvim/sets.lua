@@ -51,46 +51,49 @@ vs[[autocmd bufenter * if (winnr("$") == 1 && &buftype == "nofile" && &filetype 
 
 
 if g.neovide then
-  -- font = wez.font_with_fallback { -- this does not remove default fallbacks. cool.
-  --     'Space Mono', -- my main font
-  --     'Hurmit Nerd Font Mono', -- prettiest more compatibility font
-  --     { family = 'Noto Color Emoji', assume_emoji_presentation = true },-- emoji font
-  --     'Unifont', -- most complete fallback font: they have like 52k glyphts?? geebus
-  -- },
-  -- freetype_load_flags = 'NO_HINTING', -- no font hint
-  --harfbuzz_features = { 'calt=0', 'clig=1', 'liga=0' }, -- font features, see: 
-  --https://docs.microsoft.com/en-us/typography/opentype/spec/
-  -- set.guifont = "Space Mono,Hurmit Nerd Font Mono,Noto Color Emoji,Unifont"
-  -- set.guifont = "Space Mono:h10.4:w1"
-  -- set.guifont = "DejaVu Sans Mono,Noto Color Emoji:cSYMBOL,Unifont"
-  set.guifont = "Space Mono,Overpass Mono,Hurmit Nerd Font Mono,Noto Color Emoji,Unifont"
-  -- set.guifont = "Monocraft:h14:w14:#e-subpixelantialias"
-  set.linespace=2
+  -- set.linespace=-12
   g.neovide_hide_mouse_when_typing = true
   g.neovide_remember_window_size = false
   g.neovide_fullscreen = false
+  g.neovide_cursor_smooth_blink = true
   g.neovide_cursor_animation_length = 0.08
   g.neovide_cursor_trail_size = 0.2
   g.neovide_cursor_vfx_particle_curl = 0.6
-  g.neovide_cursor_vfx_particle_density = 14
+  g.neovide_cursor_vfx_particle_density = 4
   g.neovide_cursor_vfx_particle_lifetime = 3
   g.neovide_cursor_vfx_opacity = 200
   -- g.neovide_cursor_vfx_mode = "railgun"
   g.neovide_cursor_vfx_mode = "pixiedust"
   -- g.neovide_cursor_vfx_mode = "ripple"
 
-  g.neovide_scale_factor = 0.9
-  local change_scale_factor = function(delta)
-  end
+  g.neovide_scale_factor = 1
   lmap("n", "<C-=>", function()
-    g.neovide_scale_factor = g.neovide_scale_factor * 1.25
-    change_scale_factor(1.25)
+    g.neovide_scale_factor = g.neovide_scale_factor * 1.1
   end)
 
   lmap("n", "<C-->", function()
-    g.neovide_scale_factor = g.neovide_scale_factor / 1.25
+    g.neovide_scale_factor = g.neovide_scale_factor / 1.1
   end)
 
+
+  local anim_setting_store = {
+    neovide_position_animation_length = 0,
+    neovide_cursor_animation_length = 0.00,
+    neovide_cursor_trail_size = 0,
+    neovide_cursor_animate_in_insert_mode = false,
+    neovide_cursor_animate_command_line = false,
+    neovide_scroll_animation_far_lines = 0,
+    neovide_scroll_animation_length = 0.00
+  }
+  local function neovide_tg_animations()
+    local tmp = {}
+    for k,v in pairs(anim_setting_store) do
+      tmp[k] = g[k] -- cache the prev value
+      g[k] = v -- set the new value
+    end
+    anim_setting_store = tmp -- store the set of prev values
+  end
+  lmap('n', '<leader>a', neovide_tg_animations)
 end
 
 -- }}}

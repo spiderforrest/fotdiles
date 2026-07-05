@@ -1,7 +1,6 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 
--- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
   -- All clients will match this rule.
@@ -52,8 +51,8 @@ awful.rules.rules = {
 
   -- mooosic
   { rule_any =
-    { name = { "ncspot" } },
-    properties = { tag = tags[12] }
+    { name = { "ncspot" }, class = { "spotify" } },
+    properties = { tag = tags[12], fullscreen = false, maximized = false }
   },
 
   -- chat clients
@@ -73,8 +72,19 @@ awful.rules.rules = {
     { class = { "Zoom Meeting" } },
     properties = { tag = tags[14] }
   },
+
+  -- wallpaper
+  { rule_any = { name = "walp", class = "walp" },
+    properties = {
+      honor_padding = false,
+      honor_workarea = false,
+      sticky = true,
+      focus = false,
+      titlebars_enabled = false,
+      floating = true,
+    }
+  }
 }
--- }}}
 
 -- function awful.rules.high_priority_properties
 

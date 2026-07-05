@@ -25,6 +25,7 @@ settings:
       normal:
         <Ctrl+Shift+c>": yank selection
         F: hint -r all tab-bg
+        ac: download-clear
         ah: config-cycle statusbar.show always never
         td: config-cycle colors.webpage.darkmode.enabled true false ;; restart
         ttc: config-cycle content.javascript.can_access_clipboard true false
@@ -97,6 +98,7 @@ settings:
     global: true
   content.media.audio_capture:
     http://localhost:3000: true
+    https://demo-openmeetings.apache.org: true
     https://diagnostics.simplepractice.com: true
     https://discord.com: true
     https://meet.google.com: true
@@ -106,6 +108,7 @@ settings:
     https://webrtc.github.io: true
   content.media.audio_video_capture:
     http://localhost:3000: true
+    https://demo-openmeetings.apache.org: true
     https://diagnostics.simplepractice.com: true
     https://meet.google.com: true
     https://p2p.mirotalk.com: true
@@ -243,7 +246,7 @@ settings:
   input.insert_mode.plugins:
     global: false
   input.mode_override:
-    global: insert
+    global: normal
   input.mouse.rocker_gestures:
     global: false
   input.spatial_navigation:
@@ -292,6 +295,8 @@ settings:
     global: close
   tabs.new_position.related:
     global: next
+  tabs.new_position.unrelated:
+    global: next
   tabs.padding:
     global:
       bottom: 6
@@ -309,7 +314,7 @@ settings:
   tabs.title.alignment:
     global: left
   tabs.title.format:
-    global: '{audio}{relative_index}: {current_title}'
+    global: '{audio}{index}: {current_title}'
   tabs.title.format_pinned:
     global: null
   tabs.tooltips:

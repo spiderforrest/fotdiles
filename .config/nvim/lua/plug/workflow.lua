@@ -6,9 +6,8 @@ return {
   }, -- file manager
   -- { 'edluffy/hologram.nvim', event = 'VeryLazy', config = function () require('hologram').setup{auto_display = true} end }, -- inline image rendering tanks mr wezterm
   { 'mbbill/undotree', event = 'VeryLazy' }, -- undo manager
-  -- { 'wakatime/vim-wakatime', event = 'VeryLazy' }, -- time tracker
   -- VIM TWO PLAYER MODE 1V1 ME NERD
-  { 'jbyuki/instant.nvim', event = 'VeryLazy', config = function() g['instant_username'] = "emma" end  }, -- allows remote connections to share session
+  -- { 'jbyuki/instant.nvim', event = 'VeryLazy', config = function() g['instant_username'] = "emma" end  }, -- allows remote connections to share session
   -- git
   { 'airblade/vim-gitgutter', event = 'VeryLazy' }, -- show git on left bar
   { 'tpope/vim-fugitive', event = 'VeryLazy' },
@@ -24,8 +23,7 @@ return {
     require('mini.comment').setup{ mappings = { comment = '<leader>\\', comment_line = '<leader>\\', comment_visual = '<leader>\\'} } -- comment/uncomment
     require('mini.align').setup() -- align columns
     require('mini.surround').setup() -- edit wrappers like <li></li> and {}
-    require('mini.jump2d').setup{ mappings = { start_jumping = '<leader> ' } } -- hinting
-    -- require('mini.pairs').setup() -- auto adds the second bracket. usually annoying.
+    -- require('mini.jump2d').setup{ mappings = { start_jumping = '' } } -- hinting
     -- require('mini.bracketed').setup() -- jump various scopes via square bracket keys
     -- require('mini.fuzzy').setup() -- fuzzy finding
     -- require('mini.starter').setup()
@@ -45,7 +43,7 @@ return {
     opts = {
       window = { open = "alternate" },
       one_per = { wezterm = false }, -- cool plugin but breaking changes ;_; i thought it was my waputer
-      callbacks = {
+      hooks = { -- okay they did breaking changes again. stop. [...] ughh i read the github they're working on it but not cool
         should_block = function(argv)
           -- block if -b
           return vim.tbl_contains(argv, "-b")

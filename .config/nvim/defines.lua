@@ -29,7 +29,7 @@ function line_sym_2()
   return '🕸️'
 end
 function line_wc()
-  -- print selectionwords or cursorpos/total
+  -- print selectionwords/total or cursorpos/total
   return tostring(fn.wordcount().visual_words or fn.wordcount().cursor_words) .. "/" .. tostring(fn.wordcount().words)
 end
 -- }}}

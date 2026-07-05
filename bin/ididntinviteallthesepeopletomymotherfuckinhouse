@@ -1,0 +1,18 @@
+#!/bin/bash
+# let me know and log when files appear in my homedir cos too many programs make a mess like it's
+# their house I DIDN'T INVITE ALL THESE PEOPLE TO MY MOTHERFUCKIN' HOUSE GET THE FUCK OUT OF MY HOUSE
+
+log='/home/spider/mess/homelog'
+inotifywait -m /home/spider -e create,delete -e moved_to |
+    # while read -r _ _ file; do
+    while read -r _ action file; do
+        if [[ "$action" == *'DELETE'* ]] ; then
+            notify-send -u normal "Your wish has prevailed over entropy." "$file"
+            sed -i "/$file\$/d" "$log" # i'm not santizing this
+            continue
+        fi
+        msglist=("YOUR REALITY IS SHAKEN" "YOU SENSE THINGS ARE NO LONGER WHAT THEY USED TO BE" "YOU FEEL SOMETHING HAS CHANGED" "YOU FEEL THE RULES OF THE COSMOS HAVE SHIFTED" "YOU SENSE THE REALITY HAS SHIFTED" "THE REALITY HAS SHIFTED")
+        idx=$(shuf -i 0-${#msglist[@]} -n 1)
+        notify-send -u critical "${msglist[$idx]}" "$file"
+        echo "$(date) // $file"  >> "$log"
+    done

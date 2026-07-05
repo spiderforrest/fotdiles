@@ -29,7 +29,7 @@ globalkeys = gears.table.join(
   quick_bind{
     -- misc
     { mod={}, key="Print", sh="flameshot gui -r | xclip -selection clipboard -t image/png && pkill flameshot" },
-    { key="[", sh=xrandr_cmd .. " && awesome-client 'awesome.restart()'" },
+    { key="[", sh=xrandr_cmd },
     { key="]", sh=xrandr_mirror_cmd },
     { key="]", mod={meta, ctrl}, sh="xset -dpms && xset s off" },
     -- volume
@@ -42,11 +42,18 @@ globalkeys = gears.table.join(
     { key="XF86AudioMute", sh="~/bin/allume hardMute" },
     -- runners
     { key="q", prog="qutebrowser" },
-    { key="Return", prog="wezterm start --class=Terminal" },
-    { key="r", prog="j4-dmenu-desktop --term='wezterm'" },
-    { key="s", mod={meta, alt}, prog="firejail --net=none spotify" },
+    { key="Return", prog="neovide -- -c terminal -c startinsert" }, -- i am built different. like incorrectly i think
+    { key="Tab", prog="wezterm" },
+    { key="r", prog="j4-dmenu-desktop --term=" .. terminal },
     { key="e", mod={meta, alt}, prog="rofimoji" }
   }
+  -- awful.key(
+  --   {},
+  --   "XF86AudioMicMute",
+  --   function () awful.spawn.with_shell("~/bin/allume micMute") end,
+  --   function () awful.spawn.with_shell("~/bin/allume micMute") end
+  -- ) -- actual push to talk. using the real syntax makes me happy about quick_bind()
+  -- don't work uhh
 )
 -- }}}
 
@@ -65,12 +72,12 @@ globalkeys = gears.table.join(
     end },
 
     -- jumpy
-    { key=" ", lua=function()
-      awful.client.focus.history.previous()
-      if client.focus then
-        client.focus:raise()
-      end
-    end },
+    -- { key=" ", lua=function()
+    --   awful.client.focus.history.previous()
+    --   if client.focus then
+    --     client.focus:raise()
+    --   end
+    -- end },
     { key="x", lua=awful.client.urgent.jumpto },
 
     -- neio
@@ -138,9 +145,14 @@ clientkeys = gears.table.join(
     { key="t", lua=function (c) c.ontop = not c.ontop end },
     { key="p", lua=function (c) c.sticky = not c.sticky end },
     { key="d", lua=function (c) c.minimized = true end },
+    -- pop a window to be floating, ontop, and sticky. also pops window to focus, so when you deselect it's there
+    { key="y", lua=function (c) local fi = not c.sticky; c.sticky = fi; c.ontop = fi; c.floating = fi;
+      client.focus:move_to_tag(awful.screen.focused().selected_tag) end },
 
     -- jank for. making a minecraft panorama. yipee.
     { key="g", mod={meta, shft}, lua=function (c) c.height=1024 c.width=1024 end },
+    -- jank for fixing maximixed windows
+    { key="g", mod={meta, alt}, lua=function (c) c.maximized = false end },
 
   }
 )

@@ -18,9 +18,14 @@ return {
     enable_tab_bar = false, -- hides stupid modern tab gui go away baka
 -- {{{ colorshemes
     -- oh man
-    -- color_scheme = 'EverforestDark (Gogh)', -- still nightly and i dunnooo
-    color_scheme = 'Django', -- too green maaayyybbbeee
+    color_scheme = 'EverforestDark (Gogh)', -- still nightly and i dunnooo
+    -- color_scheme = 'Django', -- too green maaayyybbbeee
         -- color_scheme = 'DjangoSmooth', --maybe too bright
+    colors = {
+    -- background = '#1a1a1a',
+    background = '#262626',
+    -- background = '#0b2f20'
+  },
 -- }}} colorshemes
     cursor_thickness = '95%', -- why does 5% make this much difference? it makes the unfocused cursor thinner
     window_padding = {

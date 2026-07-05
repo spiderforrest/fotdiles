@@ -16,7 +16,13 @@ case $Mode in
         pactl list sources | grep 'Source #' | cut -c 9- | xargs -I '{}' pactl set-source-mute '{}' 1
     ;;
     micMute)
-        pactl list sources | grep 'Source #' | cut -c 9- | xargs -I '{}' pactl set-source-mute '{}' toggle
+        # sources can get out of sync and be muted, so check out this nightmare:
+        # if pactl get-source-mute "$(pactl list sources | grep 'Source #' | cut -c 9- | head -n 1)" | grep -q "yes" ; then
+        if pactl get-source-mute @DEFAULT_SOURCE@ | grep -q "yes" ; then # prolly better oops
+            pactl list sources | grep 'Source #' | cut -c 9- | xargs -I '{}' pactl set-source-mute '{}' false
+        else
+            pactl list sources | grep 'Source #' | cut -c 9- | xargs -I '{}' pactl set-source-mute '{}' true
+        fi
     ;;
     get)
         pactl get-sink-volume @DEFAULT_SINK@ | grep -E -o '[0-9]+%' | tail -n 1
